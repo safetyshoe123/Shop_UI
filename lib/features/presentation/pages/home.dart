@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shop_ui/features/presentation/pages/login.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,13 +14,11 @@ class HomePage extends StatefulWidget {
 
 class _SidebarXExampleAppState extends State<HomePage> {
   final _controller = SidebarXController(selectedIndex: 0, extended: true);
-  
+
   final _key = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    
-    
     return MaterialApp(
       title: 'Home',
       debugShowCheckedModeBanner: false,
@@ -179,7 +178,9 @@ class ExampleSidebarX extends StatelessWidget {
           icon: Icons.power_settings_new_rounded,
           label: 'Logout',
           onTap: () {
-            debugPrint('Logout');
+            // debugPrint('Logout');
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const LoginPage()));
           },
         )
       ],
@@ -303,31 +304,32 @@ class _ScreensExample extends StatelessWidget {
                                       textStyle: const TextStyle(
                                           color: Colors.brown,
                                           fontSize: 15,
-                                          fontWeight: FontWeight.bold
-                                          ),
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   )),
-                               Padding(
+                              Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text('Mandaue',
-                                    style: GoogleFonts.ptSerif(
-                                      textStyle: const TextStyle(
-                                          color: Colors.brown,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold
-                                          ),
-                                    ),),
+                                child: Text(
+                                  'Mandaue',
+                                  style: GoogleFonts.ptSerif(
+                                    textStyle: const TextStyle(
+                                        color: Colors.brown,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
                               ),
-                               Padding(
+                              Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text('11-24-23',
-                                    style: GoogleFonts.ptSerif(
-                                      textStyle: const TextStyle(
-                                          color: Colors.brown,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold
-                                          ),
-                                    ),),
+                                child: Text(
+                                  '11-24-23',
+                                  style: GoogleFonts.ptSerif(
+                                    textStyle: const TextStyle(
+                                        color: Colors.brown,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
                               ),
                               const Padding(padding: EdgeInsets.all(2)),
                             ],
@@ -366,7 +368,7 @@ class _ScreensExample extends StatelessWidget {
                         // width: 500,
 
                         child: SearchAnchor(
-                          viewSurfaceTintColor: Colors.white70 ,
+                            viewSurfaceTintColor: Colors.white70,
                             viewBackgroundColor: Colors.white70,
                             builder: (BuildContext context,
                                 SearchController controller) {
@@ -402,7 +404,7 @@ class _ScreensExample extends StatelessWidget {
                 ),
               ),
             );
-            case 2:
+          case 2:
             var screenSize = MediaQuery.of(context).size;
             return SingleChildScrollView(
               padding: const EdgeInsets.only(bottom: 100),
@@ -411,55 +413,48 @@ class _ScreensExample extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(
-                      // child: Text(
-                      //   'ADD',
-                      //   style: GoogleFonts.ptSerif(
-                      //     textStyle: const TextStyle(
-                      //         color: Color.fromRGBO(40, 120, 19, 1),
-                      //         fontSize: 50,
-                      //         letterSpacing: .5),
-                      //   ),
-                      // ),
-                    ),
+                        // child: Text(
+                        //   'ADD',
+                        //   style: GoogleFonts.ptSerif(
+                        //     textStyle: const TextStyle(
+                        //         color: Color.fromRGBO(40, 120, 19, 1),
+                        //         fontSize: 50,
+                        //         letterSpacing: .5),
+                        //   ),
+                        // ),
+                        ),
                     Container(
                       padding: const EdgeInsets.all(5),
                       alignment: Alignment.topCenter,
                       child: SizedBox(
                         child: Container(
-                    padding: const EdgeInsets.all(5),
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      // height: 100,
-                      
-                      child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              SizedBox(
-                                height: screenSize.width / 5,
-                                width: screenSize.width / 3.8,
-                               
-                                child: FloatingActionButton(
-                                  backgroundColor: Colors.white70,
-                                  onPressed: (){
-                                
-                                
-                                }),
-                              ),
-                              SizedBox(
-                                 height: screenSize.width / 5,
-                                width: screenSize.width / 3.8,
-                                child: FloatingActionButton(
-                                  backgroundColor: Colors.white70,
-                                  onPressed: (){
-                                
-                                
-                                }),
-                              )
-                            ],
+                          padding: const EdgeInsets.all(5),
+                          alignment: Alignment.bottomCenter,
+                          child: SizedBox(
+                            // height: 100,
+
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                SizedBox(
+                                  height: screenSize.width / 5,
+                                  width: screenSize.width / 3.8,
+                                  child: FloatingActionButton(
+                                      backgroundColor: Colors.white70,
+                                      onPressed: () {}),
+                                ),
+                                SizedBox(
+                                  height: screenSize.width / 5,
+                                  width: screenSize.width / 3.8,
+                                  child: FloatingActionButton(
+                                      backgroundColor: Colors.white70,
+                                      onPressed: () {}),
+                                )
+                              ],
+                            ),
                           ),
-                    ),
-                  ),
+                        ),
                       ),
                     ),
                   ],
