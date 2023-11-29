@@ -2,18 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shop_ui/features/presentation/pages/branch.dart';
 import 'package:shop_ui/features/presentation/pages/login.dart';
 import 'package:sidebarx/sidebarx.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class BranchPage extends StatefulWidget {
+  const BranchPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _SidebarXExampleAppState();
+  State<BranchPage> createState() => _SidebarXExampleAppState();
 }
 
-class _SidebarXExampleAppState extends State<HomePage> {
+class _SidebarXExampleAppState extends State<BranchPage> {
   final _controller = SidebarXController(selectedIndex: 0, extended: true);
 
   final _key = GlobalKey<ScaffoldState>();
@@ -207,11 +206,12 @@ class _ScreensExample extends StatelessWidget {
         switch (controller.selectedIndex) {
           case 0:
             return SingleChildScrollView(
+              
               child: Column(
                 children: [
                   SizedBox(
                     child: Text(
-                      'DASHBOARD',
+                      'BRANCH DASHBOARD',
                       style: GoogleFonts.ptSerif(
                         textStyle: const TextStyle(
                             color: Color.fromRGBO(40, 120, 19, 1),
@@ -244,63 +244,89 @@ class _ScreensExample extends StatelessWidget {
                             children: [
                               // Padding(padding: EdgeInsets.all(2)),
                               Expanded(
-                                flex: 1,
+                                flex:1,
                                 child: Padding(
                                   padding: EdgeInsets.all(3),
                                   child: Text(
-                                    'Shop-ID',
+                                    'Branch-ID',
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ),
                               ),
                               Expanded(
-                                flex: 1,
+                                flex:1,
                                 child: Padding(
                                   padding: EdgeInsets.all(3),
                                   child: Text(
-                                    'Shop',
+                                    'Branch',
                                     style: TextStyle(color: Colors.white),
                                     textAlign: TextAlign.start,
                                   ),
                                 ),
                               ),
                               Expanded(
-                                flex: 1,
+                                flex:1,
                                 child: Padding(
                                   padding: EdgeInsets.all(3),
                                   child: Text(
                                     'Address1',
                                     style: TextStyle(color: Colors.white),
+                                    textAlign: TextAlign.start,
                                   ),
                                 ),
                               ),
                               Expanded(
-                                flex: 1,
+                                flex:1,
                                 child: Padding(
                                   padding: EdgeInsets.all(3),
                                   child: Text(
                                     'Address2',
                                     style: TextStyle(color: Colors.white),
+                                    textAlign: TextAlign.start,
                                   ),
                                 ),
                               ),
                               Expanded(
-                                flex: 1,
+                                flex:1,
+                                child: Padding(
+                                  padding: EdgeInsets.all(3),
+                                  
+                                  child: Text(
+                                    'Date Opened',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex:1,
+                                child: Padding(
+                                  padding: EdgeInsets.all(3),
+                                  child: Text(
+                                    'Type',
+                                    style: TextStyle(color: Colors.white),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex:1,
                                 child: Padding(
                                   padding: EdgeInsets.all(3),
                                   child: Text(
                                     'Notes',
                                     style: TextStyle(color: Colors.white),
+                                    textAlign: TextAlign.start,
                                   ),
                                 ),
                               ),
                               Expanded(
-                                flex: 1,
+                                flex:1,
                                 child: Padding(
                                   padding: EdgeInsets.all(3),
                                   child: Text(
                                     'Remark',
                                     style: TextStyle(color: Colors.white),
+                                    textAlign: TextAlign.start,
                                   ),
                                 ),
                               ),
@@ -318,7 +344,7 @@ class _ScreensExample extends StatelessWidget {
                       height: 800,
                       width: 1400,
                       child: ListView.builder(
-                        itemCount: 1,
+                        itemCount: 10,
                         padding: const EdgeInsets.only(top: 10),
                         itemBuilder: (context, index) => Container(
                           height: 100,
@@ -339,126 +365,159 @@ class _ScreensExample extends StatelessWidget {
                           child: GestureDetector(
                             onTap: () {
                               // Your click event code here
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const BranchPage()));
                             },
-                            child: Padding(
+                            child:  Padding(
                               padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[
+                                 
                                   Expanded(
                                     flex: 1,
                                     child: Padding(
-                                      padding: const EdgeInsets.all(3),
-                                      child: Text(
-                                        'Shop-1',
-                                        style: GoogleFonts.ptSerif(
-                                          textStyle: const TextStyle(
-                                              color: Colors.brown,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        maxLines: 1,
-                                        softWrap: false,
-                                        overflow: TextOverflow.clip,
-                                      ),
+                                    padding: const EdgeInsets.all(3),
+                                    child: Text(
+                                    'Branch-1',
+                                    style: GoogleFonts.ptSerif(
+                                      textStyle: const TextStyle(
+                                          color: Colors.brown,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
                                     ),
+                                                                  maxLines: 1,
+                                    softWrap: false,
+                                    overflow: TextOverflow.clip,
+                                                                  ),
+                                                                  ),
                                   ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(3),
-                                      child: Text(
-                                        'DBIC',
-                                        style: GoogleFonts.ptSerif(
-                                          textStyle: const TextStyle(
-                                              color: Colors.brown,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        maxLines: 1,
-                                        softWrap: false,
-                                        overflow: TextOverflow.clip,
-                                      ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3),
+                                    child: Text(
+                                    'DOSC',
+                                    style: GoogleFonts.ptSerif(
+                                      textStyle: const TextStyle(
+                                          color: Colors.brown,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
                                     ),
+                                  maxLines: 1,
+                                    softWrap: false,
+                                    overflow: TextOverflow.clip,
                                   ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(3),
-                                      child: Text(
-                                        'Mandaue City',
-                                        style: GoogleFonts.ptSerif(
-                                          textStyle: const TextStyle(
-                                              color: Colors.brown,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        maxLines: 1,
-                                        softWrap: false,
-                                        overflow: TextOverflow.clip,
-                                      ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3),
+                                    child: Text(
+                                    'Cebu City',
+                                    style: GoogleFonts.ptSerif(
+                                      textStyle: const TextStyle(
+                                          color: Colors.brown,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
                                     ),
+                                  maxLines: 1,
+                                    softWrap: false,
+                                    overflow: TextOverflow.clip,
                                   ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(3),
-                                      child: Text(
-                                        'Danao City',
-                                        style: GoogleFonts.ptSerif(
-                                          textStyle: const TextStyle(
-                                              color: Colors.brown,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        maxLines: 1,
-                                        softWrap: false,
-                                        overflow: TextOverflow.clip,
-                                      ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3),
+                                    child: Text(
+                                    'Liloan',
+                                    style: GoogleFonts.ptSerif(
+                                      textStyle: const TextStyle(
+                                          color: Colors.brown,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
                                     ),
+                                  maxLines: 1,
+                                    softWrap: false,
+                                    overflow: TextOverflow.clip,
                                   ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(3),
-                                      child: Text(
-                                        'No Notes',
-                                        style: GoogleFonts.ptSerif(
-                                          textStyle: const TextStyle(
-                                              color: Colors.brown,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        maxLines: 1,
-                                        softWrap: false,
-                                        overflow: TextOverflow.clip,
-                                      ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3),
+                                    child: Text(
+                                    '11-29-2023',
+                                    style: GoogleFonts.ptSerif(
+                                      textStyle: const TextStyle(
+                                          color: Colors.brown,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
                                     ),
+                                  maxLines: 1,
+                                    softWrap: false,
+                                    overflow: TextOverflow.clip,
                                   ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(3),
-                                      child: Text(
-                                        'Good Remarks',
-                                        style: GoogleFonts.ptSerif(
-                                          textStyle: const TextStyle(
-                                              color: Colors.brown,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        maxLines: 1,
-                                        softWrap: false,
-                                        overflow: TextOverflow.clip,
-                                      ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3),
+                                    child: Text(
+                                    'A',
+                                    style: GoogleFonts.ptSerif(
+                                      textStyle: const TextStyle(
+                                          color: Colors.brown,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
                                     ),
+                                  maxLines: 1,
+                                    softWrap: false,
+                                    overflow: TextOverflow.clip,
                                   ),
+                                  
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3),
+                                    child: Text(
+                                    'No Notes',
+                                    style: GoogleFonts.ptSerif(
+                                      textStyle: const TextStyle(
+                                          color: Colors.brown,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  maxLines: 1,
+                                    softWrap: false,
+                                    overflow: TextOverflow.clip,
+                                  ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3),
+                                    child: Text(
+                                    'Good Remarks',
+                                    style: GoogleFonts.ptSerif(
+                                      textStyle: const TextStyle(
+                                          color: Colors.brown,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  maxLines: 1,
+                                    softWrap: false,
+                                    overflow: TextOverflow.clip,
+                                  ),
+                                  ),
+                                ),
                                 ],
                               ),
                             ),
