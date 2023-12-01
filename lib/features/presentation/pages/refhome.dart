@@ -6,14 +6,14 @@ import 'package:shop_ui/features/presentation/pages/branch.dart';
 import 'package:shop_ui/features/presentation/pages/login.dart';
 import 'package:sidebarx/sidebarx.dart';
 
-class TryHomePage extends StatefulWidget {
-  const TryHomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<TryHomePage> createState() => _SidebarXExampleAppState();
+  State<HomePage> createState() => _SidebarXExampleAppState();
 }
 
-class _SidebarXExampleAppState extends State<TryHomePage> {
+class _SidebarXExampleAppState extends State<HomePage> {
   final _controller = SidebarXController(selectedIndex: 0, extended: true);
 
   final _key = GlobalKey<ScaffoldState>();
@@ -158,13 +158,13 @@ class ExampleSidebarX extends StatelessWidget {
             // debugPrint('Home');
           },
         ),
-        // SidebarXItem(
-        //   icon: Icons.search,
-        //   label: 'Search',
-        //   onTap: () {
-        //     // debugPrint('Search');
-        //   },
-        // ),
+        SidebarXItem(
+          icon: Icons.search,
+          label: 'Search',
+          onTap: () {
+            // debugPrint('Search');
+          },
+        ),
         const SidebarXItem(
           icon: Icons.add_circle,
           label: 'Add',
@@ -239,10 +239,10 @@ class _ScreensExample extends StatelessWidget {
                         child: const Padding(
                           padding: EdgeInsets.fromLTRB(50, 5, 50, 5),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                             
+                              // Padding(padding: EdgeInsets.all(2)),
                               Expanded(
                                 flex: 1,
                                 child: Padding(
@@ -269,7 +269,37 @@ class _ScreensExample extends StatelessWidget {
                                 child: Padding(
                                   padding: EdgeInsets.all(5),
                                   child: Text(
-                                    'Address',
+                                    'Address1',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: Text(
+                                    'Address2',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: Text(
+                                    'Notes',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: Text(
+                                    'Remark',
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ),
@@ -322,7 +352,6 @@ class _ScreensExample extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[
-                                 
                                   Expanded(
                                     flex: 1,
                                     child: Padding(
@@ -332,7 +361,7 @@ class _ScreensExample extends StatelessWidget {
                                         style: GoogleFonts.ptSerif(
                                           textStyle: const TextStyle(
                                               color: Colors.brown,
-                                              fontSize: 20,
+                                              fontSize: 15,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         maxLines: 1,
@@ -341,7 +370,13 @@ class _ScreensExample extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  
+                                   VerticalDivider(
+                                    color: Colors.grey.shade400, //color of divider
+                                    width: 10, //width space of divider
+                                    thickness: 3, //thickness of divier line
+                                    // indent: 0, //Spacing at the top of divider.
+                                    // endIndent: 0, //Spacing at the bottom of divider.
+                                  ),
                                   Expanded(
                                     flex: 1,
                                     child: Padding(
@@ -351,7 +386,7 @@ class _ScreensExample extends StatelessWidget {
                                         style: GoogleFonts.ptSerif(
                                           textStyle: const TextStyle(
                                             color: Colors.brown,
-                                            fontSize: 20,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -361,17 +396,98 @@ class _ScreensExample extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                 
+                                   VerticalDivider(
+                                    color: Colors.grey.shade400, //color of divider
+                                    width: 10, //width space of divider
+                                    thickness: 3, //thickness of divier line
+                                    // indent: 0, //Spacing at the top of divider.
+                                    // endIndent: 0, //Spacing at the bottom of divider.
+                                  ),
                                   Expanded(
                                     flex: 1,
                                     child: Padding(
                                       padding: const EdgeInsets.all(7),
                                       child: Text(
-                                        'Mandaue City',
+                                        'Mandaue City dfggdfgdggdfg',
                                         style: GoogleFonts.ptSerif(
                                           textStyle: const TextStyle(
                                               color: Colors.brown,
-                                              fontSize: 20,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        maxLines: 1,
+                                        softWrap: false,
+                                        overflow: TextOverflow.clip,
+                                      ),
+                                    ),
+                                  ),
+                                    VerticalDivider(
+                                    color: Colors.grey.shade400, //color of divider
+                                    width: 10, //width space of divider
+                                    thickness: 3, //thickness of divier line
+                                    // indent: 0, //Spacing at the top of divider.
+                                    // endIndent: 0, //Spacing at the bottom of divider.
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(7),
+                                      child: Text(
+                                        'Danao City',
+                                        style: GoogleFonts.ptSerif(
+                                          textStyle: const TextStyle(
+                                              color: Colors.brown,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        maxLines: 1,
+                                        softWrap: false,
+                                        overflow: TextOverflow.clip,
+                                      ),
+                                    ),
+                                  ),
+                                   VerticalDivider(
+                                    color: Colors.grey.shade400, //color of divider
+                                    width: 10, //width space of divider
+                                    thickness: 3, //thickness of divier line
+                                    // indent: 0, //Spacing at the top of divider.
+                                    // endIndent: 0, //Spacing at the bottom of divider.
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(7),
+                                      child: Text(
+                                        'No Notes',
+                                        style: GoogleFonts.ptSerif(
+                                          textStyle: const TextStyle(
+                                              color: Colors.brown,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        maxLines: 1,
+                                        softWrap: false,
+                                        overflow: TextOverflow.clip,
+                                      ),
+                                    ),
+                                  ),
+                                    VerticalDivider(
+                                    color: Colors.grey.shade400, //color of divider
+                                    width: 10, //width space of divider
+                                    thickness: 3, //thickness of divier line
+                                    // indent: 0, //Spacing at the top of divider.
+                                    // endIndent: 0, //Spacing at the bottom of divider.
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(7),
+                                      child: Text(
+                                        'Good Remarks',
+                                        style: GoogleFonts.ptSerif(
+                                          textStyle: const TextStyle(
+                                              color: Colors.brown,
+                                              fontSize: 15,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         maxLines: 1,
@@ -384,7 +500,58 @@ class _ScreensExample extends StatelessWidget {
                               ),
                             ),
                           ),
-                          
+                          // child: ListTile(
+                          //  contentPadding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+
+                          //   leading: Container(
+                          //     padding: const EdgeInsets.all(10),
+                          //     child: Text(
+                          //       'Shop-1',
+                          //       style: GoogleFonts.ptSerif(
+                          //         textStyle: const TextStyle(
+                          //             color: Colors.brown,
+                          //             fontSize: 15,
+                          //             fontWeight: FontWeight.bold),
+                          //       ),
+                          //     maxLines: 1,
+                          //       softWrap: false,
+                          //       overflow: TextOverflow.clip,
+                          //     ),
+                          //   ),
+                          //   title: Center(
+                          //     child: Container(
+                          //       padding: const EdgeInsets.all(10),
+                          //       child: Text(
+                          //         'DBIC',
+                          //         style: GoogleFonts.ptSerif(
+                          //           textStyle: const TextStyle(
+                          //               color: Colors.brown,
+                          //               fontSize: 15,
+                          //               fontWeight: FontWeight.bold),
+                          //         ),
+                          //         maxLines: 1,
+                          //       softWrap: false,
+                          //       overflow: TextOverflow.clip,
+                          //       ),
+                          //     ),
+                          //   ),
+                          //   trailing: Padding(
+                          //     padding: const EdgeInsets.all(5),
+                          //     child: Text(
+                          //       'Sector 6, Pagsabungan Mandue',
+                          //       style: GoogleFonts.ptSerif(
+                          //         textStyle: const TextStyle(
+                          //             color: Colors.brown,
+                          //             fontSize: 15,
+                          //             fontWeight: FontWeight.bold),
+
+                          //       ),
+
+                          //       maxLines: 3,
+                          //       overflow: TextOverflow.clip,
+                          //      ),
+                          //   ),
+                          // ),
                         ),
                       ),
                     ),
@@ -394,7 +561,67 @@ class _ScreensExample extends StatelessWidget {
             );
 
           case 1:
-            
+            return SingleChildScrollView(
+              padding: const EdgeInsets.only(bottom: 500),
+              child: Container(
+                alignment: Alignment.topCenter,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      child: Text(
+                        'SEARCH',
+                        style: GoogleFonts.ptSerif(
+                          textStyle: const TextStyle(
+                              color: Color.fromRGBO(40, 120, 19, 1),
+                              fontSize: 50,
+                              letterSpacing: .5),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      alignment: Alignment.topCenter,
+                      child: SizedBox(
+                        // height: 50,
+                        // width: 500,
+
+                        child: SearchAnchor(
+                            viewSurfaceTintColor: Colors.white70,
+                            viewBackgroundColor: Colors.white70,
+                            builder: (BuildContext context,
+                                SearchController controller) {
+                              return SearchBar(
+                                controller: controller,
+                                padding:
+                                    const MaterialStatePropertyAll<EdgeInsets>(
+                                        EdgeInsets.symmetric(horizontal: 16.0)),
+                                onTap: () {
+                                  controller.openView();
+                                },
+                                onChanged: (_) {
+                                  controller.openView();
+                                },
+                                leading: const Icon(Icons.search),
+                              );
+                            },
+                            suggestionsBuilder: (BuildContext context,
+                                SearchController controller) {
+                              return List<ListTile>.generate(5, (int index) {
+                                final String item = 'item $index';
+                                return ListTile(
+                                  title: Text(item),
+                                  onTap: () {
+                                    controller.closeView(item);
+                                  },
+                                );
+                              });
+                            }),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
           case 2:
             var screenSize = MediaQuery.of(context).size;
             return SingleChildScrollView(
@@ -468,8 +695,8 @@ String _getTitleByIndex(int index) {
   switch (index) {
     case 0:
       return 'Home';
-    // case 1:
-    //   return 'Search';
+    case 1:
+      return 'Search';
     case 2:
       return 'Add';
     case 3:
