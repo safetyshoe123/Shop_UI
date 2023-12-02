@@ -6,14 +6,14 @@ import 'package:shop_ui/features/presentation/pages/branch.dart';
 import 'package:shop_ui/features/presentation/pages/login.dart';
 import 'package:sidebarx/sidebarx.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage1 extends StatefulWidget {
+  const HomePage1({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _SidebarXExampleAppState();
+  State<HomePage1> createState() => _SidebarXExampleAppState();
 }
 
-class _SidebarXExampleAppState extends State<HomePage> {
+class _SidebarXExampleAppState extends State<HomePage1> {
   final _controller = SidebarXController(selectedIndex: 0, extended: true);
 
   final _key = GlobalKey<ScaffoldState>();

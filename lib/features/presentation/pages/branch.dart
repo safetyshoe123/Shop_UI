@@ -193,9 +193,9 @@ class ExampleSidebarX extends StatelessWidget {
 
 class _ScreensExample extends StatelessWidget {
   const _ScreensExample({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final SidebarXController controller;
 
@@ -211,23 +211,19 @@ class _ScreensExample extends StatelessWidget {
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  SizedBox(
-                    child: Text(
-                      '-SHOP NAME- DASHBOARD',
-                      style: GoogleFonts.ptSerif(
-                        textStyle: const TextStyle(
-                            color: Color.fromRGBO(40, 120, 19, 1),
-                            fontSize: 50,
-                            letterSpacing: .5),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text(
+                        '-SHOP NAME- DASHBOARD',
+                        style: GoogleFonts.ptSerif(
+                          textStyle: const TextStyle(
+                              color: Color.fromRGBO(40, 120, 19, 1),
+                              fontSize: 50,
+                              letterSpacing: .5),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    child: _searchBar(context),
-                  ),
+                  _searchBar(context),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -269,42 +265,33 @@ class _ScreensExample extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   Container(
-                    padding: const EdgeInsets.all(5),
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      height: 10,
-                      width: 1400,
-                      child: Container(
-                        height: 100,
-                        width: 10,
-                        margin: const EdgeInsets.only(
-                            bottom: 5, right: 50, left: 50),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white54,
-                          boxShadow: const [BoxShadow()],
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.fromLTRB(50, 5, 50, 5),
-                        ),
-                      ),
+                    height: 5,
+                    width: 1400,
+                    margin: const EdgeInsets.only(
+                        bottom: 5, right: 50, left: 50),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white54,
+                      boxShadow: const [BoxShadow()],
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.fromLTRB(50, 5, 50, 5),
                     ),
                   ),
                   Container(
                     padding: const EdgeInsets.all(5),
                     alignment: Alignment.bottomCenter,
+                    height: 500,
+                    width: 1300,
                     child: SizedBox(
-                      height: 500,
-                      width: 1300,
                       child: ScrollConfiguration(
                         behavior: ScrollConfiguration.of(context).copyWith(
                             dragDevices: {
                               PointerDeviceKind.touch,
                               PointerDeviceKind.mouse
-                            }),
-                        child: ListView.builder(
+                          }),
+                          child: ListView.builder(
                           physics: const AlwaysScrollableScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemCount: 5,

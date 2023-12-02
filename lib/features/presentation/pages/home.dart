@@ -6,14 +6,14 @@ import 'package:shop_ui/features/presentation/pages/branch.dart';
 import 'package:shop_ui/features/presentation/pages/login.dart';
 import 'package:sidebarx/sidebarx.dart';
 
-class TryHomePage extends StatefulWidget {
-  const TryHomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<TryHomePage> createState() => _SidebarXExampleAppState();
+  State<HomePage> createState() => _SidebarXExampleAppState();
 }
 
-class _SidebarXExampleAppState extends State<TryHomePage> {
+class _SidebarXExampleAppState extends State<HomePage> {
   final _controller = SidebarXController(selectedIndex: 0, extended: true);
 
   final _key = GlobalKey<ScaffoldState>();
@@ -78,10 +78,9 @@ class _SidebarXExampleAppState extends State<TryHomePage> {
 
 class ExampleSidebarX extends StatelessWidget {
   const ExampleSidebarX({
-    Key? key,
+    super.key,
     required SidebarXController controller,
-  })  : _controller = controller,
-        super(key: key);
+  })  : _controller = controller;
 
   final SidebarXController _controller;
 
@@ -191,9 +190,9 @@ class ExampleSidebarX extends StatelessWidget {
 
 class _ScreensExample extends StatelessWidget {
   const _ScreensExample({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final SidebarXController controller;
 
@@ -281,113 +280,118 @@ class _ScreensExample extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(5),
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      height: 800,
-                      width: 1400,
-                      child: ListView.builder(
-                        itemCount: 1,
-                        padding: const EdgeInsets.only(top: 10),
-                        itemBuilder: (context, index) => Container(
-                          height: 100,
-                          width: 10,
-                          margin: const EdgeInsets.only(
-                              bottom: 15, right: 50, left: 50),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white70,
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black38,
-                                  blurRadius: 5.0,
-                                  offset: Offset(0, 3))
-                            ],
-                          ),
-
-                          child: GestureDetector(
-                            onTap: () {
-                              // Your click event code here
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BranchPage()));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                mainAxisSize: MainAxisSize.max,
-                                children: <Widget>[
-                                 
-                                  Expanded(
-                                    flex: 1,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child: Text(
-                                        'Shop-1',
-                                        style: GoogleFonts.ptSerif(
-                                          textStyle: const TextStyle(
-                                              color: Colors.brown,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        maxLines: 1,
-                                        softWrap: false,
-                                        overflow: TextOverflow.clip,
-                                      ),
-                                    ),
-                                  ),
-                                  
-                                  Expanded(
-                                    flex: 1,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(7),
-                                      child: Text(
-                                        'DBIC',
-                                        style: GoogleFonts.ptSerif(
-                                          textStyle: const TextStyle(
-                                            color: Colors.brown,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        maxLines: 1,
-                                        softWrap: false,
-                                        overflow: TextOverflow.clip,
-                                      ),
-                                    ),
-                                  ),
-                                 
-                                  Expanded(
-                                    flex: 1,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(7),
-                                      child: Text(
-                                        'Mandaue City',
-                                        style: GoogleFonts.ptSerif(
-                                          textStyle: const TextStyle(
-                                              color: Colors.brown,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        maxLines: 1,
-                                        softWrap: false,
-                                        overflow: TextOverflow.clip,
-                                      ),
-                                    ),
-                                  ),
+                  Builder(
+                    builder: (context) {
+                        // final isSmallScreen = MediaQuery.of(context).size.width < 600;
+                      return Container(
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.bottomCenter,
+                        child: SizedBox(
+                          height: 800,
+                          width: 1400,
+                          child: ListView.builder(
+                            itemCount: 1,
+                            padding: const EdgeInsets.only(top: 10),
+                            itemBuilder: (context, index) => Container(
+                              height: 100,
+                              width: 10,
+                              margin: const EdgeInsets.only(
+                                  bottom: 15, right: 50, left: 50),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white70,
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.black38,
+                                      blurRadius: 5.0,
+                                      offset: Offset(0, 3))
                                 ],
                               ),
+                      
+                              child: GestureDetector(
+                                onTap: () {
+                                  // Your click event code here
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const BranchPage()));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: <Widget>[
+                                     
+                                      Expanded(
+                                        flex: 1,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(5),
+                                          child: Text(
+                                            'Shop-1',
+                                            style: GoogleFonts.ptSerif(
+                                              textStyle: const TextStyle(
+                                                  color: Colors.brown,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            maxLines: 1,
+                                            softWrap: false,
+                                            overflow: TextOverflow.clip,
+                                          ),
+                                        ),
+                                      ),
+                                      
+                                      Expanded(
+                                        flex: 1,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(7),
+                                          child: Text(
+                                            'DBIC',
+                                            style: GoogleFonts.ptSerif(
+                                              textStyle: const TextStyle(
+                                                color: Colors.brown,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            maxLines: 1,
+                                            softWrap: false,
+                                            overflow: TextOverflow.clip,
+                                          ),
+                                        ),
+                                      ),
+                                     
+                                      Expanded(
+                                        flex: 1,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(7),
+                                          child: Text(
+                                            'Mandaue City',
+                                            style: GoogleFonts.ptSerif(
+                                              textStyle: const TextStyle(
+                                                  color: Colors.brown,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            maxLines: 1,
+                                            softWrap: false,
+                                            overflow: TextOverflow.clip,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              
                             ),
                           ),
-                          
                         ),
-                      ),
-                    ),
+                      );
+                    }
                   ),
                 ],
               ),
