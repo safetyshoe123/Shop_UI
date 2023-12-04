@@ -1,16 +1,15 @@
 // import 'dart:js_util';
 
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:shop_ui/features/presentation/pages/branchdash.dart';
+import 'package:shop_ui/features/branch/presentation/branchdash.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_ui/features/presentation/pages/login.dart';
 // import 'package:shop_ui/features/presentation/pages/shopinfo.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class BranchPage extends StatefulWidget {
-  const BranchPage({Key? key}) : super(key: key);
+  const BranchPage({super.key});
 
   @override
   State<BranchPage> createState() => _SidebarXExampleAppState();
@@ -81,10 +80,9 @@ class _SidebarXExampleAppState extends State<BranchPage> {
 
 class ExampleSidebarX extends StatelessWidget {
   const ExampleSidebarX({
-    Key? key,
+    super.key,
     required SidebarXController controller,
-  })  : _controller = controller,
-        super(key: key);
+  })  : _controller = controller;
 
   final SidebarXController _controller;
 
@@ -194,7 +192,6 @@ class ExampleSidebarX extends StatelessWidget {
 
 class _ScreensExample extends StatelessWidget {
   const _ScreensExample({
-    super.key,
     required this.controller,
   });
 

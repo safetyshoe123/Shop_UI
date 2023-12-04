@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shop_ui/config.dart';
-import 'package:shop_ui/features/domain/models/shop_model.dart';
+import 'package:shop_ui/features/shop/domain/models/shop_model.dart';
 
 class ShopRepository {
   Future<List<ShopModel>> getShop() async {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_ui/core/enums/enum.dart';
-import 'package:shop_ui/features/data/repository/shop_repository.dart';
-import 'package:shop_ui/features/domain/models/shop_model.dart';
+import 'package:shop_ui/features/shop/data/repository/shop_repository.dart';
+import 'package:shop_ui/features/shop/domain/models/shop_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'shop_state.dart';

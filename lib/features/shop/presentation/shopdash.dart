@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shop_ui/features/presentation/pages/branch.dart';
+import 'package:shop_ui/features/branch/presentation/branch.dart';
 
 class ShopDash extends StatefulWidget {
   const ShopDash({super.key

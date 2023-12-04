@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../employee/presentation/employee.dart';
+
 class BranchDash extends StatefulWidget {
   const BranchDash({super.key});
 
@@ -94,7 +96,7 @@ class _BranchDashState extends State<BranchDash> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(5),
+            padding: const EdgeInsets.all(3),
             alignment: Alignment.bottomCenter,
             height: screenSize.width/4.5,
             width: screenSize.width/1.4,
@@ -134,6 +136,11 @@ class _BranchDashState extends State<BranchDash> {
                       backgroundColor: Colors.white70,
                       onPressed: () {
                         // Your click event code here
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const EmployeePage()));
+
                       },
                       child: FittedBox(
                         fit: BoxFit.scaleDown,

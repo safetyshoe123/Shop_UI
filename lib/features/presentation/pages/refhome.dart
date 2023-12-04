@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shop_ui/features/presentation/pages/branch.dart';
+import 'package:shop_ui/features/branch/presentation/branch.dart';
 import 'package:shop_ui/features/presentation/pages/login.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class HomePage1 extends StatefulWidget {
-  const HomePage1({Key? key}) : super(key: key);
+  const HomePage1({super.key});
 
   @override
   State<HomePage1> createState() => _SidebarXExampleAppState();
@@ -78,10 +78,9 @@ class _SidebarXExampleAppState extends State<HomePage1> {
 
 class ExampleSidebarX extends StatelessWidget {
   const ExampleSidebarX({
-    Key? key,
+    super.key,
     required SidebarXController controller,
-  })  : _controller = controller,
-        super(key: key);
+  })  : _controller = controller;
 
   final SidebarXController _controller;
 
@@ -191,9 +190,8 @@ class ExampleSidebarX extends StatelessWidget {
 
 class _ScreensExample extends StatelessWidget {
   const _ScreensExample({
-    Key? key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final SidebarXController controller;
 
