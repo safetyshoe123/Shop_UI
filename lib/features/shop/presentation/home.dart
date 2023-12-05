@@ -59,17 +59,20 @@ class _SidebarXExampleAppState extends State<HomePage> {
                   )
                 : null,
             drawer: ExampleSidebarX(controller: _controller),
-            body: Row(
-              children: [
-                if (!isSmallScreen) ExampleSidebarX(controller: _controller),
-                Expanded(
-                  child: Center(
-                    child: _ScreensExample(
-                      controller: _controller,
+            body: PopScope(
+              canPop: false,
+              child: Row(
+                children: [
+                  if (!isSmallScreen) ExampleSidebarX(controller: _controller),
+                  Expanded(
+                    child: Center(
+                      child: _ScreensExample(
+                        controller: _controller,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
