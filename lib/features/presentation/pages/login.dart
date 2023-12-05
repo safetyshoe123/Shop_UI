@@ -147,13 +147,13 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                               builder: (context) => BlocProvider(
                                     create: (context) => diContainer.shopBloc,
                                     child: const HomePage(),
-                                  )));
+                                  )), ModalRoute.withName('/'));
                     },
                   ),
                   // const SizedBox(height: 10),
