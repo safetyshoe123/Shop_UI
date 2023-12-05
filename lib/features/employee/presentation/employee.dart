@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_ui/features/employee/presentation/employeeadd.dart';
-import 'package:shop_ui/features/employee/presentation/employeedash.dart';
+import 'package:shop_ui/features/branch/presentation/branchdash.dart';
 import 'package:shop_ui/features/presentation/pages/login.dart';
 // import 'package:shop_ui/features/presentation/pages/shopdash.dart';
 import 'package:sidebarx/sidebarx.dart';
@@ -198,7 +198,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
         final pageTitle = _getTitleByIndex(widget.controller.selectedIndex);
         switch (widget.controller.selectedIndex) {
           case 0:
-            return const EmployeeDash();
+            return const BranchDash();
 
           case 1:
             return const AddEmpPage();

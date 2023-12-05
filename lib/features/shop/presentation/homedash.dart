@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_ui/features/branch/presentation/branch.dart';
 
-class ShopDash extends StatefulWidget {
-  const ShopDash({super.key
+class HomeDash extends StatefulWidget {
+  const HomeDash({super.key
   
   });
 
   @override
-  State<ShopDash> createState() => _ShopDashState();
+  State<HomeDash> createState() => _HomeDashState();
 }
 
-class _ShopDashState extends State<ShopDash> {
+class _HomeDashState extends State<HomeDash> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

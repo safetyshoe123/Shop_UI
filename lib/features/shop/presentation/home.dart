@@ -212,7 +212,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
         switch (widget.controller.selectedIndex) {
           case 0:
 
-            return const ShopDash();
+            return const HomeDash();
          
 
           case 1:

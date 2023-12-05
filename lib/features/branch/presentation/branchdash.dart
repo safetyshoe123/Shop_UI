@@ -1,9 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+// import 'package:shop_ui/features/branch/presentation/branch.dart';
 
-import '../../employee/presentation/employee.dart';
+enum SampleItem { itemOne, itemTwo, itemThree }
 
 class BranchDash extends StatefulWidget {
   const BranchDash({super.key});
@@ -13,110 +12,45 @@ class BranchDash extends StatefulWidget {
 }
 
 class _BranchDashState extends State<BranchDash> {
+  SampleItem? selectMenu;
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+
     return SingleChildScrollView(
       child: Column(
-        children: [
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Text(
-                '-SHOP NAME- DASHBOARD',
-                style: GoogleFonts.ptSerif(
-                  textStyle: const TextStyle(
-                      color: Color.fromRGBO(40, 120, 19, 1),
-                      fontSize: 50,
-                      letterSpacing: .5),
-                ),
-              ),
-            ),
-          ),
-          _searchBar(context),
+        children: <Widget>[
           SizedBox(
-            width: screenSize.width/1.2,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                    iconSize: 40,
-                    padding: const EdgeInsets.all(10),
-                    onPressed: () {
-                      _shopInfo(context);
-                    },
-                    icon: Icon(
-                      Icons.info_outline,
-                      color: Colors.grey.shade600,
-                    )),
-                // const SizedBox(
-                //   width: 650,
-                // ),
-                Row(
-                  children: [
-                    IconButton(
-                        iconSize: 40,
-                        padding: const EdgeInsets.all(10),
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.add_to_photos_sharp,
-                          color: Colors.grey.shade600,
-                        )),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    IconButton(
-                        iconSize: 40,
-                        padding: const EdgeInsets.all(10),
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.edit_document,
-                          color: Colors.grey.shade600,
-                        )),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            width: screenSize.width/1.3,
-            child: Container(
-              height: 5,
-              width: 1400,
-              margin: const EdgeInsets.only(bottom: 5, right: 50, left: 50),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white54,
-                boxShadow: const [BoxShadow()],
-              ),
-              child: const Padding(
-                padding: EdgeInsets.fromLTRB(50, 5, 50, 5),
+            child: Text(
+              '-BRANCH NAME- DASHBOARD',
+              style: GoogleFonts.ptSerif(
+                textStyle: const TextStyle(
+                    color: Color.fromRGBO(40, 120, 19, 1),
+                    fontSize: 50,
+                    letterSpacing: .5),
               ),
             ),
           ),
-          Container(
-            padding: const EdgeInsets.all(3),
-            alignment: Alignment.bottomCenter,
-            height: screenSize.width/4.5,
-            width: screenSize.width/1.4,
-            child: ScrollConfiguration(
-              behavior: ScrollConfiguration.of(context).copyWith(
-                  dragDevices: {
-                    PointerDeviceKind.touch,
-                    PointerDeviceKind.mouse
-                  }),
-              child: ListView.builder(
-                physics: const AlwaysScrollableScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemCount: 5,
-                padding: const EdgeInsets.only(top: 10),
-                itemBuilder: (context, index) => SizedBox(
-                  height: screenSize.height / 10,
-                      width: screenSize.width / 3.8,
-                  child: Container(
-                    // height: 1500,
-                    // width: 500,
+           SizedBox(
+          height: 30, 
+          width: screenSize.width/1.5,
+          child: const Divider()),
+          
+          Builder(builder: (context) {
+           
+            // final isSmallScreen = MediaQuery.of(context).size.width < 600;
+            return Container(
+              padding: const EdgeInsets.all(5),
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                height: 800,
+                width: 1400,
+                child: ListView.builder(
+                  itemCount: 1,
+                  padding: const EdgeInsets.only(top: 10),
+                  itemBuilder: (context, index) => Container(
+                    height: 100,
+                    width: 10,
                     margin:
                         const EdgeInsets.only(bottom: 15, right: 50, left: 50),
                     decoration: BoxDecoration(
@@ -129,54 +63,74 @@ class _BranchDashState extends State<BranchDash> {
                             offset: Offset(0, 3))
                       ],
                     ),
-                    child: FloatingActionButton(
-                      heroTag: 'btn $index',
-                      hoverColor: Colors.grey.shade400,
-                      splashColor: Colors.white38,
-                      backgroundColor: Colors.white70,
-                      onPressed: () {
+                    child: GestureDetector(
+                      onTap: () {
                         // Your click event code here
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const EmployeePage()));
-
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => const BranchPage()));
                       },
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              SizedBox(
-                                width: 300,
-                                height: 80,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(3),
-                                  child: Text(
-                                    'Branch-1',
-                                    style: GoogleFonts.ptSerif(
-                                      textStyle: const TextStyle(
-                                          color: Colors.brown,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            const Padding(
+                              padding: EdgeInsets.all(5),
+                              child: Icon(Icons.account_circle_rounded),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding: const EdgeInsets.all(3),
+                                child: Text(
+                                  'Emp-1',
+                                  style: GoogleFonts.ptSerif(
+                                    textStyle: const TextStyle(
+                                        color: Colors.brown,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  maxLines: 1,
+                                  softWrap: false,
+                                  overflow: TextOverflow.clip,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding: const EdgeInsets.all(3),
+                                child: Text(
+                                  'Rey Mark Barriga',
+                                  style: GoogleFonts.ptSerif(
+                                    textStyle: const TextStyle(
+                                      color: Colors.brown,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    maxLines: 1,
-                                    softWrap: false,
-                                    overflow: TextOverflow.clip,
                                   ),
+                                  maxLines: 1,
+                                  softWrap: false,
+                                  overflow: TextOverflow.clip,
                                 ),
                               ),
-                              Padding(
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
                                 padding: const EdgeInsets.all(3),
                                 child: Text(
-                                  'DOSC',
+                                  'Mandaue City',
                                   style: GoogleFonts.ptSerif(
                                     textStyle: const TextStyle(
                                         color: Colors.brown,
-                                        fontSize: 50,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   maxLines: 1,
@@ -184,196 +138,84 @@ class _BranchDashState extends State<BranchDash> {
                                   overflow: TextOverflow.clip,
                                 ),
                               ),
-                              const SizedBox(
-                                height: 100,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(3),
-                                child: Text(
-                                  'Cebu City',
-                                  style: GoogleFonts.ptSerif(
-                                    textStyle: const TextStyle(
-                                        color: Colors.brown,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
+                            ),
+                            PopupMenuButton<SampleItem>(
+                              initialValue: selectMenu,
+                              // Callback that sets the selected popup menu item.
+                              onSelected: (SampleItem item) {
+                                setState(() {
+                                  selectMenu = item;
+                                });
+                              },
+                              itemBuilder: (BuildContext context) =>
+                                  <PopupMenuEntry<SampleItem>>[
+                                const PopupMenuItem<SampleItem>(
+                                  value: SampleItem.itemOne,
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.edit),
+                                      Text(' Edit'),
+                                    ],
                                   ),
-                                  maxLines: 1,
-                                  softWrap: false,
-                                  overflow: TextOverflow.clip,
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(3),
-                                child: Text(
-                                  '11-29-2023',
-                                  style: GoogleFonts.ptSerif(
-                                    textStyle: const TextStyle(
-                                        color: Colors.brown,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
+                                PopupMenuItem<SampleItem>(
+                                  onTap: () {
+                                  setState(() {
+                                  
+                                  });
+                                     
+                                  },
+                                  value: SampleItem.itemTwo,
+                                  child: const Row(
+                                    children: [
+                                      Icon(Icons.delete),
+                                      Text(' Delete'),
+                                    ],
                                   ),
-                                  maxLines: 1,
-                                  softWrap: false,
-                                  overflow: TextOverflow.clip,
                                 ),
-                              ),
-                            ],
-                          ),
+                                // const PopupMenuItem<SampleItem>(
+                                //   value: SampleItem.itemThree,
+                                //   child: Text('Item 3'),
+                                // ),
+                              ],
+                            )
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
-          // ),
+            );
+          }),
         ],
       ),
     );
   }
 
-  _searchBar(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Container(
-        padding: const EdgeInsets.all(5),
-        alignment: Alignment.topCenter,
-        child: SizedBox(
-          width: screenSize.width/2.5,
-          // height: 50,
-          // width: 500,
-      
-          child: SearchAnchor(
-              viewSurfaceTintColor: Colors.white70,
-              viewBackgroundColor: Colors.white70,
-              builder:
-                  (BuildContext context, SearchController controller) {
-                return SearchBar(
-                  controller: controller,
-                  padding: const MaterialStatePropertyAll<EdgeInsets>(
-                      EdgeInsets.symmetric(horizontal: 16.0)),
-                  onTap: () {
-                    controller.openView();
-                  },
-                  onChanged: (_) {
-                    controller.openView();
-                  },
-                  leading: const Icon(Icons.search),
-                );
-              },
-              suggestionsBuilder:
-                  (BuildContext context, SearchController controller) {
-                return List<ListTile>.generate(5, (int index) {
-                  final String item = 'item $index';
-                  return ListTile(
-                    title: Text(item),
-                    onTap: () {
-                      controller.closeView(item);
-                    },
-                  );
-                });
-              }),
-        ),
-      ),
-    );
-  }
-
-  Future<void> _shopInfo(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Shop Info'),
-          content: const SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Shop-ID: ',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'Shop-1',
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.start,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Address 1: ',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'Mandaue City',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Address 2: ',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'Liloan',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Notes',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'No Notes',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Remark',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'Good Remarks',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Approve'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // _popUpMenu(BuildContext context) {
+  //   PopupMenuButton<SampleItem>(
+  //     initialValue: selectedMenu,
+  //     // Callback that sets the selected popup menu item.
+  //     onSelected: (SampleItem item) {
+  //       setState(() {
+  //         selectedMenu = item;
+  //       });
+  //     },
+  //     itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
+  //       const PopupMenuItem<SampleItem>(
+  //         value: SampleItem.itemOne,
+  //         child: Text('Item 1'),
+  //       ),
+  //       const PopupMenuItem<SampleItem>(
+  //         value: SampleItem.itemTwo,
+  //         child: Text('Item 2'),
+  //       ),
+  //       const PopupMenuItem<SampleItem>(
+  //         value: SampleItem.itemThree,
+  //         child: Text('Item 3'),
+  //       ),
+  //     ],
+  //   );
+  // }
 }
