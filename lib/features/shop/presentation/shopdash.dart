@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../branch/presentation/branch.dart';
+import '../../employee/presentation/employee.dart';
 
 class ShopDash extends StatefulWidget {
   const ShopDash({super.key});
@@ -88,7 +88,7 @@ class _ShopDashState extends State<ShopDash> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const BranchPage()));
+                                builder: (context) => const EmployeePage()));
 
                       },
                       child: FittedBox(
