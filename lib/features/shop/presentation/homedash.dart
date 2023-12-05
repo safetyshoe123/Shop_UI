@@ -54,7 +54,7 @@ class _ShopDashState extends State<ShopDash> {
                         child: Padding(
                           padding: EdgeInsets.all(3),
                           child: Text(
-                            'Shop ID',
+                            'Shop-ID',
                             style: TextStyle(color: Colors.white),
                           ),
                         ),

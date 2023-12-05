@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/features/shop/presentation/home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey();
+  final DIContainer diContainer = DIContainer();
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +150,10 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const HomePage()));
+                              builder: (context) => BlocProvider(
+                                    create: (context) => diContainer.shopBloc,
+                                    child: const HomePage(),
+                                  )));
                     },
                   ),
                   // const SizedBox(height: 10),
