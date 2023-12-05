@@ -187,78 +187,78 @@ class _BranchDashState extends State<BranchDash> {
                                     ),
                                   ),
                                 ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(3),
-                                    child: Text(
-                                      '12-05-2023',
-                                      style: GoogleFonts.ptSerif(
-                                        textStyle: const TextStyle(
-                                            color: Colors.brown,
-                                            fontSize: fontsize,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      maxLines: 1,
-                                      softWrap: false,
-                                      overflow: TextOverflow.clip,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(3),
-                                    child: Text(
-                                      'Php 10,000',
-                                      style: GoogleFonts.ptSerif(
-                                        textStyle: const TextStyle(
-                                            color: Colors.brown,
-                                            fontSize: fontsize,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      maxLines: 1,
-                                      softWrap: false,
-                                      overflow: TextOverflow.clip,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(3),
-                                    child: Text(
-                                      'Notes',
-                                      style: GoogleFonts.ptSerif(
-                                        textStyle: const TextStyle(
-                                            color: Colors.brown,
-                                            fontSize: fontsize,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      maxLines: 1,
-                                      softWrap: false,
-                                      overflow: TextOverflow.clip,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(3),
-                                    child: Text(
-                                      'Remark',
-                                      style: GoogleFonts.ptSerif(
-                                        textStyle: const TextStyle(
-                                            color: Colors.brown,
-                                            fontSize: fontsize,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      maxLines: 1,
-                                      softWrap: false,
-                                      overflow: TextOverflow.clip,
-                                    ),
-                                  ),
-                                ),
+                                // Expanded(
+                                //   flex: 1,
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.all(3),
+                                //     child: Text(
+                                //       '12-05-2023',
+                                //       style: GoogleFonts.ptSerif(
+                                //         textStyle: const TextStyle(
+                                //             color: Colors.brown,
+                                //             fontSize: fontsize,
+                                //             fontWeight: FontWeight.bold),
+                                //       ),
+                                //       maxLines: 1,
+                                //       softWrap: false,
+                                //       overflow: TextOverflow.clip,
+                                //     ),
+                                //   ),
+                                // ),
+                                // Expanded(
+                                //   flex: 1,
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.all(3),
+                                //     child: Text(
+                                //       'Php 10,000',
+                                //       style: GoogleFonts.ptSerif(
+                                //         textStyle: const TextStyle(
+                                //             color: Colors.brown,
+                                //             fontSize: fontsize,
+                                //             fontWeight: FontWeight.bold),
+                                //       ),
+                                //       maxLines: 1,
+                                //       softWrap: false,
+                                //       overflow: TextOverflow.clip,
+                                //     ),
+                                //   ),
+                                // ),
+                                // Expanded(
+                                //   flex: 1,
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.all(3),
+                                //     child: Text(
+                                //       'Notes',
+                                //       style: GoogleFonts.ptSerif(
+                                //         textStyle: const TextStyle(
+                                //             color: Colors.brown,
+                                //             fontSize: fontsize,
+                                //             fontWeight: FontWeight.bold),
+                                //       ),
+                                //       maxLines: 1,
+                                //       softWrap: false,
+                                //       overflow: TextOverflow.clip,
+                                //     ),
+                                //   ),
+                                // ),
+                                // Expanded(
+                                //   flex: 1,
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.all(3),
+                                //     child: Text(
+                                //       'Remark',
+                                //       style: GoogleFonts.ptSerif(
+                                //         textStyle: const TextStyle(
+                                //             color: Colors.brown,
+                                //             fontSize: fontsize,
+                                //             fontWeight: FontWeight.bold),
+                                //       ),
+                                //       maxLines: 1,
+                                //       softWrap: false,
+                                //       overflow: TextOverflow.clip,
+                                //     ),
+                                //   ),
+                                // ),
                                 PopupMenuButton<SampleItem>(
                                   initialValue: selectMenu,
                                   // Callback that sets the selected popup menu item.
@@ -318,59 +318,97 @@ class _BranchDashState extends State<BranchDash> {
         builder: (BuildContext context) {
           return Form(
               child: AlertDialog(
-                alignment: Alignment.topCenter,
-                title: const Center(
-                  child: Text('Employee Details'),
-                ),
-                content: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                  title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Employee ID:'),
-                        Text('Last name:'),
-                        Text('First name:'),
-                        Text('Middle name:'),
-                        Text('Status:'),
-                        Text('Date hired:'),
-                        Text('Salary:'),
-                        Text('Notes:'),
-                        Text('Remark:'),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('Emp-1'),
-                        Text('Barriga'),
-                        Text('Rey Mark'),
-                        Text('Cajes'),
-                        Text('Single'),
-                        Text('12-05-2023'),
-                        Text('Php 10,000'),
-                        Text('No Notes'),
-                        Text('Good Remarks'),
-                      ],
-                    ),
-                  ],
-                ),
-                actions: <Widget>[
-                  Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        alignment: Alignment.centerLeft,
-                        backgroundColor: Colors.black,
-                        foregroundColor: Colors.white,
-                      ),
-                      child: const Text('Okay'),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  )
-                ],
-              ));
+                        const Text('Title'),
+                        CloseButton(
+                            color: const Color(0xFFD5D3D3),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            })
+                      ]),
+                  content: const SingleChildScrollView(child: Text("Boby")),
+                  actions: [
+                SizedBox(
+                    width: MediaQuery.of(context).size.width / 4,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          
+                          
+                          ButtonTheme(
+                              minWidth: 25.0,
+                              height: 25.0,
+                              child: ElevatedButton(
+                                  style: const ButtonStyle(
+                                      //   borderSide: BorderSide(color: Colors.black26),
+                                      // textColor: Colors.blue,
+                                      // shape: RoundedRectangleBorder(
+                                      //     borderRadius: BorderRadius.circular(20))
+                                      ),
+                                  child: const Text("Okay"),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  }))
+                        ]))
+              ])
+              // AlertDialog(
+              //   alignment: Alignment.topCenter,
+              //   title: const Center(
+              //     child: Text('Employee Details'),
+              //   ),
+              //   content: const Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     mainAxisSize: MainAxisSize.min,
+              //     children: [
+              //       Column(
+              //         mainAxisAlignment: MainAxisAlignment.start,
+              //         children: [
+              //           Text('Employee ID:'),
+              //           Text('Last name:'),
+              //           Text('First name:'),
+              //           Text('Middle name:'),
+              //           Text('Status:'),
+              //           Text('Date hired:'),
+              //           Text('Salary:'),
+              //           Text('Notes:'),
+              //           Text('Remark:'),
+              //         ],
+              //       ),
+              //       Column(
+              //         mainAxisAlignment: MainAxisAlignment.start,
+              //         children: [
+              //           Text('Emp-1'),
+              //           Text('Barriga'),
+              //           Text('Rey Mark'),
+              //           Text('Cajes'),
+              //           Text('Single'),
+              //           Text('12-05-2023'),
+              //           Text('Php 10,000'),
+              //           Text('No Notes'),
+              //           Text('Good Remarks'),
+              //         ],
+              //       ),
+              //     ],
+              //   ),
+              //   actions: <Widget>[
+              //     Center(
+              //       child: ElevatedButton(
+              //         style: ElevatedButton.styleFrom(
+              //           alignment: Alignment.centerLeft,
+              //           backgroundColor: Colors.black,
+              //           foregroundColor: Colors.white,
+              //         ),
+              //         child: const Text('Okay'),
+              //         onPressed: () {
+              //           Navigator.of(context).pop();
+              //         },
+              //       ),
+              //     )
+              //   ],
+              // )
+              );
         });
   }
 }
