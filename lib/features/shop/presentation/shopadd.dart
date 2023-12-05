@@ -174,62 +174,7 @@ class _AddShopPageState extends State<AddShopPage> {
                               ),
                             ],
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: screenSize.width / 5,
-                                child: Container(
-                                  padding: const EdgeInsets.all(8.0),
-                                  decoration: const BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color: Color.fromRGBO(
-                                                  40, 120, 19, 1)))),
-                                  child: TextFormField(
-                                    // validator: (String? val) {
-                                    //   return Guard.againstInvalidEmail(val, 'Email');
-                                    // },
-                                    autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
-                                    // controller: _emailController,
-                                    decoration: InputDecoration(
-                                        prefixIcon: const Icon(Icons.calendar_month_outlined),
-                                        border: InputBorder.none,
-                                        hintText: "Date Opened",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey[700])),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: screenSize.width / 5,
-                                child: Container(
-                                  padding: const EdgeInsets.all(8.0),
-                                  decoration: const BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color: Color.fromRGBO(
-                                                  40, 120, 19, 1)))),
-                                  child: TextFormField(
-                                    // validator: (String? val) {
-                                    //   return Guard.againstInvalidEmail(val, 'Email');
-                                    // },
-                                    autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
-                                    // controller: _emailController,
-                                    decoration: InputDecoration(
-                                        prefixIcon: const Icon(Icons.checklist_sharp),
-                                        border: InputBorder.none,
-                                        hintText: "Type",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey[700])),
-                                  ),
-                                ),
-                              ),
-                              
-                            ],
-                          ),
+                          
                           
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
