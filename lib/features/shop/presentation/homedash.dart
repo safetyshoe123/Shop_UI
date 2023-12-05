@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shop_ui/features/shop/presentation/shop.dart';
+import 'package:shop_ui/features/branch/presentation/branch.dart';
 
 class HomeDash extends StatefulWidget {
-  const HomeDash({super.key
-  
-  });
+  const HomeDash({super.key});
 
   @override
   State<HomeDash> createState() => _HomeDashState();
 }
 
 class _HomeDashState extends State<HomeDash> {
+  late ShopBloc _shopBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _shopBloc = BlocProvider.of<ShopBloc>(context);
+    _shopBloc.add(GetShopEvent());
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -119,7 +127,7 @@ class _HomeDashState extends State<HomeDash> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const ShopPage()));
+                                builder: (context) => const BranchPage()));
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
@@ -189,10 +197,15 @@ class _HomeDashState extends State<HomeDash> {
                   ),
                 ),
               ),
-            );
-          }),
-        ],
-      ),
+            ],
+          ),
+        );
+      },
     );
+  }
+  void _shopListener(BuildContext context, ShopState state) {
+    if(state.stateStatus == StateStatus.error){
+      return SnackBarUtils.defualtSnackBar(state.errorMessage, context);
+    }
   }
 }
