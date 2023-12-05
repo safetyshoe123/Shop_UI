@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../branch/presentation/branch.dart';
+import '../../employee/presentation/employee.dart';
 
 class ShopDash extends StatefulWidget {
   const ShopDash({super.key});
@@ -34,16 +34,67 @@ class _ShopDashState extends State<ShopDash> {
               ),
             ),
           ),
-          const SizedBox(height: 20,),
           _searchBar(context),
-          
-          
-          SizedBox(height: 50, 
-          width: screenSize.width/1.4,
-          child: const Divider(
-            thickness: 2,
-          )),
-
+          SizedBox(
+            width: screenSize.width/1.2,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                    iconSize: 40,
+                    padding: const EdgeInsets.all(10),
+                    onPressed: () {
+                      _shopInfo(context);
+                    },
+                    icon: Icon(
+                      Icons.info_outline,
+                      color: Colors.grey.shade600,
+                    )),
+                // const SizedBox(
+                //   width: 650,
+                // ),
+                Row(
+                  children: [
+                    IconButton(
+                        iconSize: 40,
+                        padding: const EdgeInsets.all(10),
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.add_to_photos_sharp,
+                          color: Colors.grey.shade600,
+                        )),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    IconButton(
+                        iconSize: 40,
+                        padding: const EdgeInsets.all(10),
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.edit_document,
+                          color: Colors.grey.shade600,
+                        )),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            width: screenSize.width/1.3,
+            child: Container(
+              height: 5,
+              width: 1400,
+              margin: const EdgeInsets.only(bottom: 5, right: 50, left: 50),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white54,
+                boxShadow: const [BoxShadow()],
+              ),
+              child: const Padding(
+                padding: EdgeInsets.fromLTRB(50, 5, 50, 5),
+              ),
+            ),
+          ),
           Container(
             padding: const EdgeInsets.all(3),
             alignment: Alignment.bottomCenter,
@@ -67,7 +118,7 @@ class _ShopDashState extends State<ShopDash> {
                     // height: 1500,
                     // width: 500,
                     margin:
-                        const EdgeInsets.only(bottom: 15, right: 20, left: 20),
+                        const EdgeInsets.only(bottom: 15, right: 50, left: 50),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.white70,
@@ -88,7 +139,7 @@ class _ShopDashState extends State<ShopDash> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const BranchPage()));
+                                builder: (context) => const EmployeePage()));
 
                       },
                       child: FittedBox(
@@ -183,14 +234,14 @@ class _ShopDashState extends State<ShopDash> {
   }
 
   _searchBar(BuildContext context) {
-    // var screenSize = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.of(context).size;
     return SingleChildScrollView(
       padding: const EdgeInsets.only(bottom: 10),
       child: Container(
         padding: const EdgeInsets.all(5),
         alignment: Alignment.topCenter,
         child: SizedBox(
-          width: 800,
+          width: screenSize.width/2.5,
           // height: 50,
           // width: 500,
       
@@ -215,13 +266,9 @@ class _ShopDashState extends State<ShopDash> {
               suggestionsBuilder:
                   (BuildContext context, SearchController controller) {
                 return List<ListTile>.generate(5, (int index) {
-                  
                   final String item = 'item $index';
-                  
                   return ListTile(
-                    
                     title: Text(item),
-                    
                     onTap: () {
                       controller.closeView(item);
                     },
@@ -233,5 +280,100 @@ class _ShopDashState extends State<ShopDash> {
     );
   }
 
-  
+  Future<void> _shopInfo(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Shop Info'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'Shop-ID: ',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      'Shop-1',
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.start,
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'Address 1: ',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      'Mandaue City',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'Address 2: ',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      'Liloan',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'Notes',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      'No Notes',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'Remark',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      'Good Remarks',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Approve'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

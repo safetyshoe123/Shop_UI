@@ -14,14 +14,6 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
     on<GetShopEvent>((event, emit) async {
       emit(state.copyWith(stateStatus: StateStatus.loading));
       final Either<String, List<ShopModel>> result = await shopRepository.getShop();
-      // try {
-      //   emit(state.copyWith(shopModel: result));
-      //   // emit(state.copyWith(stateStatus: StateStatus.loaded));
-      // } catch (e) {
-      //   print(e);
-      //   // emit(ShopErrorState(e.toString()));
-      //   emit(state.copyWith(errorMessage: e.toString()));
-      // }
       result.fold((error){
         emit(state.copyWith(
             stateStatus: StateStatus.error, errorMessage: error));
