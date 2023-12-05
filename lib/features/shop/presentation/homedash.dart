@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shop_ui/features/branch/presentation/branch.dart';
+import 'package:shop_ui/features/shop/presentation/shop.dart';
 
 class HomeDash extends StatefulWidget {
   const HomeDash({super.key
@@ -119,7 +119,7 @@ class _HomeDashState extends State<HomeDash> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const BranchPage()));
+                                builder: (context) => const ShopPage()));
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
