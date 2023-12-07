@@ -1,11 +1,8 @@
-// import 'dart:js_util';
-
 import 'package:flutter/material.dart';
-import 'package:shop_ui/features/branch/presentation/branchadd.dart';
-import 'package:shop_ui/features/shop/presentation/shopdash.dart';
-// import 'package:google_fonts/google_fonts.dart';
+import 'package:shop_ui/features/employee/presentation/employeeadd.dart';
+import 'package:shop_ui/features/branch/presentation/branchdash.dart';
 import 'package:shop_ui/features/presentation/pages/login.dart';
-// import 'package:shop_ui/features/presentation/pages/shopinfo.dart';
+// import 'package:shop_ui/features/presentation/pages/shopdash.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class BranchPage extends StatefulWidget {
@@ -144,10 +141,7 @@ class ExampleSidebarX extends StatelessWidget {
             child: Icon(
               Icons.person,
               color: white,
-            )
-            // Text('Image', selectionColor: Colors.white,)
-            // Image.asset('assets/images/avatar.png')
-            ,
+            ),
           ),
         );
       },
@@ -159,13 +153,6 @@ class ExampleSidebarX extends StatelessWidget {
             // debugPrint('Home');
           },
         ),
-        // SidebarXItem(
-        //   icon: Icons.search,
-        //   label: 'Search',
-        //   onTap: () {
-        //     // debugPrint('Search');
-        //   },
-        // ),
         const SidebarXItem(
           icon: Icons.add_circle,
           label: 'Add',
@@ -190,7 +177,7 @@ class ExampleSidebarX extends StatelessWidget {
   }
 }
 
-class _ScreensExample extends StatelessWidget {
+class _ScreensExample extends StatefulWidget {
   const _ScreensExample({
     required this.controller,
   });
@@ -198,18 +185,24 @@ class _ScreensExample extends StatelessWidget {
   final SidebarXController controller;
 
   @override
+  State<_ScreensExample> createState() => _ScreensExampleState();
+}
+
+class _ScreensExampleState extends State<_ScreensExample> {
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return AnimatedBuilder(
-      animation: controller,
+      animation: widget.controller,
       builder: (context, child) {
-        final pageTitle = _getTitleByIndex(controller.selectedIndex);
-        switch (controller.selectedIndex) {
+        final pageTitle = _getTitleByIndex(widget.controller.selectedIndex);
+        switch (widget.controller.selectedIndex) {
           case 0:
-            return const ShopDash();
+            return const BranchDash();
 
           case 1:
-            return const AddBranchPage();
+            return const AddEmpPage();
+
           case 2:
             var screenSize = MediaQuery.of(context).size;
             return SingleChildScrollView(
@@ -218,6 +211,17 @@ class _ScreensExample extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Column(
                   children: [
+                    const SizedBox(
+                        // child: Text(
+                        //   'ADD',
+                        //   style: GoogleFonts.ptSerif(
+                        //     textStyle: const TextStyle(
+                        //         color: Color.fromRGBO(40, 120, 19, 1),
+                        //         fontSize: 50,
+                        //         letterSpacing: .5),
+                        //   ),
+                        // ),
+                        ),
                     Container(
                       padding: const EdgeInsets.all(5),
                       alignment: Alignment.topCenter,
@@ -266,168 +270,14 @@ class _ScreensExample extends StatelessWidget {
       },
     );
   }
-
-  // Future<void> _shopInfo(BuildContext context) {
-
-  //   return showDialog<void>(
-  //   context: context,
-  //   barrierDismissible: false, // user must tap button!
-  //   builder: (BuildContext context) {
-  //     return AlertDialog(
-  //       title: const Text('Shop Info'),
-  //       content: const SingleChildScrollView(
-  //         child: ListBody(
-  //           children: <Widget>[
-
-  //              Row(
-  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //               mainAxisSize: MainAxisSize.max,
-  //           children: [
-  //             Text(
-  //               'Shop-ID: ',
-  //               style: TextStyle(color: Colors.white),
-  //             ),
-  //             Text(
-  //               'Shop-1',
-  //               style: TextStyle(color: Colors.white),
-  //               textAlign: TextAlign.start,
-  //             ),
-  //           ],
-  //         ),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //               mainAxisSize: MainAxisSize.max,
-  //           children: [
-  //             Text(
-  //               'Address 1: ',
-  //               style: TextStyle(color: Colors.white),
-  //             ),
-  //             Text(
-  //               'Mandaue City',
-  //               style: TextStyle(color: Colors.white),
-  //             ),
-  //           ],
-  //         ),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //               mainAxisSize: MainAxisSize.max,
-  //           children: [
-  //             Text(
-  //               'Address 2: ',
-  //               style: TextStyle(color: Colors.white),
-  //             ),
-  //             Text(
-  //               'Liloan',
-  //               style: TextStyle(color: Colors.white),
-  //             ),
-  //           ],
-  //         ),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //               mainAxisSize: MainAxisSize.max,
-  //           children: [
-  //             Text(
-  //               'Notes',
-  //               style: TextStyle(color: Colors.white),
-  //             ),
-  //             Text(
-  //               'No Notes',
-  //               style: TextStyle(color: Colors.white),
-  //             ),
-  //           ],
-  //         ),
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //               mainAxisSize: MainAxisSize.max,
-  //           children: [
-  //             Text(
-  //               'Remark',
-  //               style: TextStyle(color: Colors.white),
-  //             ),
-  //             Text(
-  //               'Good Remarks',
-  //               style: TextStyle(color: Colors.white),
-  //             ),
-  //           ],
-  //         ),
-
-  //           ],
-  //         ),
-  //       ),
-  //       actions: <Widget>[
-  //         TextButton(
-  //           child: const Text('Approve'),
-  //           onPressed: () {
-  //             Navigator.of(context).pop();
-  //           },
-  //         ),
-  //       ],
-  //     );
-  //   },
-  // );
-  // }
-
-  // _searchBar(BuildContext context){
-  //   return SingleChildScrollView(
-  //             padding: const EdgeInsets.only(bottom: 10),
-  //             child: Container(
-  //               alignment: Alignment.topCenter,
-  //               child: Column(
-  //                 children: [
-
-  //                   Container(
-  //                     padding: const EdgeInsets.all(5),
-  //                     alignment: Alignment.topCenter,
-  //                     child: SizedBox(
-  //                       // height: 50,
-  //                       // width: 500,
-
-  //                       child: SearchAnchor(
-  //                           viewSurfaceTintColor: Colors.white70,
-  //                           viewBackgroundColor: Colors.white70,
-  //                           builder: (BuildContext context,
-  //                               SearchController controller) {
-  //                             return SearchBar(
-  //                               controller: controller,
-  //                               padding:
-  //                                   const MaterialStatePropertyAll<EdgeInsets>(
-  //                                       EdgeInsets.symmetric(horizontal: 16.0)),
-  //                               onTap: () {
-  //                                 controller.openView();
-  //                               },
-  //                               onChanged: (_) {
-  //                                 controller.openView();
-  //                               },
-  //                               leading: const Icon(Icons.search),
-  //                             );
-  //                           },
-  //                           suggestionsBuilder: (BuildContext context,
-  //                               SearchController controller) {
-  //                             return List<ListTile>.generate(5, (int index) {
-  //                               final String item = 'item $index';
-  //                               return ListTile(
-  //                                 title: Text(item),
-  //                                 onTap: () {
-  //                                   controller.closeView(item);
-  //                                 },
-  //                               );
-  //                             });
-  //                           }),
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           );
-  // }
 }
 
 String _getTitleByIndex(int index) {
   switch (index) {
     case 0:
       return 'Home';
-    case 1:
-      return 'Search';
+    // case 1:
+    //   return 'Search';
     case 2:
       return 'Add';
     case 3:

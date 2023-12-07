@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shop_ui/features/shop/presentation/shop.dart';
 // import 'package:shop_ui/features/employee/presentation/employeedash.dart';
 // import 'package:shop_ui/features/branch/presentation/branch.dart';
 
@@ -21,6 +22,22 @@ class _BranchDashState extends State<BranchDash> {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
+          
+          Container(
+            alignment: Alignment.topLeft,
+            child: IconButton(
+                alignment: Alignment.topLeft,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) =>  
+                        const ShopPage()));
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    size: 50,
+                    color: Colors.grey,
+                  )),
+          ),
           FittedBox(
             fit: BoxFit.scaleDown,
             child: Padding(
