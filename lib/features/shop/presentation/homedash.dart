@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_ui/core/enums/enum.dart';
 import 'package:shop_ui/core/global_widgets/snackbar.dart';
-import 'package:shop_ui/features/branch/presentation/branch.dart';
+import 'package:shop_ui/features/presentation/pages/login.dart';
+import 'package:shop_ui/features/shop/presentation/shop.dart';
 // import 'package:shop_ui/features/branch/presentation/branch.dart';
 import 'package:shop_ui/features/shop/domain/bloc/shop_bloc.dart';
 // import 'package:shop_ui/features/shop/presentation/shop.dart';
@@ -30,6 +31,21 @@ class _HomeDashState extends State<HomeDash> {
     return SingleChildScrollView(
       child: Column(
         children: [
+          Container(
+            alignment: Alignment.topLeft,
+            child: IconButton(
+                alignment: Alignment.topLeft,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) =>  
+                        const LoginPage()));
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    size: 50,
+                    color: Colors.grey,
+                  )),
+          ),
           SizedBox(
             child: Text(
               'DASHBOARD',
@@ -132,7 +148,7 @@ class _HomeDashState extends State<HomeDash> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const BranchPage()));
+                                builder: (context) => const ShopPage()));
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),

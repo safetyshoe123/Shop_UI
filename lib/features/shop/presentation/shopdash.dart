@@ -2,8 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shop_ui/features/shop/presentation/home.dart';
 
-import '../../employee/presentation/employee.dart';
+import '../../branch/presentation/branch.dart';
 
 class ShopDash extends StatefulWidget {
   const ShopDash({super.key});
@@ -19,17 +20,33 @@ class _ShopDashState extends State<ShopDash> {
     return SingleChildScrollView(
       child: Column(
         children: [
+           Container(
+            
+            alignment: Alignment.topLeft,
+            child: IconButton(
+                // alignment: Alignment.topLeft,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) =>  
+                        const HomePage()));
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    size: 50,
+                    color: Colors.grey,
+                  )),
+          ),
           FittedBox(
             fit: BoxFit.scaleDown,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10),
+            child: SizedBox(
               child: Text(
                 '-SHOP NAME- DASHBOARD',
                 style: GoogleFonts.ptSerif(
                   textStyle: const TextStyle(
                       color: Color.fromRGBO(40, 120, 19, 1),
                       fontSize: 50,
-                      letterSpacing: .5),
+                      // letterSpacing: .5
+                      ),
                 ),
               ),
             ),
@@ -38,7 +55,7 @@ class _ShopDashState extends State<ShopDash> {
           _searchBar(context),
           
           
-          SizedBox(height: 50, 
+          SizedBox(height: 20, 
           width: screenSize.width/1.4,
           child: const Divider(
             thickness: 2,
@@ -88,7 +105,7 @@ class _ShopDashState extends State<ShopDash> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const EmployeePage()));
+                                builder: (context) => const BranchPage()));
 
                       },
                       child: FittedBox(
