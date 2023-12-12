@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shop_ui/core/enums/enum.dart';
-import 'package:shop_ui/core/global_widgets/snackbar.dart';
+// import 'package:shop_ui/core/enums/enum.dart';
+// import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
 import 'package:shop_ui/features/employee/presentation/employee.dart';
-import 'package:shop_ui/features/shop/presentation/shop.dart';
+// import 'package:shop_ui/features/shop/presentation/shop.dart';
 
 enum SampleItem { itemOne, itemTwo, itemThree }
 
@@ -289,43 +289,7 @@ class _BranchDashState extends State<BranchDash> {
                                 //     ),
                                 //   ),
                                 // ),
-                                PopupMenuButton<SampleItem>(
-                                  initialValue: selectMenu,
-                                  // Callback that sets the selected popup menu item.
-                                  onSelected: (SampleItem item) {
-                                    setState(() {
-                                      selectMenu = item;
-                                    });
-                                  },
-                                  itemBuilder: (BuildContext context) =>
-                                      <PopupMenuEntry<SampleItem>>[
-                                    const PopupMenuItem<SampleItem>(
-                                      value: SampleItem.itemOne,
-                                      child: Row(
-                                        children: [
-                                          Icon(Icons.edit),
-                                          Text(' Edit'),
-                                        ],
-                                      ),
-                                    ),
-                                    PopupMenuItem<SampleItem>(
-                                      onTap: () {
-                                        setState(() {});
-                                      },
-                                      value: SampleItem.itemTwo,
-                                      child: const Row(
-                                        children: [
-                                          Icon(Icons.delete),
-                                          Text(' Delete'),
-                                        ],
-                                      ),
-                                    ),
-                                    // const PopupMenuItem<SampleItem>(
-                                    //   value: SampleItem.itemThree,
-                                    //   child: Text('Item 3'),
-                                    // ),
-                                  ],
-                                )
+                                
                               ],
                             ),
                           ),
