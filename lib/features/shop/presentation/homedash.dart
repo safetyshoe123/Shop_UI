@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/core/enums/enum.dart';
 import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/features/shop/presentation/shop.dart';
@@ -16,6 +17,7 @@ class HomeDash extends StatefulWidget {
 }
 
 class _HomeDashState extends State<HomeDash> {
+  final DIContainer diContainer = DIContainer();
   late ShopBloc _shopBloc;
 
   @override
@@ -170,8 +172,16 @@ class _HomeDashState extends State<HomeDash> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ShopPage()));
+                                        builder: (context) =>
+                                          BlocProvider(
+                                            create: (context) =>
+                                                diContainer.branchBloc,
+                                            child: ShopPage(
+                                              shopModel: shoplist,
+                                            ),
+                                      ),
+                                    ),
+                                  );
                                 },
                                 child: Padding(
                                   padding:
