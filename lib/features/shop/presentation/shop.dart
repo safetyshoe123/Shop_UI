@@ -3,7 +3,7 @@ import 'package:shop_ui/features/branch/presentation/branchadd.dart';
 // import 'package:shop_ui/features/branch/presentation/branchdash.dart';
 import 'package:shop_ui/features/shop/domain/models/shop_model.dart';
 import 'package:shop_ui/features/shop/presentation/shopdash.dart';
-import 'package:shop_ui/features/presentation/pages/login.dart';
+import 'package:shop_ui/features/auth/presentation/login.dart';
 import 'package:shop_ui/features/shop/presentation/shopinfo.dart';
 import 'package:sidebarx/sidebarx.dart';
 
