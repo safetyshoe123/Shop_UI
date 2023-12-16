@@ -25,7 +25,7 @@ class BranchRepository {
   Future<Either<String, dynamic>> addShop(AddBranchModel addBranchModel) async {
     try {
       final response =
-          await http.post(Uri.parse('${Config.url}/api/create'), body: {
+          await http.post(Uri.parse('${Config.url}/api/createBranch'), body: {
         'shopId': addBranchModel.shopId,
         'branchId': addBranchModel.branchId,
         'branchName': addBranchModel.branchName,

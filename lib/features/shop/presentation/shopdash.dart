@@ -42,27 +42,16 @@ class _ShopDashState extends State<ShopDash> {
             child: CircularProgressIndicator(),
           );
         }
-        return Column(
-          children: [
-            Container(
-              alignment: Alignment.topLeft,
-              child: IconButton(
-                  // alignment: Alignment.topLeft,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    size: 50,
-                    color: Colors.grey,
-                  )),
-            ),
-            SingleChildScrollView(
+        return FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Container(
+            alignment: Alignment.center,
+            child: SingleChildScrollView(
               child: Column(
                 children: [
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: SizedBox(
+                  SizedBox(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
                       child: Text(
                         '-SHOP NAME- DASHBOARD',
                         style: GoogleFonts.ptSerif(
@@ -75,10 +64,9 @@ class _ShopDashState extends State<ShopDash> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  _searchBar(context),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
 
                   SizedBox(
                       height: 20,
@@ -111,118 +99,122 @@ class _ShopDashState extends State<ShopDash> {
                           padding: const EdgeInsets.only(top: 10),
                           itemBuilder: (context, index) {
                             final branchList = state.branchModel[index];
-                            return SizedBox(
-                              height: screenSize.height / 10,
-                              width: screenSize.width / 3.8,
-                              child: Container(
-                                // height: 1500,
-                                // width: 500,
-                                margin: const EdgeInsets.only(
-                                    bottom: 15, right: 20, left: 20),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white70,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.black38,
-                                        blurRadius: 5.0,
-                                        offset: Offset(0, 3))
-                                  ],
-                                ),
-                                child: FloatingActionButton(
-                                  heroTag: 'btn $index',
-                                  hoverColor: Colors.grey.shade400,
-                                  splashColor: Colors.white38,
-                                  backgroundColor: Colors.white70,
-                                  onPressed: () {
-                                    // Your click event code here
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => BlocProvider(
-                                                  create: (context) =>
-                                                    diContainer.branchBloc,
-                                                  child: const BranchPage(),
-                                                )));
-                                  },
-                                  child: FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          50, 5, 50, 5),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: <Widget>[
-                                          Padding(
-                                            padding: const EdgeInsets.all(3),
-                                            child: Text(
-                                              branchList.branchId,
-                                              style: GoogleFonts.ptSerif(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.brown,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                            return FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: SizedBox(
+                                height: 400,
+                                width: 500,
+                                child: Container(
+                                  // height: 1500,
+                                  // width: 500,
+                                  margin: const EdgeInsets.only(
+                                      bottom: 15, right: 20, left: 20),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.white70,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Colors.black38,
+                                          blurRadius: 5.0,
+                                          offset: Offset(0, 3))
+                                    ],
+                                  ),
+                                  child: FloatingActionButton(
+                                    heroTag: 'btn $index',
+                                    hoverColor: Colors.grey.shade400,
+                                    splashColor: Colors.white38,
+                                    backgroundColor: Colors.white70,
+                                    onPressed: () {
+                                      // Your click event code here
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  BlocProvider(
+                                                    create: (context) =>
+                                                        diContainer.branchBloc,
+                                                    child: const BranchPage(),
+                                                  )));
+                                    },
+                                    child: FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            50, 5, 50, 5),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.all(3),
+                                              child: Text(
+                                                branchList.branchId,
+                                                style: GoogleFonts.ptSerif(
+                                                  textStyle: const TextStyle(
+                                                      color: Colors.brown,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                maxLines: 1,
+                                                softWrap: false,
+                                                overflow: TextOverflow.clip,
                                               ),
-                                              maxLines: 1,
-                                              softWrap: false,
-                                              overflow: TextOverflow.clip,
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(3),
-                                            child: Text(
-                                              branchList.branchName,
-                                              style: GoogleFonts.ptSerif(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.brown,
-                                                    fontSize: 50,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                            Padding(
+                                              padding: const EdgeInsets.all(3),
+                                              child: Text(
+                                                branchList.branchName,
+                                                style: GoogleFonts.ptSerif(
+                                                  textStyle: const TextStyle(
+                                                      color: Colors.brown,
+                                                      fontSize: 50,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                maxLines: 1,
+                                                softWrap: false,
+                                                overflow: TextOverflow.clip,
                                               ),
-                                              maxLines: 1,
-                                              softWrap: false,
-                                              overflow: TextOverflow.clip,
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 100,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(3),
-                                            child: Text(
-                                              branchList.address1,
-                                              style: GoogleFonts.ptSerif(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.brown,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                            const SizedBox(
+                                              height: 100,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(3),
+                                              child: Text(
+                                                branchList.address1,
+                                                style: GoogleFonts.ptSerif(
+                                                  textStyle: const TextStyle(
+                                                      color: Colors.brown,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                maxLines: 1,
+                                                softWrap: false,
+                                                overflow: TextOverflow.clip,
                                               ),
-                                              maxLines: 1,
-                                              softWrap: false,
-                                              overflow: TextOverflow.clip,
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(3),
-                                            child: Text(
-                                              branchList.dateOpened,
-                                              style: GoogleFonts.ptSerif(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.brown,
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                            Padding(
+                                              padding: const EdgeInsets.all(3),
+                                              child: Text(
+                                                branchList.dateOpened,
+                                                style: GoogleFonts.ptSerif(
+                                                  textStyle: const TextStyle(
+                                                      color: Colors.brown,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                maxLines: 1,
+                                                softWrap: false,
+                                                overflow: TextOverflow.clip,
                                               ),
-                                              maxLines: 1,
-                                              softWrap: false,
-                                              overflow: TextOverflow.clip,
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -237,8 +229,8 @@ class _ShopDashState extends State<ShopDash> {
                   // ),
                 ],
               ),
-            )
-          ],
+            ),
+          ),
         );
       },
     );
@@ -250,50 +242,49 @@ class _ShopDashState extends State<ShopDash> {
     }
   }
 
-  _searchBar(BuildContext context) {
-    // var screenSize = MediaQuery.of(context).size;
-    return FittedBox(
-      fit: BoxFit.scaleDown,
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: Container(
-          padding: const EdgeInsets.all(5),
-          alignment: Alignment.topCenter,
-          child: SizedBox(
-            width: 800,
-            child: SearchAnchor(
-                viewSurfaceTintColor: Colors.white70,
-                viewBackgroundColor: Colors.white70,
-                builder: (BuildContext context, SearchController controller) {
-                  return SearchBar(
-                    controller: controller,
-                    padding: const MaterialStatePropertyAll<EdgeInsets>(
-                        EdgeInsets.symmetric(horizontal: 16.0)),
-                    onTap: () {
-                      controller.openView();
-                    },
-                    onChanged: (_) {
-                      controller.openView();
-                    },
-                    leading: const Icon(Icons.search),
-                  );
-                },
-                suggestionsBuilder:
-                    (BuildContext context, SearchController controller) {
-                  return List<ListTile>.generate(5, (int index) {
-                    final String item = 'item $index';
+  // _searchBar(BuildContext context) {
+  //   // var screenSize = MediaQuery.of(context).size;
+  //   return FittedBox(
+  //     fit: BoxFit.scaleDown,
+  //     child: Container(
+  //       alignment: Alignment.center,
+  //       child: SingleChildScrollView(
+  //         padding: const EdgeInsets.only(bottom: 10),
+  //         child: SizedBox(
+  //           width: 800,
+  //           child: SearchAnchor(
+  //               viewSurfaceTintColor: Colors.white70,
+  //               viewBackgroundColor: Colors.white70,
+  //               builder: (BuildContext context, SearchController controller) {
+  //                 return SearchBar(
+  //                   controller: controller,
+  //                   padding: const MaterialStatePropertyAll<EdgeInsets>(
+  //                       EdgeInsets.symmetric(horizontal: 16.0)),
+  //                   onTap: () {
+  //                     controller.openView();
+  //                   },
+  //                   onChanged: (_) {
+  //                     controller.openView();
+  //                   },
+  //                   leading: const Icon(Icons.search),
+  //                 );
+  //               },
+  //               suggestionsBuilder:
+  //                   (BuildContext context, SearchController controller) {
+  //                 return List<ListTile>.generate(5, (int index) {
+  //                   final String item = 'item $index';
 
-                    return ListTile(
-                      title: Text(item),
-                      onTap: () {
-                        controller.closeView(item);
-                      },
-                    );
-                  });
-                }),
-          ),
-        ),
-      ),
-    );
-  }
+  //                   return ListTile(
+  //                     title: Text(item),
+  //                     onTap: () {
+  //                       controller.closeView(item);
+  //                     },
+  //                   );
+  //                 });
+  //               }),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }

@@ -13,6 +13,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _inputIDController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -84,53 +85,79 @@ class _LoginPageState extends State<LoginPage> {
                                         color:
                                             Color.fromRGBO(40, 120, 19, 1)))),
                             child: TextFormField(
-                              // validator: (String? val) {
-                              //   return Guard.againstInvalidEmail(val, 'Email');
-                              // },
-                              autovalidateMode: 
-                              AutovalidateMode.onUserInteraction,
-                              controller: _emailController,
-                              decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.person),
-                                  border: InputBorder.none,
-                                  hintText: "Username",
-                                  hintStyle:
-                                      TextStyle(color: Colors.grey[700])),
-                              validator: (String? val) {
-                              return Guard.againstEmptyString(val, 'Username');
-                            }
-                            ),
+                                // validator: (String? val) {
+                                //   return Guard.againstInvalidEmail(val, 'Email');
+                                // },
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                controller: _inputIDController,
+                                decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.key),
+                                    border: InputBorder.none,
+                                    hintText: "ID",
+                                    hintStyle:
+                                        TextStyle(color: Colors.grey[700])),
+                                validator: (String? val) {
+                                  return Guard.againstEmptyString(
+                                      val, 'ID');
+                                }),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8.0),
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
+                            child: TextFormField(
+                                // validator: (String? val) {
+                                //   return Guard.againstInvalidEmail(val, 'Email');
+                                // },
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                controller: _emailController,
+                                decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.person),
+                                    border: InputBorder.none,
+                                    hintText: "Username",
+                                    hintStyle:
+                                        TextStyle(color: Colors.grey[700])),
+                                validator: (String? val) {
+                                  return Guard.againstEmptyString(
+                                      val, 'Username');
+                                }),
                           ),
                           Container(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
-                              // validator: (String? val) {
-                              //   return Guard.againstEmptyString(
-                              //       val, 'Password');
-                              // },
-                              autovalidateMode:
-                              AutovalidateMode.onUserInteraction,
-                              controller: _passwordController,
-                              obscureText: _isObscure,
-                              decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.lock_open),
-                                  border: InputBorder.none,
-                                  hintText: "Password",
-                                  hintStyle: TextStyle(color: Colors.grey[700]),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(_isObscure
-                                        ? Icons.visibility
-                                        : Icons.visibility_off),
-                                    onPressed: () {
-                                      setState(() {
-                                        _isObscure = !_isObscure;
-                                      });
-                                    },
-                                  )),
-                              validator: (String? val) {
-                              return Guard.againstEmptyString(val, 'Password');
-                            }
-                            ),
+                                // validator: (String? val) {
+                                //   return Guard.againstEmptyString(
+                                //       val, 'Password');
+                                // },
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                controller: _passwordController,
+                                obscureText: _isObscure,
+                                decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.lock_open),
+                                    border: InputBorder.none,
+                                    hintText: "Password",
+                                    hintStyle:
+                                        TextStyle(color: Colors.grey[700]),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(_isObscure
+                                          ? Icons.visibility
+                                          : Icons.visibility_off),
+                                      onPressed: () {
+                                        setState(() {
+                                          _isObscure = !_isObscure;
+                                        });
+                                      },
+                                    )),
+                                validator: (String? val) {
+                                  return Guard.againstEmptyString(
+                                      val, 'Password');
+                                }),
                           )
                         ],
                       ),
@@ -141,26 +168,23 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
-                                backgroundColor: MaterialStateColor.resolveWith(
-                                    (states) =>
-                                        const Color.fromRGBO(40, 120, 19, 1)),
-                                shape: MaterialStateProperty.resolveWith(
-                                    (states) => RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10))),
-                                overlayColor:
-                                    MaterialStateProperty.resolveWith<Color?>(
-                                  (Set<MaterialState> states) {
-                                    if (states.contains(MaterialState.hovered)) {
-                                      return Colors.red; //<-- SEE HERE
-                                    }
-                                     if (states.contains(MaterialState.pressed)) {
-                                      return Colors.brown; //<-- SEE HERE
-                                    }
-                                    return null; // Defer to the widget's default.
-                                  },
-                                ),
-                              ),
+                      backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => const Color.fromRGBO(40, 120, 19, 1)),
+                      shape: MaterialStateProperty.resolveWith((states) =>
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                        (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.hovered)) {
+                            return Colors.red; //<-- SEE HERE
+                          }
+                          if (states.contains(MaterialState.pressed)) {
+                            return Colors.brown; //<-- SEE HERE
+                          }
+                          return null; // Defer to the widget's default.
+                        },
+                      ),
+                    ),
                     child: SizedBox(
                       height: 50,
                       child: Center(

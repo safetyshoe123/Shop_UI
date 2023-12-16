@@ -29,22 +29,11 @@ class _BranchDashState extends State<BranchDash> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
 
-    return Column(
-      children: [
-        Container(
-          alignment: Alignment.topLeft,
-          child: IconButton(
-              alignment: Alignment.topLeft,
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios_new_rounded,
-                size: 50,
-                color: Colors.grey,
-              )),
-        ),
-        SingleChildScrollView(
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Container(
+        alignment: Alignment.center,
+        child: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           child: Column(
             children: <Widget>[
@@ -63,19 +52,16 @@ class _BranchDashState extends State<BranchDash> {
                   ),
                 ),
               ),
-              SizedBox(
-                  height: 30,
-                  width: screenSize.width / 1.5,
-                  child: const Divider()),
+              // const SizedBox(height: 30, width: 1300, child: Divider()),
               Builder(builder: (context) {
                 // final isSmallScreen = MediaQuery.of(context).size.width < 600;
                 return FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Container(
                     padding: const EdgeInsets.all(5),
-                    alignment: Alignment.bottomCenter,
+                    alignment: Alignment.center,
                     child: SizedBox(
-                      height: screenSize.height / 1.3,
+                      height: 800,
                       width: 1400,
                       child: ListView.builder(
                         itemCount: 10,
@@ -114,7 +100,8 @@ class _BranchDashState extends State<BranchDash> {
                               //         builder: (context) => const EmployeeDash()));
                             },
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
+                              padding:
+                                  const EdgeInsets.fromLTRB(50, 5, 50, 5),
                               child: Center(
                                 child: Row(
                                   mainAxisAlignment:
@@ -123,7 +110,8 @@ class _BranchDashState extends State<BranchDash> {
                                   children: <Widget>[
                                     const Padding(
                                       padding: EdgeInsets.all(5),
-                                      child: Icon(Icons.account_circle_rounded),
+                                      child: Icon(
+                                          Icons.account_circle_rounded),
                                     ),
                                     const SizedBox(
                                       width: 20,
@@ -138,7 +126,8 @@ class _BranchDashState extends State<BranchDash> {
                                             textStyle: const TextStyle(
                                                 color: Colors.brown,
                                                 fontSize: fontsize,
-                                                fontWeight: FontWeight.bold),
+                                                fontWeight:
+                                                    FontWeight.bold),
                                           ),
                                           maxLines: 1,
                                           softWrap: false,
@@ -213,7 +202,8 @@ class _BranchDashState extends State<BranchDash> {
                                             textStyle: const TextStyle(
                                                 color: Colors.brown,
                                                 fontSize: fontsize,
-                                                fontWeight: FontWeight.bold),
+                                                fontWeight:
+                                                    FontWeight.bold),
                                           ),
                                           maxLines: 1,
                                           softWrap: false,
@@ -235,72 +225,72 @@ class _BranchDashState extends State<BranchDash> {
             ],
           ),
         ),
-      ],
+      ),
     );
   }
 
-  Future _displayEmployee(BuildContext context) async {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return Form(
-              child: AlertDialog(
-            alignment: Alignment.topCenter,
-            title: const Center(
-              child: Text('Employee Details'),
-            ),
-            content: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text('Employee ID:'),
-                    Text('Last name:'),
-                    Text('First name:'),
-                    Text('Middle name:'),
-                    Text('Status:'),
-                    Text('Date hired:'),
-                    Text('Salary:'),
-                    Text('Notes:'),
-                    Text('Remark:'),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text('Emp-1'),
-                    Text('Barriga'),
-                    Text('Rey Mark'),
-                    Text('Cajes'),
-                    Text('Single'),
-                    Text('12-05-2023'),
-                    Text('Php 10,000'),
-                    Text('No Notes'),
-                    Text('Good Remarks'),
-                  ],
-                ),
-              ],
-            ),
-            actions: <Widget>[
-              Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    alignment: Alignment.centerLeft,
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                  ),
-                  child: const Text('Okay'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              )
-            ],
-          ));
-        });
-  }
+  // Future _displayEmployee(BuildContext context) async {
+  //   return showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return Form(
+  //             child: AlertDialog(
+  //           alignment: Alignment.topCenter,
+  //           title: const Center(
+  //             child: Text('Employee Details'),
+  //           ),
+  //           content: const Row(
+  //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //             mainAxisSize: MainAxisSize.min,
+  //             children: [
+  //               Column(
+  //                 mainAxisAlignment: MainAxisAlignment.start,
+  //                 children: [
+  //                   Text('Employee ID:'),
+  //                   Text('Last name:'),
+  //                   Text('First name:'),
+  //                   Text('Middle name:'),
+  //                   Text('Status:'),
+  //                   Text('Date hired:'),
+  //                   Text('Salary:'),
+  //                   Text('Notes:'),
+  //                   Text('Remark:'),
+  //                 ],
+  //               ),
+  //               Column(
+  //                 mainAxisAlignment: MainAxisAlignment.start,
+  //                 children: [
+  //                   Text('Emp-1'),
+  //                   Text('Barriga'),
+  //                   Text('Rey Mark'),
+  //                   Text('Cajes'),
+  //                   Text('Single'),
+  //                   Text('12-05-2023'),
+  //                   Text('Php 10,000'),
+  //                   Text('No Notes'),
+  //                   Text('Good Remarks'),
+  //                 ],
+  //               ),
+  //             ],
+  //           ),
+  //           actions: <Widget>[
+  //             Center(
+  //               child: ElevatedButton(
+  //                 style: ElevatedButton.styleFrom(
+  //                   alignment: Alignment.centerLeft,
+  //                   backgroundColor: Colors.black,
+  //                   foregroundColor: Colors.white,
+  //                 ),
+  //                 child: const Text('Okay'),
+  //                 onPressed: () {
+  //                   Navigator.of(context).pop();
+  //                 },
+  //               ),
+  //             )
+  //           ],
+  //         ));
+  //       });
+  // }
 }
 
 const double fontsize = 17;
