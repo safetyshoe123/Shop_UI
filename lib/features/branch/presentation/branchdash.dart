@@ -27,7 +27,7 @@ class _BranchDashState extends State<BranchDash> {
   SampleItem? selectMenu;
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
+    // var screenSize = MediaQuery.of(context).size;
 
     return FittedBox(
       fit: BoxFit.scaleDown,
@@ -100,8 +100,7 @@ class _BranchDashState extends State<BranchDash> {
                               //         builder: (context) => const EmployeeDash()));
                             },
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(50, 5, 50, 5),
+                              padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
                               child: Center(
                                 child: Row(
                                   mainAxisAlignment:
@@ -110,8 +109,7 @@ class _BranchDashState extends State<BranchDash> {
                                   children: <Widget>[
                                     const Padding(
                                       padding: EdgeInsets.all(5),
-                                      child: Icon(
-                                          Icons.account_circle_rounded),
+                                      child: Icon(Icons.account_circle_rounded),
                                     ),
                                     const SizedBox(
                                       width: 20,
@@ -126,8 +124,7 @@ class _BranchDashState extends State<BranchDash> {
                                             textStyle: const TextStyle(
                                                 color: Colors.brown,
                                                 fontSize: fontsize,
-                                                fontWeight:
-                                                    FontWeight.bold),
+                                                fontWeight: FontWeight.bold),
                                           ),
                                           maxLines: 1,
                                           softWrap: false,
@@ -202,8 +199,7 @@ class _BranchDashState extends State<BranchDash> {
                                             textStyle: const TextStyle(
                                                 color: Colors.brown,
                                                 fontSize: fontsize,
-                                                fontWeight:
-                                                    FontWeight.bold),
+                                                fontWeight: FontWeight.bold),
                                           ),
                                           maxLines: 1,
                                           softWrap: false,

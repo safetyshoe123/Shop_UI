@@ -29,34 +29,34 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
     });
     on<AddShopEvent>((event, emit) async {
       emit(state.copyWith(stateStatus: StateStatus.loading));
-      final Either<String, dynamic> result =
+      final Either<String, int> result =
           await shopRepository.addShop(event.addShopModel);
       result.fold((error) {
         emit(state.copyWith(
             stateStatus: StateStatus.error, errorMessage: error));
         emit(state.copyWith(stateStatus: StateStatus.loaded));
       }, (addShop) {
-        if (addShop == 200) {
-          final currentShopList = state.shopModel;
-          emit(state.copyWith(
-            shopModel: [
-              ...currentShopList,
-              // ShopModel(
-              //   id: int.parse(addShop),
-              //   shopId: event.addShopModel.shopId,
-              //   shopName: event.addShopModel.shopName,
-              //   address1: event.addShopModel.address1,
-              //   address2: event.addShopModel.address2,
-              //   notes: event.addShopModel.notes,
-              //   remark: event.addShopModel.remark,
-              // ),
-            ],
-            isAdded: true,
-            stateStatus: StateStatus.loaded,
-          ));
-        } else {
-          emit(state.copyWith(stateStatus: StateStatus.error));
-        }
+        // if (addShop) {
+        final currentShopList = state.shopModel;
+        emit(state.copyWith(
+          shopModel: [
+            ...currentShopList,
+            ShopModel(
+              id: addShop,
+              shopId: event.addShopModel.shopId,
+              shopName: event.addShopModel.shopName,
+              address1: event.addShopModel.address1,
+              address2: event.addShopModel.address2,
+              notes: event.addShopModel.notes,
+              remark: event.addShopModel.remark,
+            ),
+          ],
+          isAdded: true,
+          stateStatus: StateStatus.loaded,
+        ));
+        // } else {
+        //   emit(state.copyWith(stateStatus: StateStatus.error));
+        // }
 
         emit(state.copyWith(stateStatus: StateStatus.loaded));
       });

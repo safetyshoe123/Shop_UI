@@ -32,7 +32,7 @@ class BranchBloc extends Bloc<BranchEvent, BranchState> {
     });
     on<AddBranchEvent>((event, emit) async {
       emit(state.copyWith(stateStatus: StateStatus.loading));
-      final Either<String, dynamic> result =
+      final Either<String, int> result =
           await branchRepository.addShop(event.addBranchModel);
 
       result.fold((error) {
@@ -40,18 +40,29 @@ class BranchBloc extends Bloc<BranchEvent, BranchState> {
             stateStatus: StateStatus.error, errorMessage: error));
         emit(state.copyWith(stateStatus: StateStatus.loaded));
       }, (addShop) {
-        if (addShop == 200) {
-          final currentShopList = state.branchModel;
-          emit(state.copyWith(
-            isAdded: true,
-            branchModel: [
-              ...currentShopList,
-            ],
-            stateStatus: StateStatus.loaded,
-          ));
-        } else {
-          emit(state.copyWith(stateStatus: StateStatus.error));
-        }
+        // if (addShop == 200) {
+        final currentShopList = state.branchModel;
+        emit(state.copyWith(
+          isAdded: true,
+          branchModel: [
+            ...currentShopList,
+            BranchModel(
+                id: addShop,
+                shopId: event.addBranchModel.shopId,
+                branchId: event.addBranchModel.branchId,
+                branchName: event.addBranchModel.branchName,
+                address1: event.addBranchModel.address1,
+                address2: event.addBranchModel.address2,
+                dateOpened: event.addBranchModel.dateOpened,
+                type: event.addBranchModel.type,
+                notes: event.addBranchModel.notes,
+                remark: event.addBranchModel.remark)
+          ],
+          stateStatus: StateStatus.loaded,
+        ));
+        // } else {
+        // emit(state.copyWith(stateStatus: StateStatus.error));
+        // }
 
         emit(state.copyWith(stateStatus: StateStatus.loaded, isAdded: false));
       });
