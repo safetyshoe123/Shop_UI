@@ -28,15 +28,15 @@ class ShopModel {
       remark: json['remark'],
     );
   }
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'shopId': shopId,
-      'shopName': shopName,
-      'address1': address1,
-      'address2': address2,
-      'notes': notes,
-      'remark': remark,
-    };
-  }
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'id': id,
+  //     'shopId': shopId,
+  //     'shopName': shopName,
+  //     'address1': address1,
+  //     'address2': address2,
+  //     'notes': notes,
+  //     'remark': remark,
+  //   };
+  // }
 }

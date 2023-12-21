@@ -278,7 +278,7 @@ class _AddShopPageState extends State<AddShopPage> {
                                             hintText: "Remark",
                                             hintStyle: TextStyle(
                                                 color: Colors.grey[700],
-                                                  fontSize: 15)),
+                                                fontSize: 15)),
                                       ),
                                     ),
                                   ),
@@ -398,7 +398,8 @@ class _AddShopPageState extends State<AddShopPage> {
 
   void _addListener(BuildContext context, ShopState state) {
     if (state.stateStatus == StateStatus.error) {
-      SnackBarUtils.defualtSnackBar('ShopID is already taken!', context);
+      SnackBarUtils.defualtSnackBar(state.errorMessage, context);
+      // print(state.errorMessage);
       clearText();
     }
     if (state.isAdded == true) {

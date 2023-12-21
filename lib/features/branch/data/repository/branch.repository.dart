@@ -9,8 +9,8 @@ class BranchRepository {
   Future<Either<String, List<BranchModel>>> getBranch(String shopId) async {
     try {
       final response =
-          await http.get(Uri.parse('${Config.url}/api/showBranch/$shopId'));
-      if (response.body.isEmpty) {}
+          await http.get(Uri.parse('${Config.url}/showBranch/$shopId'));
+      // if (response.body.isEmpty) {}
 
       final result = jsonDecode(response.body) as List;
       List<BranchModel> fresult =
@@ -22,10 +22,10 @@ class BranchRepository {
     }
   }
 
-  Future<Either<String, dynamic>> addShop(AddBranchModel addBranchModel) async {
+  Future<Either<String, int>> addShop(AddBranchModel addBranchModel) async {
     try {
       final response =
-          await http.post(Uri.parse('${Config.url}/api/createBranch'), body: {
+          await http.post(Uri.parse('${Config.url}/createBranch'), body: {
         'shopId': addBranchModel.shopId,
         'branchId': addBranchModel.branchId,
         'branchName': addBranchModel.branchName,
@@ -36,8 +36,9 @@ class BranchRepository {
         'notes': addBranchModel.notes,
         'remark': addBranchModel.remark,
       });
+      final data = jsonDecode(response.body);
 
-      return Right(response.statusCode);
+      return Right(data['id']);
     } catch (e) {
       return Left(e.toString());
     }

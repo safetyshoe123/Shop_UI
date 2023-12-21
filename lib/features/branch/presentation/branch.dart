@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchinfo.dart';
 import 'package:shop_ui/features/employee/presentation/employeeadd.dart';
 import 'package:shop_ui/features/branch/presentation/branchdash.dart';
@@ -17,6 +19,13 @@ class _SidebarXExampleAppState extends State<BranchPage> {
   final _controller = SidebarXController(selectedIndex: 0, extended: true);
 
   final _key = GlobalKey<ScaffoldState>();
+  late BranchBloc _branchBloc;
+
+  @override
+  void initState() {
+    _branchBloc = BlocProvider.of<BranchBloc>(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +46,10 @@ class _SidebarXExampleAppState extends State<BranchPage> {
             // }
             _key.currentState?.openDrawer();
           },
-          icon: const Icon(Icons.menu, color: white,),
+          icon: const Icon(
+            Icons.menu,
+            color: white,
+          ),
         ),
       ),
       // : null,
