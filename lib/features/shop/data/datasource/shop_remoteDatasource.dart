@@ -12,6 +12,7 @@ class ShopRemoteDatasource {
   }
   Future<Response> addShopRepo(AddShopModel addShopModel) async {
     String? token = await _authlocalDatasource.getUserToken();
+
     final response = await post(Uri.parse('${Config.url}/create'),
         body: jsonEncode({
           'shopId': addShopModel.shopId,
@@ -32,6 +33,7 @@ class ShopRemoteDatasource {
 
   Future<Response> getShopRepo() async {
     String? token = await _authlocalDatasource.getUserToken();
+
     final response = await get(Uri.parse('${Config.url}/index'), headers: {
       HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
       HttpHeaders.acceptHeader: 'application/json',

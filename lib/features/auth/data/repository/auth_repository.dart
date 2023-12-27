@@ -1,38 +1,27 @@
 import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
-import 'package:http/http.dart' as http;
-import 'package:shop_ui/config.dart';
-import 'package:shop_ui/features/auth/data/datasource/auth_local.datasource.dart';
+import 'package:shop_ui/features/auth/data/datasource/auth_remoteDatasource.dart';
 import 'package:shop_ui/features/auth/domain/models/login.model.dart';
 import 'package:shop_ui/features/auth/domain/models/register.model.dart';
 
 class AuthRepository {
-  late AuthlocalDatasource _authlocalDatasource;
+  late AuthRemoteDatasource _authRemoteDatasource;
 
-  AuthRepository(AuthlocalDatasource authlocalDatasource) {
-    _authlocalDatasource = authlocalDatasource;
+  AuthRepository(AuthRemoteDatasource authRemoteDatasource) {
+    _authRemoteDatasource = authRemoteDatasource;
   }
 
-  Future<Either<String, int>> login(LoginModel loginModel) async {
+  Future<Either<String, int>> loginRepo(LoginModel loginModel) async {
     try {
-      final response = await http.post(
-        Uri.parse('${Config.url}/login'),
-        body: jsonEncode({
-          'branchId': loginModel.branchId,
-          'empId': loginModel.empId,
-          'password': loginModel.password,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': 'Bearer token'
-        },
-      );
-      final data = jsonDecode(response.body);
-      // print('${response.statusCode} login');
+      final response = await _authRemoteDatasource.login(loginModel);
+      if (response.statusCode == 200) {
+        print('success');
+      } else {
+        return Right(response.statusCode);
+      }
 
-      _authlocalDatasource.saveToken(data['authorization']['token']);
+      // List<AuthModel> fresult =
+      //     result.map(((e) => AuthModel.fromJson(e))).toList();
 
       return Right(response.statusCode);
     } catch (e) {
@@ -41,25 +30,14 @@ class AuthRepository {
     }
   }
 
-  Future<Either<String, dynamic>> register(RegisterModel registerModel) async {
+  Future<Either<String, int>> register(RegisterModel registerModel) async {
     try {
-      final response =
-          await http.post(Uri.parse('${Config.url}/register'), body: {
-        'branchId': registerModel.branchId,
-        'empId': registerModel.empId,
-        'lastName': registerModel.lastName,
-        'firstName': registerModel.firstName,
-        'middleName': registerModel.middleName,
-        'password': registerModel.password,
-        'status': registerModel.status,
-        'dateHired': registerModel.dateHired,
-        'salary': registerModel.salary,
-        'notes': registerModel.notes,
-        'remark': registerModel.remark,
-      });
+      final response = await _authRemoteDatasource.register(registerModel);
+
       final data = jsonDecode(response.body);
-      _authlocalDatasource.saveToken(data['token']);
-      return Right(data);
+      // final dataList = data as List;
+      // final dataToModel = dataList.map((e) => AuthModel.fromJson(e)).toList();
+      return Right(data['id']);
     } catch (e) {
       return Left(e.toString());
     }

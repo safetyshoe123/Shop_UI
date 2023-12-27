@@ -7,11 +7,8 @@ import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/core/utils/guard.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/auth/domain/models/login.model.dart';
-import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
-import 'package:shop_ui/features/branch/presentation/branch.dart';
 import 'package:shop_ui/features/shop/domain/bloc/shop_bloc.dart';
 import 'package:shop_ui/features/shop/presentation/home.dart';
-import 'package:shop_ui/features/shop/presentation/shop.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -266,8 +263,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  //TODO:Need to send status from backend kay di mo read ang backend sa status dre ig login
-  //Working na login pero need to test kung lig-on ang code
 
   void _loginListener(BuildContext context, AuthState state) {
     if (state.stateStatus == StateStatus.error) {

@@ -7,3 +7,9 @@ class LoginEvent extends AuthEvent {
   final LoginModel loginModel;
   LoginEvent({required this.loginModel});
 }
+
+class RegisterEvent extends AuthEvent {
+  final RegisterModel registerModel;
+
+  RegisterEvent({required this.registerModel});
+}

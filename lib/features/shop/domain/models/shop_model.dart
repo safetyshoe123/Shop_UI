@@ -28,15 +28,15 @@ class ShopModel {
       remark: json['remark'],
     );
   }
-  // Map<String, dynamic> toJson() {
-  //   return {
-  //     'id': id,
-  //     'shopId': shopId,
-  //     'shopName': shopName,
-  //     'address1': address1,
-  //     'address2': address2,
-  //     'notes': notes,
-  //     'remark': remark,
-  //   };
+  // factory ShopModel.fromMap(Map<String, dynamic> json) {
+  //   return ShopModel(
+  //     id: json['id'],
+  //     shopId: json['shopId'],
+  //     shopName: json['shopName'],
+  //     address1: json['address1'],
+  //     address2: json['address2'],
+  //     notes: json['notes'],
+  //     remark: json['remark'],
+  //   );
   // }
 }
