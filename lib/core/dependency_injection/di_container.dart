@@ -1,6 +1,8 @@
 import 'package:shop_ui/features/auth/data/datasource/auth_local.datasource.dart';
+import 'package:shop_ui/features/auth/data/datasource/auth_remoteDatasource.dart';
 import 'package:shop_ui/features/auth/data/repository/auth_repository.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
+import 'package:shop_ui/features/branch/data/datasource/branch_remoteDatesource.dart';
 import 'package:shop_ui/features/branch/data/repository/branch.repository.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -14,7 +16,10 @@ class DIContainer {
 
   AuthlocalDatasource get _authLocalDatasource =>
       AuthlocalDatasource(_secureStorage);
-  AuthRepository get _authRepository => AuthRepository(_authLocalDatasource);
+
+  AuthRemoteDatasource get _authRemoteDatasource =>
+      AuthRemoteDatasource(_authLocalDatasource);
+  AuthRepository get _authRepository => AuthRepository(_authRemoteDatasource);
 
   AuthBloc get authBloc => AuthBloc(_authRepository);
 
@@ -25,7 +30,11 @@ class DIContainer {
 
   ShopBloc get shopBloc => ShopBloc(_shopRepository);
 
-  BranchRepository get _branchRepository => BranchRepository();
+  BranchRepository get _branchRepository =>
+      BranchRepository(_branchRemoteDatasource);
+
+  BranchRemoteDataSource get _branchRemoteDatasource =>
+      BranchRemoteDataSource(_authLocalDatasource);
 
   BranchBloc get branchBloc => BranchBloc(_branchRepository);
 }

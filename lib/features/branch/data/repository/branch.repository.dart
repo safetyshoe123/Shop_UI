@@ -1,16 +1,17 @@
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
-import 'package:http/http.dart' as http;
-import 'package:shop_ui/config.dart';
+import 'package:shop_ui/features/branch/data/datasource/branch_remoteDatesource.dart';
 import 'package:shop_ui/features/branch/domain/models/addbranch.model.dart';
 import 'package:shop_ui/features/branch/domain/models/branch.model.dart';
 
 class BranchRepository {
+  late BranchRemoteDataSource _branchRemoteDataSource;
+  BranchRepository(BranchRemoteDataSource branchRemoteDataSource) {
+    _branchRemoteDataSource = branchRemoteDataSource;
+  }
   Future<Either<String, List<BranchModel>>> getBranch(String shopId) async {
     try {
-      final response =
-          await http.get(Uri.parse('${Config.url}/showBranch/$shopId'));
-      // if (response.body.isEmpty) {}
+      final response = await _branchRemoteDataSource.getBranch(shopId);
 
       final result = jsonDecode(response.body) as List;
       List<BranchModel> fresult =
@@ -24,18 +25,7 @@ class BranchRepository {
 
   Future<Either<String, int>> addShop(AddBranchModel addBranchModel) async {
     try {
-      final response =
-          await http.post(Uri.parse('${Config.url}/createBranch'), body: {
-        'shopId': addBranchModel.shopId,
-        'branchId': addBranchModel.branchId,
-        'branchName': addBranchModel.branchName,
-        'address1': addBranchModel.address1,
-        'address2': addBranchModel.address2,
-        'dateOpened': addBranchModel.dateOpened,
-        'type': addBranchModel.type,
-        'notes': addBranchModel.notes,
-        'remark': addBranchModel.remark,
-      });
+      final response = await _branchRemoteDataSource.addBranch(addBranchModel);
       final data = jsonDecode(response.body);
 
       return Right(data['id']);
