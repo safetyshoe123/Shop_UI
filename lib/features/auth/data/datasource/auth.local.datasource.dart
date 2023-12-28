@@ -22,7 +22,7 @@ class AuthlocalDatasource {
   //**
   //NOT USED BUT DON'T ERASE COMMENT MIGHT USE IT SOMEDAY
   // */
-  Future<String?> getUserId() async {
+  Future<String?> getUser() async {
     return _secureStorage.read(key: Config.userToken);
   }
 

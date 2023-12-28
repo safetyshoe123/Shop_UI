@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchadd.dart';
 // import 'package:shop_ui/features/branch/presentation/branchdash.dart';
-import 'package:shop_ui/features/shop/domain/models/shop_model.dart';
 import 'package:shop_ui/features/shop/presentation/shopdash.dart';
 import 'package:shop_ui/features/auth/presentation/login.dart';
 import 'package:shop_ui/features/shop/presentation/shopinfo.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class ShopPage extends StatefulWidget {
-  const ShopPage({super.key, required this.shopModel});
-  final ShopModel shopModel;
+  const ShopPage({super.key, required this.shopId});
+  final String shopId;
 
   @override
   State<ShopPage> createState() => _SidebarXExampleAppState();
@@ -17,14 +18,15 @@ class ShopPage extends StatefulWidget {
 
 class _SidebarXExampleAppState extends State<ShopPage> {
   final _controller = SidebarXController(selectedIndex: 0, extended: true);
-
   final _key = GlobalKey<ScaffoldState>();
-  late ShopModel _shopModel;
+  late String _shopId;
+  late AuthBloc authBloc;
 
   @override
   void initState() {
     super.initState();
-    _shopModel = widget.shopModel;
+    authBloc = BlocProvider.of<AuthBloc>(context);
+    _shopId = widget.shopId;
   }
 
   @override
@@ -46,7 +48,10 @@ class _SidebarXExampleAppState extends State<ShopPage> {
             // }
             _key.currentState?.openDrawer();
           },
-          icon: const Icon(Icons.menu, color: white,),
+          icon: const Icon(
+            Icons.menu,
+            color: white,
+          ),
         ),
       ),
       // : null,
@@ -121,7 +126,7 @@ class _SidebarXExampleAppState extends State<ShopPage> {
               // debugPrint('Home');
             },
           ),
-          
+
           const SidebarXItem(
             icon: Icons.add_circle,
             label: 'Register Branch',
@@ -155,25 +160,25 @@ class _SidebarXExampleAppState extends State<ShopPage> {
             child: Center(
               child: _ScreensExample(
                 controller: _controller,
-                shopModel: _shopModel,
+                shopId: _shopId,
               ),
             ),
           ),
         ],
       ),
       bottomNavigationBar: const BottomAppBar(
-              color: canvasColor,
-              surfaceTintColor: canvasColor,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text('Copyright © 2023', style: TextStyle(
-                    color: white
-                  ),),
-                ],
-              ),
-             ),
-      
+        color: canvasColor,
+        surfaceTintColor: canvasColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              'Copyright © 2023',
+              style: TextStyle(color: white),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -181,22 +186,22 @@ class _SidebarXExampleAppState extends State<ShopPage> {
 class _ScreensExample extends StatefulWidget {
   const _ScreensExample({
     required this.controller,
-    required this.shopModel,
+    required this.shopId,
   });
 
   final SidebarXController controller;
-  final ShopModel shopModel;
+  final String shopId;
 
   @override
   State<_ScreensExample> createState() => _ScreensExampleState();
 }
 
 class _ScreensExampleState extends State<_ScreensExample> {
-  late ShopModel _shopModel;
+  late String _shopId;
   @override
   void initState() {
     super.initState();
-    _shopModel = widget.shopModel;
+    _shopId = widget.shopId;
   }
 
   @override
@@ -209,11 +214,11 @@ class _ScreensExampleState extends State<_ScreensExample> {
         switch (widget.controller.selectedIndex) {
           case 0:
             return ShopDash(
-              shopModel: _shopModel,
+              shopId: _shopId,
             );
           case 1:
             return AddBranchPage(
-              shopId: _shopModel.shopId,
+              shopId: _shopId,
             );
           case 2:
             return const InfoShopPage();

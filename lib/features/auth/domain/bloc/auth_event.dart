@@ -13,3 +13,5 @@ class RegisterEvent extends AuthEvent {
 
   RegisterEvent({required this.registerModel});
 }
+
+class AutoLoginEvent extends AuthEvent {}

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
-import 'package:shop_ui/features/shop/data/datasource/shop_remoteDatasource.dart';
+import 'package:shop_ui/features/shop/data/datasource/shop.remoteDatasource.dart';
 import 'package:shop_ui/features/shop/domain/models/add_shop.model.dart';
 import 'package:shop_ui/features/shop/domain/models/shop_model.dart';
 
@@ -23,13 +23,11 @@ class ShopRepository {
     try {
       final response = await _shopRemoteDatasource.getShopRepo();
       final decodedResult = jsonDecode(response.body);
-      // print(decodedResult);
       final result = decodedResult as List;
       List<ShopModel> fresult =
           result.map(((e) => ShopModel.fromJson(e))).toList();
       return Right(fresult);
     } catch (e) {
-      print('$e shop repo');
       return Left(e.toString());
     }
   }

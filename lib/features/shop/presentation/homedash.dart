@@ -88,8 +88,8 @@ class _HomeDashState extends State<HomeDash> {
                         child: Container(
                           height: 100,
                           width: 10,
-                          margin:
-                              const EdgeInsets.only(bottom: 5, right: 50, left: 50),
+                          margin: const EdgeInsets.only(
+                              bottom: 5, right: 50, left: 50),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white54,
@@ -152,7 +152,8 @@ class _HomeDashState extends State<HomeDash> {
                           width: 1400,
                           child: ListView.builder(
                               itemCount: state.shopModel.length,
-                              padding: const EdgeInsets.only(top: 10, bottom: 10),
+                              padding:
+                                  const EdgeInsets.only(top: 10, bottom: 10),
                               itemBuilder: (context, index) {
                                 final shoplist = state.shopModel[index];
                                 return Container(
@@ -174,22 +175,21 @@ class _HomeDashState extends State<HomeDash> {
                                     onTap: () {
                                       // Your click event code here
                                       Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                              BlocProvider(
-                                                create: (context) =>
-                                                    diContainer.branchBloc,
-                                                child: ShopPage(
-                                                  shopModel: shoplist,
-                                                ),
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => BlocProvider(
+                                            create: (context) =>
+                                                diContainer.branchBloc,
+                                            child: ShopPage(
+                                              shopId: shoplist.shopId,
+                                            ),
                                           ),
                                         ),
                                       );
                                     },
                                     child: Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(50, 5, 50, 5),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          50, 5, 50, 5),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -205,7 +205,8 @@ class _HomeDashState extends State<HomeDash> {
                                                   textStyle: const TextStyle(
                                                       color: Colors.brown,
                                                       fontSize: 20,
-                                                      fontWeight: FontWeight.bold),
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                                 ),
                                                 maxLines: 1,
                                                 softWrap: false,
@@ -242,7 +243,8 @@ class _HomeDashState extends State<HomeDash> {
                                                   textStyle: const TextStyle(
                                                       color: Colors.brown,
                                                       fontSize: 20,
-                                                      fontWeight: FontWeight.bold),
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                                 ),
                                                 maxLines: 1,
                                                 softWrap: false,
