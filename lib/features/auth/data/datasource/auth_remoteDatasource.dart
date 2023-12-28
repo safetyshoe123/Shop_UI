@@ -12,7 +12,6 @@ class AuthRemoteDatasource {
   AuthRemoteDatasource(AuthlocalDatasource authlocalDatasource) {
     _authlocalDatasource = authlocalDatasource;
   }
-//TODO: Won't read/accept error message from backend
 
   Future<Response> login(LoginModel loginModel) async {
     String? token = await _authlocalDatasource.getUserToken();
