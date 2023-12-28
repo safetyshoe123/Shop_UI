@@ -272,8 +272,6 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     if (state.authModel != null) {
-      print(state.authModel!.status);
-      SnackBarUtils.successSnackBar('Login Success', context);
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(

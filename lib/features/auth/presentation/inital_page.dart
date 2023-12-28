@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/core/enums/enum.dart';
+import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/auth/domain/models/auth_model.dart';
 import 'package:shop_ui/features/auth/presentation/login.dart';
@@ -16,7 +17,6 @@ class InitalPage extends StatefulWidget {
   @override
   State<InitalPage> createState() => _InitalPageState();
 }
-//TODO: Buhaton ugma para ma lain ug route ang admin ug manager
 
 class _InitalPageState extends State<InitalPage> {
   final DIContainer diContainer = DIContainer();
@@ -44,7 +44,6 @@ class _InitalPageState extends State<InitalPage> {
   void _authListener(BuildContext context, AuthState state) {
     if (state.stateStatus == StateStatus.error ||
         state.token == null && state.stateStatus == StateStatus.loaded) {
-      print('not OK Initial');
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -58,10 +57,8 @@ class _InitalPageState extends State<InitalPage> {
     }
 
     if (state.token != null && state.stateStatus == StateStatus.loaded) {
-      print('OK token');
-      print(_authModel);
       if (_authModel.status == 'admin') {
-        print('OK status');
+        SnackBarUtils.successSnackBar('Login Success', context);
         Navigator.push(
           context,
           MaterialPageRoute(

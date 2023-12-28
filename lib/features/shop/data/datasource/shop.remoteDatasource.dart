@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';
 import 'package:shop_ui/config.dart';
-import 'package:shop_ui/features/auth/data/datasource/auth_local.datasource.dart';
+import 'package:shop_ui/features/auth/data/datasource/auth.local.datasource.dart';
 import 'package:shop_ui/features/shop/domain/models/add_shop.model.dart';
 
 class ShopRemoteDatasource {

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
-import 'package:shop_ui/features/auth/data/datasource/auth_local.datasource.dart';
-import 'package:shop_ui/features/auth/data/datasource/auth_remoteDatasource.dart';
+import 'package:shop_ui/features/auth/data/datasource/auth.local.datasource.dart';
+import 'package:shop_ui/features/auth/data/datasource/auth.remoteDatasource.dart';
 import 'package:shop_ui/features/auth/domain/models/auth_model.dart';
 import 'package:shop_ui/features/auth/domain/models/login.model.dart';
 import 'package:shop_ui/features/auth/domain/models/register.model.dart';
@@ -25,7 +25,6 @@ class AuthRepository {
       final result = AuthModel.fromJson(resMap);
       return Right(result);
     } catch (e) {
-      print('$e auth repo');
       return Left(e.toString());
     }
   }
@@ -47,7 +46,6 @@ class AuthRepository {
   Future<Either<String, String?>> autoLogin() async {
     try {
       final result = await _authlocalDatasource.getUserToken();
-      print('$result autologin');
 
       if (result == null) return const Right(null);
 

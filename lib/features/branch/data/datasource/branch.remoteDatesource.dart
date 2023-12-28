@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';
 import 'package:shop_ui/config.dart';
-import 'package:shop_ui/features/auth/data/datasource/auth_local.datasource.dart';
+import 'package:shop_ui/features/auth/data/datasource/auth.local.datasource.dart';
 import 'package:shop_ui/features/branch/domain/models/addbranch.model.dart';
 
 class BranchRemoteDataSource {
@@ -19,7 +19,6 @@ class BranchRemoteDataSource {
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $token'
     });
-    print('${response.statusCode} branch');
 
     final data = jsonDecode(response.body);
     switch (response.statusCode) {
