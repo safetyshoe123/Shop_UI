@@ -77,6 +77,7 @@ class _InitalPageState extends State<InitalPage> {
         );
         return;
       } else {
+        SnackBarUtils.successSnackBar('Login Success', context);
         Navigator.push(
           context,
           MaterialPageRoute(
