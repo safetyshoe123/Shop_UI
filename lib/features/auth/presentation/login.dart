@@ -272,7 +272,6 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     if (state.authModel != null) {
-      print('hhh');
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
