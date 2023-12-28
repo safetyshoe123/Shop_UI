@@ -31,10 +31,17 @@ class AuthRemoteDatasource {
       },
     );
     final data = jsonDecode(response.body);
+    print(response.statusCode);
+    switch (response.statusCode) {
+      case 200:
+        _authlocalDatasource.saveToken(data['authorization']['token']);
+        return response;
+      case 500:
+        throw ('Can\'t login! Something went wrong!');
 
-    _authlocalDatasource.saveToken(data['authorization']['token']);
-
-    return response;
+      default:
+        throw (data['message']);
+    }
   }
 
   Future<Response> register(RegisterModel registerModel) async {
@@ -61,6 +68,17 @@ class AuthRemoteDatasource {
         HttpHeaders.authorizationHeader: 'Bearer $token',
       },
     );
-    return response;
+    final data = jsonDecode(response.body);
+    switch (response.statusCode) {
+      case 200:
+        _authlocalDatasource.saveToken(data['authorization']['token']);
+        _authlocalDatasource.getUser();
+        return response;
+      case 500:
+        throw ('Can\'t register! Something went wrong!');
+
+      default:
+        throw (data['message']);
+    }
   }
 }

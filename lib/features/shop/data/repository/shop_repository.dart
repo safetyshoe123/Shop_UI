@@ -23,7 +23,7 @@ class ShopRepository {
     try {
       final response = await _shopRemoteDatasource.getShopRepo();
       final decodedResult = jsonDecode(response.body);
-      // print(decodedResult);
+      print(decodedResult);
       final result = decodedResult as List;
       List<ShopModel> fresult =
           result.map(((e) => ShopModel.fromJson(e))).toList();

@@ -1,43 +1,57 @@
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
+import 'package:shop_ui/features/auth/data/datasource/auth_local.datasource.dart';
 import 'package:shop_ui/features/auth/data/datasource/auth_remoteDatasource.dart';
+import 'package:shop_ui/features/auth/domain/models/auth_model.dart';
 import 'package:shop_ui/features/auth/domain/models/login.model.dart';
 import 'package:shop_ui/features/auth/domain/models/register.model.dart';
 
 class AuthRepository {
   late AuthRemoteDatasource _authRemoteDatasource;
+  late AuthlocalDatasource _authlocalDatasource;
 
-  AuthRepository(AuthRemoteDatasource authRemoteDatasource) {
+  AuthRepository(AuthRemoteDatasource authRemoteDatasource,
+      AuthlocalDatasource authlocalDatasource) {
     _authRemoteDatasource = authRemoteDatasource;
+    _authlocalDatasource = authlocalDatasource;
   }
 
-  Future<Either<String, int>> loginRepo(LoginModel loginModel) async {
+  Future<Either<String, AuthModel>> loginRepo(LoginModel loginModel) async {
     try {
       final response = await _authRemoteDatasource.login(loginModel);
-      if (response.statusCode == 200) {
-        print('success');
-      } else {
-        return Right(response.statusCode);
-      }
+      final res = jsonDecode(response.body);
 
-      // List<AuthModel> fresult =
-      //     result.map(((e) => AuthModel.fromJson(e))).toList();
-
-      return Right(response.statusCode);
+      final Map<String, dynamic> resMap = res['user'];
+      final result = AuthModel.fromJson(resMap);
+      return Right(result);
     } catch (e) {
       print('$e auth repo');
       return Left(e.toString());
     }
   }
 
-  Future<Either<String, int>> register(RegisterModel registerModel) async {
+  Future<Either<String, AuthModel>> register(
+      RegisterModel registerModel) async {
     try {
       final response = await _authRemoteDatasource.register(registerModel);
 
       final data = jsonDecode(response.body);
-      // final dataList = data as List;
-      // final dataToModel = dataList.map((e) => AuthModel.fromJson(e)).toList();
-      return Right(data['id']);
+      final Map<String, dynamic> resMap = data['user'];
+      final result = AuthModel.fromJson(resMap);
+      return Right(result);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, String?>> autoLogin() async {
+    try {
+      final result = await _authlocalDatasource.getUserToken();
+      print('$result autologin');
+
+      if (result == null) return const Right(null);
+
+      return Right(result);
     } catch (e) {
       return Left(e.toString());
     }

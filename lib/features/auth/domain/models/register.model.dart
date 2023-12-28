@@ -6,8 +6,8 @@ class RegisterModel {
   final String middleName;
   final String password;
   final String status;
-  final DateTime dateHired;
-  final double salary;
+  final String dateHired;
+  final String salary;
   final String notes;
   final String remark;
 

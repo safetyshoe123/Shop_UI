@@ -19,7 +19,8 @@ class DIContainer {
 
   AuthRemoteDatasource get _authRemoteDatasource =>
       AuthRemoteDatasource(_authLocalDatasource);
-  AuthRepository get _authRepository => AuthRepository(_authRemoteDatasource);
+  AuthRepository get _authRepository =>
+      AuthRepository(_authRemoteDatasource, _authLocalDatasource);
 
   AuthBloc get authBloc => AuthBloc(_authRepository);
 

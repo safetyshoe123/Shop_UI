@@ -7,28 +7,27 @@ import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/core/enums/enum.dart';
 import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
-import 'package:shop_ui/features/shop/domain/models/shop_model.dart';
 
 import '../../branch/presentation/branch.dart';
 
 class ShopDash extends StatefulWidget {
-  const ShopDash({super.key, required this.shopModel});
-  final ShopModel shopModel;
+  const ShopDash({super.key, required this.shopId});
+  final String shopId;
   @override
   State<ShopDash> createState() => _ShopDashState();
 }
 
 class _ShopDashState extends State<ShopDash> {
   late BranchBloc _branchBloc;
-  late ShopModel _shopModel;
+  late String _shopId;
   final DIContainer diContainer = DIContainer();
 
   @override
   void initState() {
     super.initState();
     _branchBloc = BlocProvider.of<BranchBloc>(context);
-    _shopModel = widget.shopModel;
-    _branchBloc.add(GetBranchEvent(shopId: _shopModel.shopId));
+    _shopId = widget.shopId;
+    _branchBloc.add(GetBranchEvent(shopId: _shopId));
   }
 
   @override

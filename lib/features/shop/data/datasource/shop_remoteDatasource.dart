@@ -28,7 +28,17 @@ class ShopRemoteDatasource {
           HttpHeaders.authorizationHeader: 'Bearer $token',
         });
 
-    return response;
+    final data = jsonDecode(response.body);
+    switch (response.statusCode) {
+      case 200:
+        return response;
+      case 401:
+        throw (data['message']);
+      case 500:
+        throw ('Can\'t add Shop! Something went wrong!');
+      default:
+        throw (data['message']);
+    }
   }
 
   Future<Response> getShopRepo() async {
@@ -39,7 +49,16 @@ class ShopRemoteDatasource {
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.authorizationHeader: 'Bearer $token',
     });
-
-    return response;
+    final data = jsonDecode(response.body);
+    switch (response.statusCode) {
+      case 200:
+        return response;
+      case 401:
+        throw (data['message']);
+      case 500:
+        throw ('Can\'t load Shop! Something went wrong!');
+      default:
+        throw (data['message']);
+    }
   }
 }

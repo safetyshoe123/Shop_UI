@@ -7,8 +7,7 @@ import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/core/utils/guard.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/auth/domain/models/login.model.dart';
-import 'package:shop_ui/features/shop/domain/bloc/shop_bloc.dart';
-import 'package:shop_ui/features/shop/presentation/home.dart';
+import 'package:shop_ui/features/auth/presentation/inital_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -118,12 +117,12 @@ class _LoginPageState extends State<LoginPage> {
                                     decoration: InputDecoration(
                                         prefixIcon: const Icon(Icons.key),
                                         border: InputBorder.none,
-                                        hintText: "ID",
+                                        hintText: "Branch ID",
                                         hintStyle:
                                             TextStyle(color: Colors.grey[700])),
                                     validator: (String? val) {
-                                      return Guard.againstEmptyString(
-                                          val, 'ID');
+                                      return Guard.againstEmptyShopId(
+                                          val, 'Branch ID');
                                     }),
                               ),
                               Container(
@@ -143,12 +142,12 @@ class _LoginPageState extends State<LoginPage> {
                                     decoration: InputDecoration(
                                         prefixIcon: const Icon(Icons.person),
                                         border: InputBorder.none,
-                                        hintText: "Username",
+                                        hintText: "Employee ID",
                                         hintStyle:
                                             TextStyle(color: Colors.grey[700])),
                                     validator: (String? val) {
-                                      return Guard.againstEmptyString(
-                                          val, 'Username');
+                                      return Guard.againstEmptyShopId(
+                                          val, 'Employee ID');
                                     }),
                               ),
                               Container(
@@ -169,9 +168,12 @@ class _LoginPageState extends State<LoginPage> {
                                         hintStyle:
                                             TextStyle(color: Colors.grey[700]),
                                         suffixIcon: IconButton(
-                                          icon: Icon(_isObscure
-                                              ? Icons.visibility
-                                              : Icons.visibility_off),
+                                          icon: Icon(
+                                            _isObscure
+                                                ? Icons.visibility
+                                                : Icons.visibility_off,
+                                          ),
+                                          color: Colors.green,
                                           onPressed: () {
                                             setState(() {
                                               _isObscure = !_isObscure;
@@ -201,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                               MaterialStateProperty.resolveWith<Color?>(
                             (Set<MaterialState> states) {
                               if (states.contains(MaterialState.hovered)) {
-                                return Colors.red; //<-- SEE HERE
+                                return Colors.green; //<-- SEE HERE
                               }
                               if (states.contains(MaterialState.pressed)) {
                                 return Colors.brown; //<-- SEE HERE
@@ -266,17 +268,20 @@ class _LoginPageState extends State<LoginPage> {
 
   void _loginListener(BuildContext context, AuthState state) {
     if (state.stateStatus == StateStatus.error) {
-      SnackBarUtils.defualtSnackBar(state.errorMessage, context);
+      SnackBarUtils.errorSnackBar(state.errorMessage, context);
     }
 
-    if (state.isSuccess) {
-      SnackBarUtils.defualtSnackBar('Login Success', context);
+    if (state.authModel != null) {
+      print(state.authModel!.status);
+      SnackBarUtils.successSnackBar('Login Success', context);
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-              builder: (context) => BlocProvider<ShopBloc>(
-                    create: (context) => diContainer.shopBloc,
-                    child: const HomePage(),
+              builder: (context) => BlocProvider<AuthBloc>(
+                    create: (context) => diContainer.authBloc,
+                    child: InitalPage(
+                      authModel: state.authModel!,
+                    ),
                   )),
           ModalRoute.withName('/'));
     }
