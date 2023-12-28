@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                                     decoration: InputDecoration(
                                         prefixIcon: const Icon(Icons.key),
                                         border: InputBorder.none,
-                                        hintText: "Branch ID",
+                                        hintText: "ID",
                                         hintStyle:
                                             TextStyle(color: Colors.grey[700])),
                                     validator: (String? val) {
