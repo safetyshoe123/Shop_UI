@@ -4,7 +4,7 @@ import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchinfo.dart';
 import 'package:shop_ui/features/employee/presentation/employeeadd.dart';
 import 'package:shop_ui/features/branch/presentation/branchdash.dart';
-import 'package:shop_ui/features/auth/presentation/login.dart';
+// import 'package:shop_ui/features/auth/presentation/login.dart';
 // import 'package:shop_ui/features/presentation/pages/shopdash.dart';
 import 'package:sidebarx/sidebarx.dart';
 
@@ -51,6 +51,29 @@ class _SidebarXExampleAppState extends State<BranchPage> {
             color: white,
           ),
         ),
+        actions: [
+          const Tooltip(
+              message: 'Manager',
+              child: Icon(
+                Icons.person,
+                color: white,
+              )),
+          const SizedBox(
+            width: 10,
+          ),
+          IconButton(
+              onPressed: () {
+                // Navigator.push(context,
+                // MaterialPageRoute(builder: (context) => const LoginPage()));
+              },
+              icon: const Icon(
+                Icons.power_settings_new_rounded,
+                color: white,
+              )),
+          const SizedBox(
+            width: 20,
+          ),
+        ],
       ),
       // : null,
       drawer: SidebarX(
@@ -106,10 +129,15 @@ class _SidebarXExampleAppState extends State<BranchPage> {
             height: 100,
             child: Padding(
               padding: EdgeInsets.all(16.0),
+              // child: Image.asset('images/house2.jpg')
               child: Icon(
-                Icons.person,
+                Icons.shopify_rounded,
                 color: white,
-              ),
+                size: 50,
+              )
+              // Text('Image', selectionColor: Colors.white,)
+              // Image.asset('assets/images/avatar.png')
+              ,
             ),
           );
         },
@@ -130,17 +158,17 @@ class _SidebarXExampleAppState extends State<BranchPage> {
             label: 'Info',
           ),
         ],
-        footerItems: [
-          SidebarXItem(
-            icon: Icons.power_settings_new_rounded,
-            label: 'Logout',
-            onTap: () {
-              // debugPrint('Logout');
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()));
-            },
-          )
-        ],
+        // footerItems: [
+        //   SidebarXItem(
+        //     icon: Icons.power_settings_new_rounded,
+        //     label: 'Logout',
+        //     onTap: () {
+        //       // debugPrint('Logout');
+        //       Navigator.push(context,
+        //           MaterialPageRoute(builder: (context) => const LoginPage()));
+        //     },
+        //   )
+        // ],
       )
 
       // ExampleSidebarX(controller: _controller)

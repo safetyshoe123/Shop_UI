@@ -53,6 +53,23 @@ class _SidebarXExampleAppState extends State<ShopPage> {
             color: white,
           ),
         ),
+         actions:  [
+          const Tooltip(
+            message: 'Admin',
+            child: Icon(Icons.person, color: white,)),
+          const SizedBox(width: 10,),
+          
+          IconButton(onPressed: (
+          ){
+
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const LoginPage()));
+            // Navigator.push(context, 
+            // MaterialPageRoute(builder: (context) => const LoginPage()));
+
+          }, icon: const Icon(Icons.power_settings_new_rounded, color: white,)),
+          const SizedBox(width: 20,),
+        ],
       ),
       // : null,
       drawer: SidebarX(
@@ -105,12 +122,14 @@ class _SidebarXExampleAppState extends State<ShopPage> {
         // footerDivider: divider,
         headerBuilder: (context, extended) {
           return const SizedBox(
-            height: 100,
+           height: 100,
             child: Padding(
               padding: EdgeInsets.all(16.0),
+              // child: Image.asset('images/house2.jpg')
               child: Icon(
-                Icons.person,
+                Icons.shopify_rounded,
                 color: white,
+                size: 50,
               )
               // Text('Image', selectionColor: Colors.white,)
               // Image.asset('assets/images/avatar.png')
@@ -135,22 +154,34 @@ class _SidebarXExampleAppState extends State<ShopPage> {
             icon: Icons.info,
             label: 'Shop Info',
           ),
+          const SidebarXItem(
+            icon: Icons.published_with_changes_rounded,
+            label: 'Transaction',
+          ),
+          const SidebarXItem(
+            icon: Icons.report_gmailerrorred_rounded,
+            label: 'Report',
+          ),
+          const SidebarXItem(
+            icon: Icons.library_books,
+            label: 'List',
+          ),
           // const SidebarXItem(
           //   icon: Icons.person,
           //   label: 'Employees',
           // ),
         ],
-        footerItems: [
-          SidebarXItem(
-            icon: Icons.power_settings_new_rounded,
-            label: 'Logout',
-            onTap: () {
-              // debugPrint('Logout');
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()));
-            },
-          )
-        ],
+        // footerItems: [
+        //   SidebarXItem(
+        //     icon: Icons.power_settings_new_rounded,
+        //     label: 'Logout',
+        //     onTap: () {
+        //       // debugPrint('Logout');
+        //       Navigator.push(context,
+        //           MaterialPageRoute(builder: (context) => const LoginPage()));
+        //     },
+        //   )
+        // ],
       )
       // ExampleSidebarX(controller: _controller)
       ,
@@ -244,14 +275,12 @@ String _getTitleByIndex(int index) {
     case 2:
       return 'Add';
     case 3:
-      return 'Favorites';
-    // case 4:
-    //   return 'Custom iconWidget';
+      return 'Transaction';
+    case 4:
+      return 'Report';
     case 5:
-      return 'Profile';
+      return 'List';
     case 6:
-      return 'Settings';
-    case 7:
       return 'Logout';
     default:
       return 'Not found page';
