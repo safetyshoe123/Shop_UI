@@ -79,4 +79,26 @@ class AuthRemoteDatasource {
         throw (data['message']);
     }
   }
+
+  Future<Response> logout() async {
+    String? token = await _authlocalDatasource.getUserToken();
+    final response = await post(
+      Uri.parse('${Config.url}/logout'),
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.acceptHeader: 'application/json',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+      },
+    );
+    final data = jsonDecode(response.body);
+    switch (response.statusCode) {
+      case 200:
+        _authlocalDatasource.deleteToken();
+        return response;
+      case 500:
+        throw ('Can\'t logout! Something went wrong!');
+      default:
+        throw (data['message']);
+    }
+  }
 }

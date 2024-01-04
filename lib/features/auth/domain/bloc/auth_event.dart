@@ -15,3 +15,5 @@ class RegisterEvent extends AuthEvent {
 }
 
 class AutoLoginEvent extends AuthEvent {}
+
+class LogoutEvent extends AuthEvent {}
