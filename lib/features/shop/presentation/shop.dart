@@ -4,7 +4,7 @@ import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchadd.dart';
 // import 'package:shop_ui/features/branch/presentation/branchdash.dart';
 import 'package:shop_ui/features/shop/presentation/shopdash.dart';
-import 'package:shop_ui/features/auth/presentation/login.dart';
+// import 'package:shop_ui/features/auth/presentation/login.dart';
 import 'package:shop_ui/features/shop/presentation/shopinfo.dart';
 import 'package:sidebarx/sidebarx.dart';
 
@@ -20,12 +20,12 @@ class _SidebarXExampleAppState extends State<ShopPage> {
   final _controller = SidebarXController(selectedIndex: 0, extended: true);
   final _key = GlobalKey<ScaffoldState>();
   late String _shopId;
-  late AuthBloc authBloc;
+  late AuthBloc _authBloc;
 
   @override
   void initState() {
     super.initState();
-    authBloc = BlocProvider.of<AuthBloc>(context);
+    _authBloc = BlocProvider.of<AuthBloc>(context);
     _shopId = widget.shopId;
   }
 
@@ -53,22 +53,29 @@ class _SidebarXExampleAppState extends State<ShopPage> {
             color: white,
           ),
         ),
-         actions:  [
+        actions: [
           const Tooltip(
-            message: 'Admin',
-            child: Icon(Icons.person, color: white,)),
-          const SizedBox(width: 10,),
-          
-          IconButton(onPressed: (
-          ){
-
-            Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const LoginPage()));
-            // Navigator.push(context, 
-            // MaterialPageRoute(builder: (context) => const LoginPage()));
-
-          }, icon: const Icon(Icons.power_settings_new_rounded, color: white,)),
-          const SizedBox(width: 20,),
+              message: 'Admin',
+              child: Icon(
+                Icons.person,
+                color: white,
+              )),
+          const SizedBox(
+            width: 10,
+          ),
+          IconButton(
+              onPressed: () {
+                _logout(context);
+                // Navigator.push(context,
+                // MaterialPageRoute(builder: (context) => const LoginPage()));
+              },
+              icon: const Icon(
+                Icons.power_settings_new_rounded,
+                color: white,
+              )),
+          const SizedBox(
+            width: 20,
+          ),
         ],
       ),
       // : null,
@@ -122,7 +129,7 @@ class _SidebarXExampleAppState extends State<ShopPage> {
         // footerDivider: divider,
         headerBuilder: (context, extended) {
           return const SizedBox(
-           height: 100,
+            height: 100,
             child: Padding(
               padding: EdgeInsets.all(16.0),
               // child: Image.asset('images/house2.jpg')
@@ -211,6 +218,10 @@ class _SidebarXExampleAppState extends State<ShopPage> {
         ),
       ),
     );
+  }
+
+  void _logout(BuildContext context) {
+    _authBloc.add(LogoutEvent());
   }
 }
 

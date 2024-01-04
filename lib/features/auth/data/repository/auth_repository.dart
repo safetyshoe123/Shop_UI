@@ -54,4 +54,14 @@ class AuthRepository {
       return Left(e.toString());
     }
   }
+
+  Future<Either<String, Unit>> logout() async {
+    try {
+      final result = await _authRemoteDatasource.logout();
+      print(result.statusCode);
+      return const Right(unit);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

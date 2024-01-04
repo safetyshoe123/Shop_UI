@@ -33,19 +33,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             stateStatus: StateStatus.error, errorMessage: error));
         emit(state.copyWith(stateStatus: StateStatus.loaded));
       }, (decodedUser) {
-        // if (decodedUser == 200) {
-        // final authModel = state.authModel;
-        // print(authModel);
         emit(state.copyWith(
           authModel: decodedUser,
           stateStatus: StateStatus.loaded,
-          isSuccess: true,
         ));
-        // } else {
-        //   emit(state.copyWith(
-        //       stateStatus: StateStatus.error, errorMessage: 'Unable to login'));
-        //   emit(state.copyWith(stateStatus: StateStatus.loaded));
-        // }
       });
     });
     on<RegisterEvent>((event, emit) async {
@@ -59,6 +50,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }, (registerModel) {
         emit(state.copyWith(
             authModel: registerModel, stateStatus: StateStatus.loaded));
+      });
+    });
+    on<LogoutEvent>((event, emit) async {
+      emit(state.copyWith(stateStatus: StateStatus.loading));
+      final Either<String, Unit> result = await authRepository.logout();
+
+      result.fold((error) {
+        emit(state.copyWith(stateStatus: StateStatus.error));
+        print(error);
+        emit(state.copyWith(stateStatus: StateStatus.loaded));
+      }, (registerModel) {
+        print(registerModel);
+        emit(AuthState.inital());
       });
     });
   }
