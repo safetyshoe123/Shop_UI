@@ -275,12 +275,13 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-              builder: (context) => BlocProvider<AuthBloc>(
-                    create: (context) => diContainer.authBloc,
-                    child: InitalPage(
-                      authModel: state.authModel!,
-                    ),
-                  )),
+            builder: (context) => BlocProvider<AuthBloc>(
+              create: (context) => diContainer.authBloc,
+              child: InitalPage(
+                authModel: state.authModel!,
+              ),
+            ),
+          ),
           ModalRoute.withName('/'));
     }
   }

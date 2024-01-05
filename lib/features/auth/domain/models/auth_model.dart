@@ -11,7 +11,7 @@ class AuthModel {
   final String salary;
   final String notes;
   final String remark;
-
+//TODO: Model for restriction and connect authModel and restrictionModel
   AuthModel({
     required this.id,
     required this.branchId,
@@ -42,6 +42,7 @@ class AuthModel {
       remark: json['remark'],
     );
   }
+//AYAW LANG SA NI DELETE-TA
   // factory AuthModel.fromMap(Map<String, dynamic> json) {
   //   return AuthModel(
   //     id: json['id'] as int,
