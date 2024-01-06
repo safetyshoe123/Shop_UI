@@ -17,7 +17,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _branchIdController = TextEditingController();
+  final TextEditingController _shopIdController = TextEditingController();
   final TextEditingController _empIdController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -113,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                                     // },
                                     autovalidateMode:
                                         AutovalidateMode.onUserInteraction,
-                                    controller: _branchIdController,
+                                    controller: _shopIdController,
                                     decoration: InputDecoration(
                                         prefixIcon: const Icon(Icons.key),
                                         border: InputBorder.none,
@@ -269,6 +269,7 @@ class _LoginPageState extends State<LoginPage> {
   void _loginListener(BuildContext context, AuthState state) {
     if (state.stateStatus == StateStatus.error) {
       SnackBarUtils.errorSnackBar(state.errorMessage, context);
+      print(state.errorMessage);
     }
 
     if (state.authModel != null) {
@@ -291,7 +292,7 @@ class _LoginPageState extends State<LoginPage> {
       _authBloc.add(
         LoginEvent(
           loginModel: LoginModel(
-            branchId: _branchIdController.text,
+            shopId: _shopIdController.text,
             empId: _empIdController.text,
             password: _passwordController.text,
           ),

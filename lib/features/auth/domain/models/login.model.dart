@@ -1,10 +1,10 @@
 class LoginModel {
-  final String branchId;
+  final String shopId;
   final String empId;
   final String password;
 
   LoginModel({
-    required this.branchId,
+    required this.shopId,
     required this.empId,
     required this.password,
   });

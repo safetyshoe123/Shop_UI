@@ -19,7 +19,7 @@ class AuthRemoteDatasource {
     final response = await post(
       Uri.parse('${Config.url}/login'),
       body: jsonEncode({
-        'branchId': loginModel.branchId,
+        'shopId': loginModel.shopId,
         'empId': loginModel.empId,
         'password': loginModel.password,
       }),
@@ -48,7 +48,7 @@ class AuthRemoteDatasource {
     final response = await post(
       Uri.parse('${Config.url}/register'),
       body: jsonEncode({
-        'branchId': registerModel.branchId,
+        'shopId': registerModel.shopId,
         'empId': registerModel.empId,
         'lastName': registerModel.lastName,
         'firstName': registerModel.firstName,

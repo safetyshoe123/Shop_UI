@@ -8,7 +8,6 @@ import 'package:shop_ui/features/auth/domain/models/auth_model.dart';
 import 'package:shop_ui/features/auth/presentation/login.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branch.dart';
-import 'package:shop_ui/features/shop/presentation/shop.dart';
 
 class InitalPage extends StatefulWidget {
   const InitalPage({super.key, required this.authModel});
@@ -57,26 +56,12 @@ class _InitalPageState extends State<InitalPage> {
     }
 
     if (state.token != null && state.stateStatus == StateStatus.loaded) {
-      if (_authModel.status == 'admin') {
-        SnackBarUtils.successSnackBar('Login Success', context);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => MultiBlocProvider(
-              providers: [
-                BlocProvider<AuthBloc>(
-                  create: (BuildContext context) => diContainer.authBloc,
-                ),
-                BlocProvider<BranchBloc>(
-                  create: (context) => diContainer.branchBloc,
-                ),
-              ],
-              child: ShopPage(shopId: _authModel.branchId),
-            ),
-          ),
-        );
-        return;
+      if (_authModel.restriction.isEmpty) {
+        print('EMPTY');
+        //TODO: Route to display all branches of a shop, use shopId for query
       } else {
+        //TODO: Route to display shopDrop and display restriction in dropdown menu ** state.authModel!.restriction.length**
+        print('NOT EMPTY');
         SnackBarUtils.successSnackBar('Login Success', context);
         Navigator.push(
           context,
