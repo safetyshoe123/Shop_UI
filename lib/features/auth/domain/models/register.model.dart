@@ -1,5 +1,5 @@
 class RegisterModel {
-  final String branchId;
+  final String shopId;
   final String empId;
   final String lastName;
   final String firstName;
@@ -12,7 +12,7 @@ class RegisterModel {
   final String remark;
 
   RegisterModel({
-    required this.branchId,
+    required this.shopId,
     required this.empId,
     required this.lastName,
     required this.firstName,

@@ -1,25 +1,28 @@
 class AuthModel {
   final int id;
-  final String branchId;
+  final String shopId;
   final String empId;
   final String lastName;
   final String firstName;
   final String middleName;
   // final String password;
+  final List restriction;
   final String status;
   final String dateHired;
   final String salary;
   final String notes;
   final String remark;
 //TODO: Model for restriction and connect authModel and restrictionModel
+
   AuthModel({
     required this.id,
-    required this.branchId,
+    required this.shopId,
     required this.empId,
     required this.lastName,
     required this.firstName,
     required this.middleName,
     // required this.password,
+    required this.restriction,
     required this.status,
     required this.dateHired,
     required this.salary,
@@ -29,12 +32,13 @@ class AuthModel {
   factory AuthModel.fromJson(Map<String, dynamic> json) {
     return AuthModel(
       id: json['id'],
-      branchId: json['branchId'],
+      shopId: json['shopId'],
       empId: json['empId'],
       lastName: json['lastName'],
       firstName: json['firstName'],
       middleName: json['middleName'],
       // password: json['password'],
+      restriction: json['restriction'],
       status: json['status'],
       dateHired: json['dateHired'],
       salary: json['salary'],
