@@ -245,7 +245,6 @@ class _SidebarXExampleAppState extends State<ShopPage> {
 
   void _authListener(BuildContext context, AuthState state) {
     if (state.stateStatus == StateStatus.error) {
-      print('${state.errorMessage} this error from shop new listener');
       SnackBarUtils.errorSnackBar(state.errorMessage, context);
     }
 

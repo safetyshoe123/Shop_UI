@@ -60,10 +60,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       result.fold((error) {
         emit(state.copyWith(stateStatus: StateStatus.error));
-        print('$error this error from auth bloc logout');
         emit(state.copyWith(stateStatus: StateStatus.loaded));
       }, (registerModel) {
-        print(registerModel);
         emit(AuthState.inital());
       });
     });

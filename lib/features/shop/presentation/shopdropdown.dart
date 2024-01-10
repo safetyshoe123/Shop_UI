@@ -153,8 +153,10 @@ class _ShopDropState extends State<ShopDrop> {
               foregroundColor: white,
               splashColor: accentCanvasColor,
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const BranchPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BranchPage()));
               },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
