@@ -42,6 +42,11 @@ class _SidebarXExampleAppState extends State<ShopPage> {
         bloc: _authBloc,
         listener: _authListener,
         builder: (context, state) {
+          if (state.stateStatus == StateStatus.loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
           return Scaffold(
             resizeToAvoidBottomInset: false,
             key: _key,
@@ -245,6 +250,7 @@ class _SidebarXExampleAppState extends State<ShopPage> {
     }
 
     if (state.stateStatus == StateStatus.initial) {
+      SnackBarUtils.successSnackBar('Logout successful!', context);
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
