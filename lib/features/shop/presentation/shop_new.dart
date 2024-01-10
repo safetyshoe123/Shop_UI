@@ -1,5 +1,10 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_ui/core/dependency_injection/di_container.dart';
+import 'package:shop_ui/core/enums/enum.dart';
+import 'package:shop_ui/core/global_widgets/snackbar.dart';
+import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
+import 'package:shop_ui/features/auth/presentation/login.dart';
 import 'package:shop_ui/features/branch/presentation/branchadd.dart';
 import 'package:shop_ui/features/shop/presentation/shopdropdown.dart';
 import 'package:shop_ui/features/shop/presentation/shopinfo.dart';
@@ -7,10 +12,9 @@ import 'package:shop_ui/features/shop/presentation/shopinfo.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class ShopPage extends StatefulWidget {
-  const ShopPage({super.key, 
-  // required this.shopModel
+  const ShopPage({
+    super.key,
   });
-  // final ShopModel shopModel;
 
   @override
   State<ShopPage> createState() => _SidebarXExampleAppState();
@@ -18,211 +22,243 @@ class ShopPage extends StatefulWidget {
 
 class _SidebarXExampleAppState extends State<ShopPage> {
   final _controller = SidebarXController(selectedIndex: 0, extended: false);
-
   final _key = GlobalKey<ScaffoldState>();
-  // late ShopModel _shopModel;
+  final DIContainer diContainer = DIContainer();
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _shopModel = widget.shopModel;
-  // }
+  late AuthBloc _authBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _authBloc = BlocProvider.of<AuthBloc>(context);
+  }
 
   @override
   Widget build(BuildContext context) {
     // final isSmallScreen = MediaQuery.of(context).size.width < 600;
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      key: _key,
-      appBar:
-          // isSmallScreen
-          //     ?
-          AppBar(
-          
-                  backgroundColor: canvasColor,
-                  title: const Text(''),
-                  // leading: IconButton(
-                  //   onPressed: () {
-                  //     // if (!Platform.isAndroid && !Platform.isIOS) {
-                  //     //   _controller.setExtended(true);
-                  //     // }
-                  //     _key.currentState?.openDrawer();
-                  //   },
-                  //   icon: const Icon(Icons.menu, color: white,),
-                  // ),
-                  actions:  [
-          const Tooltip(
-            message: 'Admin',
-            child: Icon(Icons.person, color: white,)),
-          const SizedBox(width: 10,),
-          
-          IconButton(onPressed: (
-          ){
-          
-            // Navigator.push(context, 
-            // MaterialPageRoute(builder: (context) => const LoginPage()));
-          
-          }, icon: const Icon(Icons.power_settings_new_rounded, color: white,)),
-          const SizedBox(width: 20,),
-                  ],
-                  
-                ),
-      // drawer: Sidebar(controller: _controller),
-      // : null,
-      body: Row(
-        children: [
-          SidebarX(
-            controller: _controller,
-            theme: SidebarXTheme(
-              margin: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: canvasColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              hoverColor: scaffoldBackgroundColor,
-              textStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-              selectedTextStyle: const TextStyle(color: Colors.white),
-              itemTextPadding: const EdgeInsets.only(left: 30),
-              selectedItemTextPadding: const EdgeInsets.only(left: 30),
-              itemDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: canvasColor),
-              ),
-              selectedItemDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: actionColor.withOpacity(0.37),
-                ),
-                gradient: const LinearGradient(
-                  colors: [accentCanvasColor, canvasColor],
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.28),
-                    blurRadius: 30,
-                  )
-                ],
-              ),
-              iconTheme: IconThemeData(
-                color: Colors.white.withOpacity(0.7),
-                size: 20,
-              ),
-              selectedIconTheme: const IconThemeData(
-                color: Colors.white,
-                size: 20,
-              ),
-            ),
-            extendedTheme: const SidebarXTheme(
-              width: 200,
-              decoration: BoxDecoration(
-                color: canvasColor,
-              ),
-            ),
-            // footerDivider: divider,
-            headerBuilder: (context, extended) {
-              return  const SizedBox(
-                height: 100,
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  // child: Image.asset('images/house2.jpg')
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
+    return PopScope(
+      canPop: false,
+      child: BlocConsumer<AuthBloc, AuthState>(
+        bloc: _authBloc,
+        listener: _authListener,
+        builder: (context, state) {
+          return Scaffold(
+            resizeToAvoidBottomInset: false,
+            key: _key,
+            appBar:
+                // isSmallScreen
+                //     ?
+                AppBar(
+              backgroundColor: canvasColor,
+              automaticallyImplyLeading: false,
+              title: const Text(''),
+              actions: [
+                const Tooltip(
+                    message: 'Admin',
                     child: Icon(
-                      Icons.shopify_rounded,
+                      Icons.person,
                       color: white,
-                      size: 50,
-                    ),
-                  )
-                  // Text('Image', selectionColor: Colors.white,)
-                  // Image.asset('assets/images/avatar.png')
-                  ,
+                    )),
+                const SizedBox(
+                  width: 10,
                 ),
-              );
-            },
-            items: [
-              SidebarXItem(
-                icon: Icons.home,
-                label: 'Home',
-                onTap: () {
-                  // debugPrint('Home');
-                },
-              ),
-              
-              const SidebarXItem(
-                icon: Icons.add_circle,
-                label: 'Register Branch',
-              ),
-              const SidebarXItem(
-                icon: Icons.info,
-                label: 'Shop Info',
-              ),
-              const SidebarXItem(
-                icon: Icons.published_with_changes_rounded,
-                label: 'Transaction',
-              ),
-              const SidebarXItem(
-                icon: Icons.report_gmailerrorred_rounded,
-                label: 'Report',
-              ),
-              const SidebarXItem(
-                icon: Icons.library_books,
-                label: 'List',
-              ),
-              // const SidebarXItem(
-              //   icon: Icons.person,
-              //   label: 'Employees',
-              // ),
-            ],
-            // footerItems: [
-            //   SidebarXItem(
-            //     icon: Icons.power_settings_new_rounded,
-            //     label: 'Logout',
-            //     onTap: () {
-            //       // debugPrint('Logout');
-            //       // Navigator.push(context,
-            //       //     MaterialPageRoute(builder: (context) => const LoginPage()));
-            //     },
-            //   )
-            // ],
-          ),
-          Expanded(
-            child: Center(
-              child: _ScreensExample(
-                controller: _controller,
-                // shopModel: _shopModel,
-              ),
+                Tooltip(
+                  message: 'Logout',
+                  child: IconButton(
+                      onPressed: () {
+                        _logout(context);
+                      },
+                      icon: const Icon(
+                        Icons.power_settings_new_rounded,
+                        color: white,
+                      )),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+              ],
             ),
-          ),
-        ],
-      )
-      // ExampleSidebarX(controller: _controller)
-      ,
-      // body: Row(
-      //   children: [
-      //     Expanded(
-      //       child: Center(
-      //         child: _ScreensExample(
-      //           controller: _controller,
-      //           // shopModel: _shopModel,
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
-      bottomNavigationBar: const BottomAppBar(
+            // drawer: Sidebar(controller: _controller),
+            // : null,
+            body: Row(
+              children: [
+                SidebarX(
+                  controller: _controller,
+                  theme: SidebarXTheme(
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: canvasColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    hoverColor: scaffoldBackgroundColor,
+                    textStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+                    selectedTextStyle: const TextStyle(color: Colors.white),
+                    itemTextPadding: const EdgeInsets.only(left: 30),
+                    selectedItemTextPadding: const EdgeInsets.only(left: 30),
+                    itemDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: canvasColor),
+                    ),
+                    selectedItemDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: actionColor.withOpacity(0.37),
+                      ),
+                      gradient: const LinearGradient(
+                        colors: [accentCanvasColor, canvasColor],
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.28),
+                          blurRadius: 30,
+                        )
+                      ],
+                    ),
+                    iconTheme: IconThemeData(
+                      color: Colors.white.withOpacity(0.7),
+                      size: 20,
+                    ),
+                    selectedIconTheme: const IconThemeData(
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
+                  extendedTheme: const SidebarXTheme(
+                    width: 200,
+                    decoration: BoxDecoration(
+                      color: canvasColor,
+                    ),
+                  ),
+                  // footerDivider: divider,
+                  headerBuilder: (context, extended) {
+                    return const SizedBox(
+                      height: 100,
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        // child: Image.asset('images/house2.jpg')
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Icon(
+                            Icons.shopify_rounded,
+                            color: white,
+                            size: 50,
+                          ),
+                        )
+                        // Text('Image', selectionColor: Colors.white,)
+                        // Image.asset('assets/images/avatar.png')
+                        ,
+                      ),
+                    );
+                  },
+                  items: [
+                    SidebarXItem(
+                      icon: Icons.home,
+                      label: 'Home',
+                      onTap: () {
+                        // debugPrint('Home');
+                      },
+                    ),
+
+                    const SidebarXItem(
+                      icon: Icons.add_circle,
+                      label: 'Register Branch',
+                    ),
+                    const SidebarXItem(
+                      icon: Icons.info,
+                      label: 'Shop Info',
+                    ),
+                    const SidebarXItem(
+                      icon: Icons.published_with_changes_rounded,
+                      label: 'Transaction',
+                    ),
+                    const SidebarXItem(
+                      icon: Icons.report_gmailerrorred_rounded,
+                      label: 'Report',
+                    ),
+                    const SidebarXItem(
+                      icon: Icons.library_books,
+                      label: 'List',
+                    ),
+                    // const SidebarXItem(
+                    //   icon: Icons.person,
+                    //   label: 'Employees',
+                    // ),
+                  ],
+                  // footerItems: [
+                  //   SidebarXItem(
+                  //     icon: Icons.power_settings_new_rounded,
+                  //     label: 'Logout',
+                  //     onTap: () {
+                  //       // debugPrint('Logout');
+                  //       // Navigator.push(context,
+                  //       //     MaterialPageRoute(builder: (context) => const LoginPage()));
+                  //     },
+                  //   )
+                  // ],
+                ),
+                Expanded(
+                  child: Center(
+                    child: _ScreensExample(
+                      controller: _controller,
+                    ),
+                  ),
+                ),
+              ],
+            )
+            // ExampleSidebarX(controller: _controller)
+            ,
+            // body: Row(
+            //   children: [
+            //     Expanded(
+            //       child: Center(
+            //         child: _ScreensExample(
+            //           controller: _controller,
+            //           // shopModel: _shopModel,
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            bottomNavigationBar: const BottomAppBar(
               color: canvasColor,
               surfaceTintColor: canvasColor,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text('Copyright © 2023', style: TextStyle(
-                    color: white
-                  ),),
+                  Text(
+                    'Copyright © 2023',
+                    style: TextStyle(color: white),
+                  ),
                 ],
               ),
-             ),
-      
+            ),
+          );
+        },
+      ),
     );
+  }
+
+  void _authListener(BuildContext context, AuthState state) {
+    if (state.stateStatus == StateStatus.error) {
+      print('${state.errorMessage} this error from shop new listener');
+      SnackBarUtils.errorSnackBar(state.errorMessage, context);
+    }
+
+    if (state.stateStatus == StateStatus.initial) {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => MultiBlocProvider(providers: [
+              BlocProvider<AuthBloc>(
+                  create: (BuildContext context) => diContainer.authBloc),
+            ], child: const LoginPage()),
+          ),
+          ModalRoute.withName('/'));
+    }
+  }
+
+  void _logout(BuildContext context) {
+    _authBloc.add(LogoutEvent());
   }
 }
 
@@ -257,8 +293,8 @@ class _ScreensExampleState extends State<_ScreensExample> {
         switch (widget.controller.selectedIndex) {
           case 0:
             return const ShopDrop(
-              // shopModel: _shopModel,
-            );
+                // shopModel: _shopModel,
+                );
           case 1:
             return const AddBranchPage(
               shopId: '',

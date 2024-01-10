@@ -12,7 +12,7 @@ class BranchRemoteDataSource {
   }
 
   Future<Response> getBranch(String shopId) async {
-    String? token = await _authlocalDatasource.getUserToken();
+    String? token = await _authlocalDatasource.getToken();
     final response =
         await get(Uri.parse('${Config.url}/showBranch/$shopId'), headers: {
       HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
@@ -34,7 +34,7 @@ class BranchRemoteDataSource {
   }
 
   Future<Response> addBranch(AddBranchModel addBranchModel) async {
-    String? token = await _authlocalDatasource.getUserToken();
+    String? token = await _authlocalDatasource.getToken();
 
     final response = await post(Uri.parse('${Config.url}/createBranch'),
         body: jsonEncode({

@@ -23,6 +23,7 @@ class AuthRepository {
 
       final Map<String, dynamic> resMap = res['user'];
       final result = AuthModel.fromJson(resMap);
+      _authlocalDatasource.saveUser(result);
       return Right(result);
     } catch (e) {
       return Left(e.toString());
@@ -37,19 +38,22 @@ class AuthRepository {
       final data = jsonDecode(response.body);
       final Map<String, dynamic> resMap = data['user'];
       final result = AuthModel.fromJson(resMap);
+
       return Right(result);
     } catch (e) {
       return Left(e.toString());
     }
   }
 
-  Future<Either<String, String?>> autoLogin() async {
+  Future<Either<String, AuthModel?>> autoLogin() async {
     try {
-      final result = await _authlocalDatasource.getUserToken();
-
+      final result = await _authlocalDatasource.getUser();
+      print(result);
       if (result == null) return const Right(null);
 
-      return Right(result);
+      AuthModel? authModel = AuthModel.deserialize(result);
+
+      return Right(authModel);
     } catch (e) {
       return Left(e.toString());
     }
@@ -58,9 +62,17 @@ class AuthRepository {
   Future<Either<String, Unit>> logout() async {
     try {
       final result = await _authRemoteDatasource.logout();
-      print(result.statusCode);
+      final data = jsonDecode(result.body);
+      print(data);
+      if (result.statusCode == 200) {
+        _authlocalDatasource.deleteUser();
+        _authlocalDatasource.deleteToken();
+      }
+
+      print(data);
       return const Right(unit);
     } catch (e) {
+      print('$e this error from auth repo logout');
       return Left(e.toString());
     }
   }

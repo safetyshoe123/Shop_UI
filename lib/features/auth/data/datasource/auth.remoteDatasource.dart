@@ -14,7 +14,7 @@ class AuthRemoteDatasource {
   }
 
   Future<Response> login(LoginModel loginModel) async {
-    String? token = await _authlocalDatasource.getUserToken();
+    String? token = await _authlocalDatasource.getToken();
 
     final response = await post(
       Uri.parse('${Config.url}/login'),
@@ -32,7 +32,7 @@ class AuthRemoteDatasource {
     final data = jsonDecode(response.body);
     switch (response.statusCode) {
       case 200:
-        print(data);
+        print(data['user']);
         _authlocalDatasource.saveToken(data['authorization']['token']);
         return response;
       case 500:
@@ -44,7 +44,7 @@ class AuthRemoteDatasource {
   }
 
   Future<Response> register(RegisterModel registerModel) async {
-    String? token = await _authlocalDatasource.getUserToken();
+    String? token = await _authlocalDatasource.getToken();
 
     final response = await post(
       Uri.parse('${Config.url}/register'),
@@ -77,12 +77,12 @@ class AuthRemoteDatasource {
         throw ('Can\'t register! Something went wrong!');
 
       default:
-        throw (data['message']);
+        throw ('${data['message']} this error from default Auth remote datasource');
     }
   }
 
   Future<Response> logout() async {
-    String? token = await _authlocalDatasource.getUserToken();
+    String? token = await _authlocalDatasource.getToken();
     final response = await post(
       Uri.parse('${Config.url}/logout'),
       headers: {
@@ -94,11 +94,14 @@ class AuthRemoteDatasource {
     final data = jsonDecode(response.body);
     switch (response.statusCode) {
       case 200:
-        _authlocalDatasource.deleteToken();
+        // _authlocalDatasource.deleteUser();
+        // _authlocalDatasource.deleteToken();
         return response;
       case 500:
         throw ('Can\'t logout! Something went wrong!');
       default:
+        print(
+            '${data['message']} this error from default Auth remote datasource');
         throw (data['message']);
     }
   }

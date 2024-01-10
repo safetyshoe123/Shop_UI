@@ -1,5 +1,7 @@
 // import 'package:shop_ui/features/auth/domain/models/auth_restriction.model.dart';
 
+import 'dart:convert';
+
 class AuthModel {
   final int id;
   final String shopId;
@@ -50,21 +52,25 @@ class AuthModel {
       remark: json['remark'],
     );
   }
-//AYAW LANG SA NI DELETE-TA
-  // factory AuthModel.fromMap(Map<String, dynamic> json) {
-  //   return AuthModel(
-  //     id: json['id'] as int,
-  //     branchId: json['branchId'] as String,
-  //     empId: json['empId'] as String,
-  //     lastName: json['lastName'] as String,
-  //     firstName: json['firstName'] as String,
-  //     middleName: json['middleName'] as String,
-  //     password: json['password'] as String,
-  //     status: json['status'] as String,
-  //     dateHired: json['dateHired'] as DateTime,
-  //     salary: json['salary'] as double,
-  //     notes: json['notes'] as String,
-  //     remark: json['remark'] as String,
-  //   );
-  // }
+
+  static Map<String, dynamic> toMap(AuthModel authModel) => <String, dynamic>{
+        'id': authModel.id,
+        'shopId': authModel.shopId,
+        'empId': authModel.empId,
+        'lastName': authModel.lastName,
+        'firstName': authModel.firstName,
+        'middleName': authModel.middleName,
+        'restriction': authModel.restriction,
+        'status': authModel.status,
+        'dateHired': authModel.dateHired,
+        'salary': authModel.salary,
+        'notes': authModel.notes,
+        'remark': authModel.remark,
+      };
+
+  static String serialize(AuthModel authModel) =>
+      jsonEncode(AuthModel.toMap(authModel));
+
+  static AuthModel deserialize(String json) =>
+      AuthModel.fromJson(jsonDecode(json));
 }
