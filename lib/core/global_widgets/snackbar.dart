@@ -18,7 +18,7 @@ class SnackBarUtils {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
     final SnackBar snackBar = SnackBar(
-      backgroundColor: Colors.redAccent,
+      backgroundColor: Colors.red,
       content: Center(
         child: Text(message ?? '',
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),

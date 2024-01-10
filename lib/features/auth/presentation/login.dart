@@ -7,7 +7,9 @@ import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/core/utils/guard.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/auth/domain/models/login.model.dart';
-import 'package:shop_ui/features/auth/presentation/inital_page.dart';
+import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
+import 'package:shop_ui/features/shop/presentation/shop_admin.dart';
+import 'package:shop_ui/features/shop/presentation/shop_new.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -68,20 +70,6 @@ class _LoginPageState extends State<LoginPage> {
                                 letterSpacing: .5),
                           ),
                         ),
-                        // Text(
-                        //   "Login",
-
-                        //   style:
-                        //   GoogleFonts.lato(
-
-                        //   ),
-                        //   // TextStyle(
-                        //   //     color: Color.fromRGBO(40, 120, 19, 1),
-                        //   //     fontSize: 50,
-
-                        //   //     )
-
-                        // ),
                       ),
                       Container(
                         padding: const EdgeInsets.all(5),
@@ -273,17 +261,55 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     if (state.authModel != null) {
-      Navigator.pushAndRemoveUntil(
+      if (state.authModel!.restriction.isEmpty) {
+        print('EMPTY');
+        SnackBarUtils.successSnackBar('Login Success', context);
+        Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => BlocProvider<AuthBloc>(
-              create: (context) => diContainer.authBloc,
-              child: InitalPage(
-                authModel: state.authModel!,
-              ),
+            builder: (context) => MultiBlocProvider(
+              providers: [
+                BlocProvider<AuthBloc>(
+                  create: (BuildContext context) => diContainer.authBloc,
+                ),
+                BlocProvider<BranchBloc>(
+                  create: (context) => diContainer.branchBloc,
+                ),
+              ],
+              child: const ShopAdminPage(),
             ),
           ),
-          ModalRoute.withName('/'));
+        );
+        return;
+      } else {
+        SnackBarUtils.successSnackBar('Login Success', context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MultiBlocProvider(
+              providers: [
+                BlocProvider<AuthBloc>(
+                  create: (BuildContext context) => diContainer.authBloc,
+                ),
+                BlocProvider<BranchBloc>(
+                  create: (context) => diContainer.branchBloc,
+                ),
+              ],
+              child: const ShopPage(),
+            ),
+          ),
+        );
+        return;
+      }
+      // Navigator.pushAndRemoveUntil(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) => BlocProvider<AuthBloc>(
+      //         create: (context) => diContainer.authBloc,
+      //         child: const InitialPage(),
+      //       ),
+      //     ),
+      //     ModalRoute.withName('/'));
     }
   }
 

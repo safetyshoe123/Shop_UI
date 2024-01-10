@@ -14,13 +14,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(AuthRepository authRepository) : super(AuthState.inital()) {
     on<AutoLoginEvent>((event, emit) async {
       emit(state.copyWith(stateStatus: StateStatus.loading));
-      final Either<String, String?> result = await authRepository.autoLogin();
+      final Either<String, AuthModel?> result =
+          await authRepository.autoLogin();
 
       result.fold((error) {
         emit(state.copyWith(
             stateStatus: StateStatus.error, errorMessage: error));
-      }, (userToken) {
-        emit(state.copyWith(stateStatus: StateStatus.loaded, token: userToken));
+      }, (userModel) {
+        emit(state.copyWith(
+            stateStatus: StateStatus.loaded, authModel: userModel));
       });
     });
     on<LoginEvent>((event, emit) async {
@@ -58,7 +60,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       result.fold((error) {
         emit(state.copyWith(stateStatus: StateStatus.error));
-        print(error);
+        print('$error this error from auth bloc logout');
         emit(state.copyWith(stateStatus: StateStatus.loaded));
       }, (registerModel) {
         print(registerModel);
