@@ -257,12 +257,10 @@ class _LoginPageState extends State<LoginPage> {
   void _loginListener(BuildContext context, AuthState state) {
     if (state.stateStatus == StateStatus.error) {
       SnackBarUtils.errorSnackBar(state.errorMessage, context);
-      print(state.errorMessage);
     }
 
     if (state.authModel != null) {
       if (state.authModel!.restriction.isEmpty) {
-        print('EMPTY');
         SnackBarUtils.successSnackBar('Login Success', context);
         Navigator.push(
           context,
