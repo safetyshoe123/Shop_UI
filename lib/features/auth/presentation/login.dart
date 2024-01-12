@@ -261,7 +261,7 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     if (state.authModel != null) {
-      if (state.authModel!.restriction.isEmpty) {
+      if (state.authModel!.restriction == null) {
         print('EMPTY');
         SnackBarUtils.successSnackBar('Login Success', context);
         Navigator.push(

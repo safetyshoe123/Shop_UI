@@ -83,6 +83,7 @@ class AuthRemoteDatasource {
 
   Future<Response> logout() async {
     String? token = await _authlocalDatasource.getToken();
+    print('$token print na oy remote');
     final response = await post(
       Uri.parse('${Config.url}/logout'),
       headers: {

@@ -10,7 +10,7 @@ class AuthModel {
   final String firstName;
   final String middleName;
   // final String password;
-  final List restriction;
+  final List? restriction;
   // final Restriction restriction;
   final String status;
   final String dateHired;
@@ -27,7 +27,7 @@ class AuthModel {
     required this.firstName,
     required this.middleName,
     // required this.password,
-    required this.restriction,
+    this.restriction,
     required this.status,
     required this.dateHired,
     required this.salary,

@@ -12,6 +12,7 @@ class AuthlocalDatasource {
 //Saving token called in repository
   Future<Unit> saveToken(String token) async {
     await _secureStorage.write(key: Config.userToken, value: token);
+    print(token);
     return unit;
   }
 
@@ -22,6 +23,7 @@ class AuthlocalDatasource {
 
   //**
   //NOT USED BUT DON'T ERASE COMMENT MIGHT USE IT SOMEDAY
+
   // */
 
   Future<Unit> saveUser(AuthModel authModel) async {
