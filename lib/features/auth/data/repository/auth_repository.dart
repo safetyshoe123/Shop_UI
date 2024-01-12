@@ -19,9 +19,11 @@ class AuthRepository {
   Future<Either<String, AuthModel>> loginRepo(LoginModel loginModel) async {
     try {
       final response = await _authRemoteDatasource.login(loginModel);
-      final res = jsonDecode(response.body);
+      final data = jsonDecode(response.body);
 
-      final Map<String, dynamic> resMap = res['user'];
+      _authlocalDatasource.saveToken(data['authorization']['token']);
+
+      final Map<String, dynamic> resMap = data['user'];
       final result = AuthModel.fromJson(resMap);
       _authlocalDatasource.saveUser(result);
       return Right(result);
@@ -48,7 +50,7 @@ class AuthRepository {
   Future<Either<String, AuthModel?>> autoLogin() async {
     try {
       final result = await _authlocalDatasource.getUser();
-      print(result);
+
       if (result == null) return const Right(null);
 
       AuthModel? authModel = AuthModel.deserialize(result);
@@ -62,17 +64,14 @@ class AuthRepository {
   Future<Either<String, Unit>> logout() async {
     try {
       final result = await _authRemoteDatasource.logout();
-      final data = jsonDecode(result.body);
-      print(data);
+
       if (result.statusCode == 200) {
         _authlocalDatasource.deleteUser();
         _authlocalDatasource.deleteToken();
       }
 
-      print(data);
       return const Right(unit);
     } catch (e) {
-      print('$e this error from auth repo logout');
       return Left(e.toString());
     }
   }

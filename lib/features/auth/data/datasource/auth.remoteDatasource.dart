@@ -32,8 +32,6 @@ class AuthRemoteDatasource {
     final data = jsonDecode(response.body);
     switch (response.statusCode) {
       case 200:
-        print(data['user']);
-        _authlocalDatasource.saveToken(data['authorization']['token']);
         return response;
       case 500:
         throw ('Can\'t login! Something went wrong!');
@@ -95,14 +93,10 @@ class AuthRemoteDatasource {
     final data = jsonDecode(response.body);
     switch (response.statusCode) {
       case 200:
-        // _authlocalDatasource.deleteUser();
-        // _authlocalDatasource.deleteToken();
         return response;
       case 500:
         throw ('Can\'t logout! Something went wrong!');
       default:
-        print(
-            '${data['message']} this error from default Auth remote datasource');
         throw (data['message']);
     }
   }

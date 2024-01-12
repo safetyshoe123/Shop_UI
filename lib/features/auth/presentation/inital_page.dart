@@ -39,7 +39,6 @@ class _InitialPageState extends State<InitialPage> {
   void _authListener(BuildContext context, AuthState state) {
     if (state.stateStatus == StateStatus.error ||
         state.authModel == null && state.stateStatus == StateStatus.loaded) {
-      print(state.errorMessage);
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -74,7 +73,6 @@ class _InitialPageState extends State<InitialPage> {
         );
         return;
       } else {
-        //TODO: Route to display shopDrop and display restriction in dropdown menu ** state.authModel!.restriction.length**
         Navigator.push(
           context,
           MaterialPageRoute(

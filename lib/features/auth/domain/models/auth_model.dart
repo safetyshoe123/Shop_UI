@@ -17,7 +17,6 @@ class AuthModel {
   final String salary;
   final String notes;
   final String remark;
-//TODO: Model for restriction and connect authModel and restrictionModel
 
   AuthModel({
     required this.id,
@@ -26,8 +25,7 @@ class AuthModel {
     required this.lastName,
     required this.firstName,
     required this.middleName,
-    // required this.password,
-    this.restriction,
+    required this.restriction,
     required this.status,
     required this.dateHired,
     required this.salary,
@@ -42,9 +40,7 @@ class AuthModel {
       lastName: json['lastName'],
       firstName: json['firstName'],
       middleName: json['middleName'],
-      // password: json['password'],
       restriction: json['restriction'],
-      // restriction: Restriction.fromJson(json['restriction']),
       status: json['status'],
       dateHired: json['dateHired'],
       salary: json['salary'],

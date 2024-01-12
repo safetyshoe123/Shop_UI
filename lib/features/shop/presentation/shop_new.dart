@@ -42,6 +42,11 @@ class _SidebarXExampleAppState extends State<ShopPage> {
         bloc: _authBloc,
         listener: _authListener,
         builder: (context, state) {
+          if (state.stateStatus == StateStatus.loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
           return Scaffold(
             resizeToAvoidBottomInset: false,
             key: _key,
@@ -240,11 +245,11 @@ class _SidebarXExampleAppState extends State<ShopPage> {
 
   void _authListener(BuildContext context, AuthState state) {
     if (state.stateStatus == StateStatus.error) {
-      print('${state.errorMessage} this error from shop new listener');
       SnackBarUtils.errorSnackBar(state.errorMessage, context);
     }
 
     if (state.stateStatus == StateStatus.initial) {
+      SnackBarUtils.successSnackBar('Logout successful!', context);
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
