@@ -9,7 +9,9 @@ class AuthModel {
   final String lastName;
   final String firstName;
   final String middleName;
-  final List restriction;
+  // final String password;
+  final List? restriction;
+  // final Restriction restriction;
   final String status;
   final String dateHired;
   final String salary;

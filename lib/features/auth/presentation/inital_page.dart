@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/core/enums/enum.dart';
-import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/auth/presentation/login.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
@@ -53,8 +52,9 @@ class _InitialPageState extends State<InitialPage> {
     }
 
     if (state.authModel != null && state.stateStatus == StateStatus.loaded) {
-      if (state.authModel!.restriction.isEmpty) {
-        SnackBarUtils.successSnackBar('Login Success', context);
+      if (state.authModel!.restriction == null) {
+        print('EMPTY');
+        //TODO: Route to display all branches of a shop, use shopId for query
         Navigator.push(
           context,
           MaterialPageRoute(
