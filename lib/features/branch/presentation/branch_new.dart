@@ -1,6 +1,10 @@
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_ui/core/enums/enum.dart';
+import 'package:shop_ui/core/global_widgets/snackbar.dart';
+import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
+import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchdash.dart';
 import 'package:shop_ui/features/branch/presentation/branchinfo.dart';
 import 'package:shop_ui/features/employee/presentation/employeeadd.dart';
@@ -16,8 +20,9 @@ class BranchPage extends StatefulWidget {
 
 class _SidebarXExampleAppState extends State<BranchPage> {
   final _controller = SidebarXController(selectedIndex: 0, extended: false);
-
   final _key = GlobalKey<ScaffoldState>();
+  late BranchBloc _branchBloc;
+  late AuthBloc authBloc;
   final List<String> items = [
     'Branch 1',
     'Branch 2',
@@ -38,24 +43,33 @@ class _SidebarXExampleAppState extends State<BranchPage> {
   // }
 
   @override
+  void initState(){
+    authBloc = BlocProvider.of<AuthBloc>(context);
+    _branchBloc = BlocProvider.of<BranchBloc>(context);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-        var screenSize = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.of(context).size;
 
     // final isSmallScreen = MediaQuery.of(context).size.width < 600;
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      key: _key,
-      appBar:
-          // isSmallScreen
-          //     ?
-          AppBar(
-            centerTitle: true,
-                  backgroundColor: canvasColor,
-                  title:
-                  //  Padding(
-                  //   padding: EdgeInsets.only(left: screenSize.width/1.7),
-          // child: 
-          DropdownButtonHideUnderline(
+    return BlocListener<AuthBloc, AuthState>(
+      listener: _authListener,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        key: _key,
+        appBar:
+            // isSmallScreen
+            //     ?
+            AppBar(
+          centerTitle: true,
+          backgroundColor: canvasColor,
+          title:
+              //  Padding(
+              //   padding: EdgeInsets.only(left: screenSize.width/1.7),
+              // child:
+              DropdownButtonHideUnderline(
             child: SizedBox(
               width: 500,
               child: DropdownButton2<String>(
@@ -149,195 +163,200 @@ class _SidebarXExampleAppState extends State<BranchPage> {
               ),
             ),
           ),
-                  // ),
-                  automaticallyImplyLeading: false,
-                  leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: white,
-            )),
-          
-                  // bottom: TabBar(tabs: [Tab(
-                  //   child: _dropDown(BuildContext),
-                  // )]),
-                  // leading: IconButton(
-                  //   onPressed: () {
-                  //     // if (!Platform.isAndroid && !Platform.isIOS) {
-                  //     //   _controller.setExtended(true);
-                  //     // }
-                  //     // _key.currentState?.openDrawer();
-                  //   },
-                  //   icon: const Icon(
-                  //     Icons.menu,
-                  //     color: white,
-                  //   ),
-                  // ),
-                  actions: [
-          const Tooltip(
-              message: 'Manager',
-              child: Icon(
-                Icons.person,
-                color: white,
-              )),
-          const SizedBox(
-            width: 10,
-          ),
-          IconButton(
+          // ),
+          automaticallyImplyLeading: false,
+          leading: IconButton(
               onPressed: () {
-                // Navigator.push(context,
-                // MaterialPageRoute(builder: (context) => const LoginPage()));
+                Navigator.pop(context);
               },
               icon: const Icon(
-                Icons.power_settings_new_rounded,
+                Icons.arrow_back_ios_new_rounded,
                 color: white,
               )),
-          const SizedBox(
-            width: 20,
-          ),
-                  ],
-                ),
-      // : null,
-      body: Row(
-        children: [
-          SidebarX(
-            controller: _controller,
-            theme: SidebarXTheme(
-              margin: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: canvasColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              hoverColor: scaffoldBackgroundColor,
-              textStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-              selectedTextStyle: const TextStyle(color: Colors.white),
-              itemTextPadding: const EdgeInsets.only(left: 30),
-              selectedItemTextPadding: const EdgeInsets.only(left: 30),
-              itemDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: canvasColor),
-              ),
-              selectedItemDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: actionColor.withOpacity(0.37),
-                ),
-                gradient: const LinearGradient(
-                  colors: [accentCanvasColor, canvasColor],
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.28),
-                    blurRadius: 30,
-                  )
-                ],
-              ),
-              iconTheme: IconThemeData(
-                color: Colors.white.withOpacity(0.7),
-                size: 20,
-              ),
-              selectedIconTheme: const IconThemeData(
-                color: Colors.white,
-                size: 20,
-              ),
+      
+          // bottom: TabBar(tabs: [Tab(
+          //   child: _dropDown(BuildContext),
+          // )]),
+          // leading: IconButton(
+          //   onPressed: () {
+          //     // if (!Platform.isAndroid && !Platform.isIOS) {
+          //     //   _controller.setExtended(true);
+          //     // }
+          //     // _key.currentState?.openDrawer();
+          //   },
+          //   icon: const Icon(
+          //     Icons.menu,
+          //     color: white,
+          //   ),
+          // ),
+          actions: [
+            const Tooltip(
+                message: 'Manager',
+                child: Icon(
+                  Icons.person,
+                  color: white,
+                )),
+            const SizedBox(
+              width: 10,
             ),
-            extendedTheme: const SidebarXTheme(
-              width: 200,
-              decoration: BoxDecoration(
-                color: canvasColor,
-              ),
-            ),
-            // footerDivider: divider,
-            headerBuilder: (context, extended) {
-              return const FittedBox(
-                fit: BoxFit.scaleDown,
-                child: SizedBox(
-                  height: 100,
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    // child: Image.asset('images/house2.jpg')
-                    child: Icon(
-                      Icons.shopify_rounded,
-                      color: white,
-                      size: 50,
-                    )
-                    // Text('Image', selectionColor: Colors.white,)
-                    // Image.asset('assets/images/avatar.png')
-                    ,
-                  ),
-                ),
-              );
-            },
-            items: [
-              SidebarXItem(
-                icon: Icons.home,
-                label: 'Home',
-                onTap: () {
-                  // debugPrint('Home');
+            IconButton(
+                onPressed: () {
+                  // Navigator.push(context,
+                  // MaterialPageRoute(builder: (context) => const LoginPage()));
                 },
-              ),
-              const SidebarXItem(
-                icon: Icons.add_circle,
-                label: 'Register Employee',
-              ),
-              const SidebarXItem(
-                icon: Icons.info,
-                label: 'Info',
-              ),
-            ],
-            // footerItems: [
-            //   SidebarXItem(
-            //     icon: Icons.power_settings_new_rounded,
-            //     label: 'Logout',
-            //     onTap: () {
-            //       // // debugPrint('Logout');
-            //       // Navigator.push(context,
-            //       //     MaterialPageRoute(builder: (context) => const LoginPage()));
-            //     },
-            //   )
-            // ],
-          ),
-          Expanded(
-            child: Center(
-              child: _ScreensExample(
-                controller: _controller,
-              ),
-            ),
-          ),
-        ],
-      )
-
-      // ExampleSidebarX(controller: _controller)
-      ,
-      // body: Row(
-      //   children: [
-      //     Expanded(
-      //       child: Center(
-      //         child: _ScreensExample(
-      //           controller: _controller,
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
-      bottomNavigationBar: const BottomAppBar(
-        color: canvasColor,
-        surfaceTintColor: canvasColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              'Copyright © 2023',
-              style: TextStyle(color: white),
+                icon: const Icon(
+                  Icons.power_settings_new_rounded,
+                  color: white,
+                )),
+            const SizedBox(
+              width: 20,
             ),
           ],
+        ),
+        // : null,
+        body: Row(
+          children: [
+            SidebarX(
+              controller: _controller,
+              theme: SidebarXTheme(
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: canvasColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                hoverColor: scaffoldBackgroundColor,
+                textStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+                selectedTextStyle: const TextStyle(color: Colors.white),
+                itemTextPadding: const EdgeInsets.only(left: 30),
+                selectedItemTextPadding: const EdgeInsets.only(left: 30),
+                itemDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: canvasColor),
+                ),
+                selectedItemDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: actionColor.withOpacity(0.37),
+                  ),
+                  gradient: const LinearGradient(
+                    colors: [accentCanvasColor, canvasColor],
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.28),
+                      blurRadius: 30,
+                    )
+                  ],
+                ),
+                iconTheme: IconThemeData(
+                  color: Colors.white.withOpacity(0.7),
+                  size: 20,
+                ),
+                selectedIconTheme: const IconThemeData(
+                  color: Colors.white,
+                  size: 20,
+                ),
+              ),
+              extendedTheme: const SidebarXTheme(
+                width: 200,
+                decoration: BoxDecoration(
+                  color: canvasColor,
+                ),
+              ),
+              // footerDivider: divider,
+              headerBuilder: (context, extended) {
+                return const FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: SizedBox(
+                    height: 100,
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      // child: Image.asset('images/house2.jpg')
+                      child: Icon(
+                        Icons.shopify_rounded,
+                        color: white,
+                        size: 50,
+                      )
+                      // Text('Image', selectionColor: Colors.white,)
+                      // Image.asset('assets/images/avatar.png')
+                      ,
+                    ),
+                  ),
+                );
+              },
+              items: [
+                SidebarXItem(
+                  icon: Icons.home,
+                  label: 'Home',
+                  onTap: () {
+                    // debugPrint('Home');
+                  },
+                ),
+                const SidebarXItem(
+                  icon: Icons.add_circle,
+                  label: 'Register Employee',
+                ),
+                const SidebarXItem(
+                  icon: Icons.info,
+                  label: 'Info',
+                ),
+              ],
+              // footerItems: [
+              //   SidebarXItem(
+              //     icon: Icons.power_settings_new_rounded,
+              //     label: 'Logout',
+              //     onTap: () {
+              //       // // debugPrint('Logout');
+              //       // Navigator.push(context,
+              //       //     MaterialPageRoute(builder: (context) => const LoginPage()));
+              //     },
+              //   )
+              // ],
+            ),
+            Expanded(
+              child: Center(
+                child: _ScreensExample(
+                  controller: _controller,
+                ),
+              ),
+            ),
+          ],
+        )
+      
+        // ExampleSidebarX(controller: _controller)
+        ,
+        // body: Row(
+        //   children: [
+        //     Expanded(
+        //       child: Center(
+        //         child: _ScreensExample(
+        //           controller: _controller,
+        //         ),
+        //       ),
+        //     ),
+        //   ],
+        // ),
+        bottomNavigationBar: const BottomAppBar(
+          color: canvasColor,
+          surfaceTintColor: canvasColor,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                'Copyright © 2023',
+                style: TextStyle(color: white),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
-
+  void _authListener(BuildContext context, AuthState state) {
+    if (state.stateStatus == StateStatus.error) {
+      SnackBarUtils.errorSnackBar(state.errorMessage, context);
+    }
+  }
 }
 
 class _ScreensExample extends StatefulWidget {
