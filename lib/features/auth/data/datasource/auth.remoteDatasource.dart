@@ -82,6 +82,8 @@ class AuthRemoteDatasource {
     //If error occurs, don't rerun without deleting the use and token to prevent memory leakage
     //When not delete it will have bugs (OperationError) in logout
     //Solution: Delete the user and token ** _authlocalDatasource.deleteToken(); ** same for user
+    // _authlocalDatasource.deleteToken();
+    // _authlocalDatasource.deleteUser();
     try {
       final token = await _authlocalDatasource.getUserToken();
       if (token == null || token.isEmpty) {
