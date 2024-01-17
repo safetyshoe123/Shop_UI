@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchadd.dart';
+import 'package:shop_ui/features/employee/presentation/employeeadd.dart';
 import 'package:shop_ui/features/shop/presentation/shopdash.dart';
 import 'package:shop_ui/features/shop/presentation/shopinfo.dart';
 import 'package:sidebarx/sidebarx.dart';
@@ -167,6 +168,14 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                     label: 'Shop Info',
                   ),
                   const SidebarXItem(
+                    icon: Icons.attribution_sharp,
+                    label: 'Employee Maintenance',
+                  ),
+                   const SidebarXItem(
+                    icon: Icons.build_circle_outlined,
+                    label: 'Shop Maintenance',
+                  ),
+                  const SidebarXItem(
                     icon: Icons.published_with_changes_rounded,
                     label: 'Transaction',
                   ),
@@ -178,14 +187,7 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                     icon: Icons.library_books,
                     label: 'List',
                   ),
-                  const SidebarXItem(
-                    icon: Icons.build_circle_outlined,
-                    label: 'Shop Maintenance',
-                  ),
-                  const SidebarXItem(
-                    icon: Icons.attribution_sharp,
-                    label: 'Employee Maintenance',
-                  ),
+                 
                   // const SidebarXItem(
                   //   icon: Icons.person,
                   //   label: 'Employees',
@@ -283,6 +285,8 @@ class _ScreensExampleState extends State<_ScreensExample> {
             );
           case 2:
             return const InfoShopPage();
+          case 3:
+            return const AddEmpPage();
           // case 3:
           //   return const BranchDash();
           default:

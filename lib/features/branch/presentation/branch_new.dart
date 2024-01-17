@@ -380,13 +380,14 @@ class _ScreensExampleState extends State<_ScreensExample> {
         final pageTitle = _getTitleByIndex(widget.controller.selectedIndex);
         switch (widget.controller.selectedIndex) {
           case 0:
-            return const BranchDash();
+            // return const BranchDash();
+            return const InfoBranchPage();
 
           case 1:
-            return const AddEmpPage();
+            // return const AddEmpPage();
 
           case 2:
-            return const InfoBranchPage();
+           
 
           default:
             return Text(
