@@ -5,8 +5,8 @@ import 'package:shop_ui/core/enums/enum.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/auth/presentation/login.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
-import 'package:shop_ui/features/shop/presentation/shop_admin.dart';
-import 'package:shop_ui/features/shop/presentation/shop_new.dart';
+import 'package:shop_ui/features/auth/presentation/admin_page.dart';
+import 'package:shop_ui/features/auth/presentation/landing_page.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({super.key});
@@ -24,6 +24,12 @@ class _InitialPageState extends State<InitialPage> {
     super.initState();
     _authBloc = BlocProvider.of<AuthBloc>(context);
     _authBloc.add(AutoLoginEvent());
+  }
+
+  @override
+  void dispose() {
+    _authBloc.close();
+    super.dispose();
   }
 
   @override
@@ -53,8 +59,6 @@ class _InitialPageState extends State<InitialPage> {
 
     if (state.authModel != null && state.stateStatus == StateStatus.loaded) {
       if (state.authModel!.restriction == null) {
-        print('EMPTY');
-        //TODO: Route to display all branches of a shop, use shopId for query
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -67,12 +71,16 @@ class _InitialPageState extends State<InitialPage> {
                   create: (context) => diContainer.branchBloc,
                 ),
               ],
-              child: const ShopAdminPage(),
+              child: ShopAdminPage(
+                shopId: state.authModel!.shopId,
+              ),
             ),
           ),
         );
         return;
       } else {
+        print(state.authModel!.restriction);
+        final restriction = state.authModel!.restriction;
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -85,7 +93,7 @@ class _InitialPageState extends State<InitialPage> {
                   create: (context) => diContainer.branchBloc,
                 ),
               ],
-              child: const ShopPage(),
+              child: ShopPage(restriction: restriction!),
             ),
           ),
         );

@@ -21,11 +21,10 @@ class AuthRepository {
       final response = await _authRemoteDatasource.login(loginModel);
       final data = jsonDecode(response.body);
 
-      _authlocalDatasource.saveToken(data['authorization']['token']);
-
       final Map<String, dynamic> resMap = data['user'];
       final result = AuthModel.fromJson(resMap);
       _authlocalDatasource.saveUser(result);
+
       return Right(result);
     } catch (e) {
       return Left(e.toString());

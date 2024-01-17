@@ -14,7 +14,7 @@ class AuthRemoteDatasource {
   }
 
   Future<Response> login(LoginModel loginModel) async {
-    String? token = await _authlocalDatasource.getToken();
+    String? token = await _authlocalDatasource.getUserToken();
 
     final response = await post(
       Uri.parse('${Config.url}/login'),
@@ -32,6 +32,7 @@ class AuthRemoteDatasource {
     final data = jsonDecode(response.body);
     switch (response.statusCode) {
       case 200:
+        _authlocalDatasource.saveToken(data['authorization']['token']);
         return response;
       case 500:
         throw ('Can\'t login! Something went wrong!');
@@ -42,7 +43,7 @@ class AuthRemoteDatasource {
   }
 
   Future<Response> register(RegisterModel registerModel) async {
-    String? token = await _authlocalDatasource.getToken();
+    String? token = await _authlocalDatasource.getUserToken();
 
     final response = await post(
       Uri.parse('${Config.url}/register'),
@@ -68,8 +69,6 @@ class AuthRemoteDatasource {
     final data = jsonDecode(response.body);
     switch (response.statusCode) {
       case 200:
-        _authlocalDatasource.saveToken(data['authorization']['token']);
-        _authlocalDatasource.getUser();
         return response;
       case 500:
         throw ('Can\'t register! Something went wrong!');
@@ -80,24 +79,35 @@ class AuthRemoteDatasource {
   }
 
   Future<Response> logout() async {
-    String? token = await _authlocalDatasource.getToken();
-    print('$token print na oy remote');
-    final response = await post(
-      Uri.parse('${Config.url}/logout'),
-      headers: {
-        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-        HttpHeaders.acceptHeader: 'application/json',
-        HttpHeaders.authorizationHeader: 'Bearer $token',
-      },
-    );
-    final data = jsonDecode(response.body);
-    switch (response.statusCode) {
-      case 200:
-        return response;
-      case 500:
-        throw ('Can\'t logout! Something went wrong!');
-      default:
-        throw (data['message']);
+    //If error occurs, don't rerun without deleting the use and token to prevent memory leakage
+    //When not delete it will have bugs (OperationError) in logout
+    //Solution: Delete the user and token ** _authlocalDatasource.deleteToken(); ** same for user
+    try {
+      final token = await _authlocalDatasource.getUserToken();
+      if (token == null || token.isEmpty) {
+        throw ('Token is null or empty');
+      }
+
+      final response = await post(
+        Uri.parse('${Config.url}/logout'),
+        headers: {
+          HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+          HttpHeaders.acceptHeader: 'application/json',
+          HttpHeaders.authorizationHeader: 'Bearer $token',
+        },
+      );
+      final data = jsonDecode(response.body);
+      switch (response.statusCode) {
+        case 200:
+          _authlocalDatasource.deleteToken();
+          return response;
+        case 500:
+          throw ('Can\'t logout! Something went wrong!');
+        default:
+          throw (data['message']);
+      }
+    } catch (e) {
+      throw (e.toString());
     }
   }
 }

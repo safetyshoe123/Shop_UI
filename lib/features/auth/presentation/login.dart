@@ -8,8 +8,8 @@ import 'package:shop_ui/core/utils/guard.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/auth/domain/models/login.model.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
-import 'package:shop_ui/features/shop/presentation/shop_admin.dart';
-import 'package:shop_ui/features/shop/presentation/shop_new.dart';
+import 'package:shop_ui/features/auth/presentation/admin_page.dart';
+import 'package:shop_ui/features/auth/presentation/landing_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -34,6 +34,15 @@ class _LoginPageState extends State<LoginPage> {
     _authBloc = BlocProvider.of<AuthBloc>(context);
     // _branchBloc = BlocProvider.of<BranchBloc>(context);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _empIdController.dispose();
+    _passwordController.dispose();
+    _shopIdController.dispose();
+    _authBloc.close();
+    super.dispose();
   }
 
   @override
@@ -261,7 +270,7 @@ class _LoginPageState extends State<LoginPage> {
 
     if (state.authModel != null) {
       if (state.authModel!.restriction == null) {
-        print('EMPTY');
+        print('Admin Page');
         SnackBarUtils.successSnackBar('Login Success', context);
         Navigator.push(
           context,
@@ -275,12 +284,16 @@ class _LoginPageState extends State<LoginPage> {
                   create: (context) => diContainer.branchBloc,
                 ),
               ],
-              child: const ShopAdminPage(),
+              child: ShopAdminPage(
+                shopId: state.authModel!.shopId,
+              ),
             ),
           ),
         );
         return;
       } else {
+        print(state.authModel!.restriction);
+        final restriction = state.authModel!.restriction;
         SnackBarUtils.successSnackBar('Login Success', context);
         Navigator.push(
           context,
@@ -294,7 +307,7 @@ class _LoginPageState extends State<LoginPage> {
                   create: (context) => diContainer.branchBloc,
                 ),
               ],
-              child: const ShopPage(),
+              child: ShopPage(restriction: restriction!),
             ),
           ),
         );
