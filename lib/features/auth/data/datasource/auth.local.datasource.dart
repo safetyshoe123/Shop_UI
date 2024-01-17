@@ -11,34 +11,57 @@ class AuthlocalDatasource {
   }
 //Saving token/user called in repository
   Future<Unit> saveToken(String token) async {
-    await _secureStorage.write(key: Config.userToken, value: token);
-    print(token);
-    return unit;
+    try {
+      await _secureStorage.write(key: Config.userToken, value: token);
+      return unit;
+    } catch (e) {
+      throw (e.toString());
+    }
   }
 
   Future<Unit> saveUser(AuthModel authModel) async {
-    await _secureStorage.write(
-        key: Config.user, value: AuthModel.serialize(authModel));
-    return unit;
+    try {
+      await _secureStorage.write(
+          key: Config.user, value: AuthModel.serialize(authModel));
+      return unit;
+    } catch (e) {
+      throw (e.toString);
+    }
   }
 
 //for Auto Login
-  Future<String?> getToken() async {
-    return _secureStorage.read(key: Config.userToken);
+  Future<String?> getUserToken() async {
+    try {
+      return await _secureStorage.read(key: Config.userToken);
+    } catch (e) {
+      throw (e.toString());
+    }
   }
 
   Future<String?> getUser() async {
-    return _secureStorage.read(key: Config.user);
+    try {
+      return await _secureStorage.read(key: Config.user);
+    } catch (e) {
+      throw (e.toString());
+    }
   }
 
 //for logout
   Future<Unit> deleteToken() async {
-    _secureStorage.delete(key: Config.userToken);
-    return unit;
+    try {
+      _secureStorage.delete(key: Config.userToken);
+      return unit;
+    } catch (e) {
+      throw (e.toString());
+    }
   }
 
   Future<Unit> deleteUser() async {
-    _secureStorage.delete(key: Config.user);
-    return unit;
+    try {
+      _secureStorage.delete(key: Config.user);
+      return unit;
+    } catch (e) {
+      throw (e.toString());
+    }
   }
 }

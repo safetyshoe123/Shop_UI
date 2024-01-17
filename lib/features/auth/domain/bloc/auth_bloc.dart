@@ -59,7 +59,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final Either<String, Unit> result = await authRepository.logout();
 
       result.fold((error) {
-        emit(state.copyWith(stateStatus: StateStatus.error));
+        emit(state.copyWith(
+            stateStatus: StateStatus.error, errorMessage: error));
         emit(state.copyWith(stateStatus: StateStatus.loaded));
       }, (registerModel) {
         emit(AuthState.inital());
