@@ -7,7 +7,6 @@ import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchdash.dart';
 import 'package:shop_ui/features/branch/presentation/branchinfo.dart';
-import 'package:shop_ui/features/employee/presentation/employeeadd.dart';
 // import 'package:shop_ui/features/presentation/pages/shopdash.dart';
 import 'package:sidebarx/sidebarx.dart';
 
