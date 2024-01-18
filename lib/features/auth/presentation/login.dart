@@ -270,7 +270,6 @@ class _LoginPageState extends State<LoginPage> {
 
     if (state.authModel != null) {
       if (state.authModel!.restriction == null) {
-        print('Admin Page');
         SnackBarUtils.successSnackBar('Login Success', context);
         Navigator.push(
           context,
@@ -292,7 +291,6 @@ class _LoginPageState extends State<LoginPage> {
         );
         return;
       } else {
-        print(state.authModel!.restriction);
         final restriction = state.authModel!.restriction;
         SnackBarUtils.successSnackBar('Login Success', context);
         Navigator.push(

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:shop_ui/features/auth/data/datasource/auth.local.datasource.dart';
 import 'package:shop_ui/features/auth/data/datasource/auth.remoteDatasource.dart';
@@ -19,13 +18,8 @@ class AuthRepository {
   Future<Either<String, AuthModel>> loginRepo(LoginModel loginModel) async {
     try {
       final response = await _authRemoteDatasource.login(loginModel);
-      final data = jsonDecode(response.body);
 
-      final Map<String, dynamic> resMap = data['user'];
-      final result = AuthModel.fromJson(resMap);
-      _authlocalDatasource.saveUser(result);
-
-      return Right(result);
+      return Right(response);
     } catch (e) {
       return Left(e.toString());
     }
@@ -36,11 +30,7 @@ class AuthRepository {
     try {
       final response = await _authRemoteDatasource.register(registerModel);
 
-      final data = jsonDecode(response.body);
-      final Map<String, dynamic> resMap = data['user'];
-      final result = AuthModel.fromJson(resMap);
-
-      return Right(result);
+      return Right(response);
     } catch (e) {
       return Left(e.toString());
     }
@@ -50,7 +40,9 @@ class AuthRepository {
     try {
       final result = await _authlocalDatasource.getUser();
 
-      if (result == null) return const Right(null);
+      if (result == null) {
+        return const Right(null);
+      }
 
       AuthModel? authModel = AuthModel.deserialize(result);
 
@@ -64,7 +56,7 @@ class AuthRepository {
     try {
       final result = await _authRemoteDatasource.logout();
 
-      if (result.statusCode == 200) {
+      if (result == 200) {
         _authlocalDatasource.deleteUser();
         _authlocalDatasource.deleteToken();
       }
