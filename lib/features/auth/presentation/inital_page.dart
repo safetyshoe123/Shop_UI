@@ -28,7 +28,6 @@ class _InitialPageState extends State<InitialPage> {
 
   @override
   void dispose() {
-    _authBloc.close();
     super.dispose();
   }
 

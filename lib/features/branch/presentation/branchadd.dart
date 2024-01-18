@@ -47,6 +47,19 @@ class _AddBranchPageState extends State<AddBranchPage> {
   }
 
   @override
+  void dispose() {
+    _branchIdController.dispose();
+    _branchNameController.dispose();
+    _address1Controller.dispose();
+    _dateController.dispose();
+    _address2Controller.dispose();
+    _typeController.dispose();
+    _notesController.dispose();
+    _remarkController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
 
@@ -86,15 +99,13 @@ class _AddBranchPageState extends State<AddBranchPage> {
                       ),
                       SizedBox(
                         width: 900,
-                        
                         child: Container(
                           padding: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(
-                                  color:
-                                      const Color.fromRGBO(40, 120, 19, 1)),
+                                  color: const Color.fromRGBO(40, 120, 19, 1)),
                               boxShadow: const [
                                 BoxShadow(
                                     color: Color.fromRGBO(40, 120, 19, 1),
@@ -115,18 +126,18 @@ class _AddBranchPageState extends State<AddBranchPage> {
                                                 color: Color.fromRGBO(
                                                     40, 120, 19, 1)))),
                                     child: TextFormField(
-                                      style: const TextStyle(fontSize: 20),
-                                        autovalidateMode: AutovalidateMode
-                                            .onUserInteraction,
+                                        style: const TextStyle(fontSize: 20),
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
                                         controller: _branchIdController,
                                         decoration: InputDecoration(
-                                            prefixIcon: const Icon(
-                                                Icons.badge_rounded),
+                                            prefixIcon:
+                                                const Icon(Icons.badge_rounded),
                                             border: InputBorder.none,
                                             hintText: "Branch ID",
                                             hintStyle: TextStyle(
                                                 color: Colors.grey[700],
-                                                  fontSize: 15)),
+                                                fontSize: 15)),
                                         validator: (String? val) {
                                           return Guard.againstEmptyShopId(
                                               val, 'Branch ID');
@@ -143,18 +154,18 @@ class _AddBranchPageState extends State<AddBranchPage> {
                                                 color: Color.fromRGBO(
                                                     40, 120, 19, 1)))),
                                     child: TextFormField(
-                                      style: const TextStyle(fontSize: 20),
-                                        autovalidateMode: AutovalidateMode
-                                            .onUserInteraction,
+                                        style: const TextStyle(fontSize: 20),
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
                                         controller: _branchNameController,
                                         decoration: InputDecoration(
-                                            prefixIcon: const Icon(
-                                                Icons.house_rounded),
+                                            prefixIcon:
+                                                const Icon(Icons.house_rounded),
                                             border: InputBorder.none,
                                             hintText: "Branch name",
                                             hintStyle: TextStyle(
                                                 color: Colors.grey[700],
-                                                  fontSize: 15)),
+                                                fontSize: 15)),
                                         validator: (String? val) {
                                           return Guard.againstEmptyString(
                                               val, 'Branch Name');
@@ -171,18 +182,18 @@ class _AddBranchPageState extends State<AddBranchPage> {
                                                 color: Color.fromRGBO(
                                                     40, 120, 19, 1)))),
                                     child: TextFormField(
-                                      style: const TextStyle(fontSize: 20),
-                                        autovalidateMode: AutovalidateMode
-                                            .onUserInteraction,
+                                        style: const TextStyle(fontSize: 20),
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
                                         controller: _address1Controller,
                                         decoration: InputDecoration(
-                                            prefixIcon: const Icon(
-                                                Icons.location_on),
+                                            prefixIcon:
+                                                const Icon(Icons.location_on),
                                             border: InputBorder.none,
                                             hintText: "Address 1",
                                             hintStyle: TextStyle(
                                                 color: Colors.grey[700],
-                                                  fontSize: 15)),
+                                                fontSize: 15)),
                                         validator: (String? val) {
                                           return Guard.againstEmptyString(
                                               val, 'Address 1');
@@ -199,18 +210,18 @@ class _AddBranchPageState extends State<AddBranchPage> {
                                                 color: Color.fromRGBO(
                                                     40, 120, 19, 1)))),
                                     child: TextFormField(
-                                      style: const TextStyle(fontSize: 20),
-                                        autovalidateMode: AutovalidateMode
-                                            .onUserInteraction,
+                                        style: const TextStyle(fontSize: 20),
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
                                         controller: _address2Controller,
                                         decoration: InputDecoration(
-                                            prefixIcon: const Icon(Icons
-                                                .location_on_outlined),
+                                            prefixIcon: const Icon(
+                                                Icons.location_on_outlined),
                                             border: InputBorder.none,
                                             hintText: "Address 2",
                                             hintStyle: TextStyle(
                                                 color: Colors.grey[700],
-                                                  fontSize: 15)),
+                                                fontSize: 15)),
                                         validator: (String? val) {
                                           return Guard.againstEmptyString(
                                               val, 'Address 2');
@@ -224,24 +235,23 @@ class _AddBranchPageState extends State<AddBranchPage> {
                                     decoration: const BoxDecoration(
                                       border: Border(
                                         bottom: BorderSide(
-                                          color: Color.fromRGBO(
-                                              40, 120, 19, 1),
+                                          color: Color.fromRGBO(40, 120, 19, 1),
                                         ),
                                       ),
                                     ),
                                     child: TextFormField(
-                                      style: const TextStyle(fontSize: 20),
-                                        autovalidateMode: AutovalidateMode
-                                            .onUserInteraction,
+                                        style: const TextStyle(fontSize: 20),
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
                                         controller: _dateController,
                                         decoration: InputDecoration(
-                                          prefixIcon: const Icon(Icons
-                                              .calendar_month_outlined),
+                                          prefixIcon: const Icon(
+                                              Icons.calendar_month_outlined),
                                           border: InputBorder.none,
                                           hintText: "YYYY/MM/DD",
                                           hintStyle: TextStyle(
                                               color: Colors.grey[700],
-                                                  fontSize: 15),
+                                              fontSize: 15),
                                         ),
                                         validator: (String? val) {
                                           return Guard.againstEmptyString(
@@ -256,13 +266,12 @@ class _AddBranchPageState extends State<AddBranchPage> {
                                     decoration: const BoxDecoration(
                                         border: Border(
                                             bottom: BorderSide(
-                                      color:
-                                          Color.fromRGBO(40, 120, 19, 1),
+                                      color: Color.fromRGBO(40, 120, 19, 1),
                                     ))),
                                     child: TextFormField(
-                                      style: const TextStyle(fontSize: 20),
-                                        autovalidateMode: AutovalidateMode
-                                            .onUserInteraction,
+                                        style: const TextStyle(fontSize: 20),
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
                                         controller: _typeController,
                                         decoration: InputDecoration(
                                             prefixIcon: const Icon(
@@ -271,7 +280,7 @@ class _AddBranchPageState extends State<AddBranchPage> {
                                             hintText: "Type",
                                             hintStyle: TextStyle(
                                                 color: Colors.grey[700],
-                                                  fontSize: 15)),
+                                                fontSize: 15)),
                                         validator: (String? val) {
                                           return Guard.againstEmptyString(
                                               val, 'Type');
@@ -288,9 +297,9 @@ class _AddBranchPageState extends State<AddBranchPage> {
                                                 color: Color.fromRGBO(
                                                     40, 120, 19, 1)))),
                                     child: TextFormField(
-                                      style: const TextStyle(fontSize: 20),
-                                        autovalidateMode: AutovalidateMode
-                                            .onUserInteraction,
+                                        style: const TextStyle(fontSize: 20),
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
                                         controller: _notesController,
                                         decoration: InputDecoration(
                                             prefixIcon: const Icon(
@@ -299,7 +308,7 @@ class _AddBranchPageState extends State<AddBranchPage> {
                                             hintText: "Notes",
                                             hintStyle: TextStyle(
                                                 color: Colors.grey[700],
-                                                  fontSize: 15)),
+                                                fontSize: 15)),
                                         validator: (String? val) {
                                           return Guard.againstEmptyString(
                                               val, 'Notes');
@@ -317,17 +326,17 @@ class _AddBranchPageState extends State<AddBranchPage> {
                                                     40, 120, 19, 1)))),
                                     child: TextFormField(
                                       style: const TextStyle(fontSize: 20),
-                                      autovalidateMode: AutovalidateMode
-                                          .onUserInteraction,
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
                                       controller: _remarkController,
                                       decoration: InputDecoration(
-                                          prefixIcon: const Icon(Icons
-                                              .edit_calendar_rounded),
+                                          prefixIcon: const Icon(
+                                              Icons.edit_calendar_rounded),
                                           border: InputBorder.none,
                                           hintText: "Remark",
                                           hintStyle: TextStyle(
                                               color: Colors.grey[700],
-                                                  fontSize: 15)),
+                                              fontSize: 15)),
                                       validator: (String? val) {
                                         return Guard.againstEmptyString(
                                             val, 'Remark');
@@ -353,8 +362,8 @@ class _AddBranchPageState extends State<AddBranchPage> {
                           children: [
                             ElevatedButton(
                               style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateColor.resolveWith((states) =>
+                                backgroundColor: MaterialStateColor.resolveWith(
+                                    (states) =>
                                         const Color.fromRGBO(40, 120, 19, 1)),
                                 shape: MaterialStateProperty.resolveWith(
                                     (states) => RoundedRectangleBorder(
@@ -398,8 +407,7 @@ class _AddBranchPageState extends State<AddBranchPage> {
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.white70,
                                   shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10))),
+                                      borderRadius: BorderRadius.circular(10))),
                               child: SizedBox(
                                 width: screenSize.width / 7,
                                 height: 50,
@@ -439,10 +447,10 @@ class _AddBranchPageState extends State<AddBranchPage> {
 
   void _branchListener(BuildContext context, BranchState state) {
     if (state.stateStatus == StateStatus.error) {
-      SnackBarUtils.defualtSnackBar(state.errorMessage, context);
+      SnackBarUtils.errorSnackBar(state.errorMessage, context);
     }
     if (state.isAdded == true) {
-      SnackBarUtils.defualtSnackBar('Branch Added!', context);
+      SnackBarUtils.successSnackBar('Branch Added!', context);
       clearText();
     }
   }

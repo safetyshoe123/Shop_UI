@@ -33,7 +33,6 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
 
   @override
   void dispose() {
-    _authBloc.close();
     super.dispose();
   }
 
@@ -171,7 +170,7 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                     icon: Icons.attribution_sharp,
                     label: 'Employee Maintenance',
                   ),
-                   const SidebarXItem(
+                  const SidebarXItem(
                     icon: Icons.build_circle_outlined,
                     label: 'Shop Maintenance',
                   ),
@@ -187,7 +186,7 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                     icon: Icons.library_books,
                     label: 'List',
                   ),
-                 
+
                   // const SidebarXItem(
                   //   icon: Icons.person,
                   //   label: 'Employees',
@@ -279,9 +278,8 @@ class _ScreensExampleState extends State<_ScreensExample> {
           case 0:
             return ShopDash(shopId: _shopId);
           case 1:
-            return const AddBranchPage(
-              shopId: '',
-              // shopId: _shopModel.shopId,
+            return AddBranchPage(
+              shopId: _shopId,
             );
           case 2:
             return const InfoShopPage();

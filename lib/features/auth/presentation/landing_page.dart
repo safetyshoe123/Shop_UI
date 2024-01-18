@@ -32,7 +32,6 @@ class _SidebarXExampleAppState extends State<ShopPage> {
 
   @override
   void dispose() {
-    _authBloc.close();
     super.dispose();
   }
 
