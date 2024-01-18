@@ -41,7 +41,6 @@ class _LoginPageState extends State<LoginPage> {
     _empIdController.dispose();
     _passwordController.dispose();
     _shopIdController.dispose();
-    _authBloc.close();
     super.dispose();
   }
 
