@@ -11,8 +11,12 @@ import 'package:shop_ui/features/shop/data/repository/shop_repository.dart';
 import 'package:shop_ui/features/shop/domain/bloc/shop_bloc.dart';
 
 class DIContainer {
-  FlutterSecureStorage get _secureStorage =>
-      const FlutterSecureStorage(webOptions: WebOptions.defaultOptions);
+  FlutterSecureStorage get _secureStorage => const FlutterSecureStorage(
+        webOptions: WebOptions(
+          dbName: 'FlutterEncryptedStorage',
+          publicKey: 'FlutterSecureStorage',
+        ),
+      );
 
   AuthlocalDatasource get _authLocalDatasource =>
       AuthlocalDatasource(_secureStorage);

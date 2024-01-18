@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:shop_ui/config.dart';
 import 'package:shop_ui/features/auth/data/datasource/auth.local.datasource.dart';
+import 'package:shop_ui/features/auth/domain/models/auth_model.dart';
 import 'package:shop_ui/features/auth/domain/models/login.model.dart';
 import 'package:shop_ui/features/auth/domain/models/register.model.dart';
 
@@ -13,10 +14,10 @@ class AuthRemoteDatasource {
     _authlocalDatasource = authlocalDatasource;
   }
 
-  Future<Response> login(LoginModel loginModel) async {
+  Future<AuthModel> login(LoginModel loginModel) async {
     String? token = await _authlocalDatasource.getUserToken();
 
-    final response = await post(
+    final response = await http.post(
       Uri.parse('${Config.url}/login'),
       body: jsonEncode({
         'shopId': loginModel.shopId,
@@ -32,8 +33,13 @@ class AuthRemoteDatasource {
     final data = jsonDecode(response.body);
     switch (response.statusCode) {
       case 200:
-        _authlocalDatasource.saveToken(data['authorization']['token']);
-        return response;
+        await _authlocalDatasource.saveToken(data['authorization']['token']);
+
+        final Map<String, dynamic> resMap = data['user'];
+        final result = AuthModel.fromJson(resMap);
+        await _authlocalDatasource.saveUser(result);
+
+        return result;
       case 500:
         throw ('Can\'t login! Something went wrong!');
 
@@ -42,10 +48,10 @@ class AuthRemoteDatasource {
     }
   }
 
-  Future<Response> register(RegisterModel registerModel) async {
+  Future<AuthModel> register(RegisterModel registerModel) async {
     String? token = await _authlocalDatasource.getUserToken();
 
-    final response = await post(
+    final response = await http.post(
       Uri.parse('${Config.url}/register'),
       body: jsonEncode({
         'shopId': registerModel.shopId,
@@ -69,19 +75,28 @@ class AuthRemoteDatasource {
     final data = jsonDecode(response.body);
     switch (response.statusCode) {
       case 200:
-        return response;
+        await _authlocalDatasource.saveToken(data['authorization']['token']);
+
+        final Map<String, dynamic> resMap = data['user'];
+        final result = AuthModel.fromJson(resMap);
+
+        await _authlocalDatasource.saveUser(result);
+
+        return result;
       case 500:
         throw ('Can\'t register! Something went wrong!');
 
       default:
-        throw ('${data['message']} this error from default Auth remote datasource');
+        throw (data['message']);
     }
   }
 
-  Future<Response> logout() async {
-    //If error occurs, don't rerun without deleting the use and token to prevent memory leakage
-    //When not delete it will have bugs (OperationError) in logout
+  Future<int> logout() async {
+    //Incase of error while executing logout method
+    //If error occurs, don't rerun without deleting the user and token to prevent memory leakage
+    //When not deleted, it will cause bugs (OperationError) in logout
     //Solution: Delete the user and token ** _authlocalDatasource.deleteToken(); ** same for user
+    //Note that this is only a temporary solution
     // _authlocalDatasource.deleteToken();
     // _authlocalDatasource.deleteUser();
     try {
@@ -89,8 +104,7 @@ class AuthRemoteDatasource {
       if (token == null || token.isEmpty) {
         throw ('Token is null or empty');
       }
-
-      final response = await post(
+      final response = await http.post(
         Uri.parse('${Config.url}/logout'),
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
@@ -99,10 +113,10 @@ class AuthRemoteDatasource {
         },
       );
       final data = jsonDecode(response.body);
+      final statusCode = response.statusCode;
       switch (response.statusCode) {
         case 200:
-          _authlocalDatasource.deleteToken();
-          return response;
+          return statusCode;
         case 500:
           throw ('Can\'t logout! Something went wrong!');
         default:

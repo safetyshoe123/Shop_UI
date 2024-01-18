@@ -46,10 +46,21 @@ class AuthlocalDatasource {
     }
   }
 
+  Future<Unit> containsKey() async {
+    try {
+      if (await _secureStorage.containsKey(key: Config.userToken)) {
+        await _secureStorage.delete(key: Config.userToken);
+      }
+      return unit;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
 //for logout
   Future<Unit> deleteToken() async {
     try {
-      _secureStorage.delete(key: Config.userToken);
+      await _secureStorage.delete(key: Config.userToken);
       return unit;
     } catch (e) {
       throw (e.toString());
@@ -58,7 +69,7 @@ class AuthlocalDatasource {
 
   Future<Unit> deleteUser() async {
     try {
-      _secureStorage.delete(key: Config.user);
+      await _secureStorage.delete(key: Config.user);
       return unit;
     } catch (e) {
       throw (e.toString());

@@ -79,7 +79,6 @@ class _InitialPageState extends State<InitialPage> {
         );
         return;
       } else {
-        print(state.authModel!.restriction);
         final restriction = state.authModel!.restriction;
         Navigator.push(
           context,
