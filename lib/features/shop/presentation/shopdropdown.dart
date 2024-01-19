@@ -90,7 +90,7 @@ class _ShopDropState extends State<ShopDrop> {
                                   style: TextStyle(
                                     fontSize: fontsize,
                                     fontWeight: FontWeight.bold,
-                                    color: white,
+                                    color: canvasColor,
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -107,7 +107,7 @@ class _ShopDropState extends State<ShopDrop> {
                                     style: const TextStyle(
                                       fontSize: fontsize,
                                       fontWeight: FontWeight.bold,
-                                      color: white,
+                                      color: canvasColor,
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -128,7 +128,7 @@ class _ShopDropState extends State<ShopDrop> {
                             border: Border.all(
                               color: accentCanvasColor,
                             ),
-                            color: canvasColor,
+                            color: white,
                           ),
                           elevation: 2,
                         ),
@@ -136,6 +136,7 @@ class _ShopDropState extends State<ShopDrop> {
                           icon: Icon(
                             Icons.keyboard_arrow_down_rounded,
                             size: 30,
+                            color: canvasColor,
                           ),
                           iconSize: 14,
                           iconEnabledColor: white,
@@ -146,7 +147,7 @@ class _ShopDropState extends State<ShopDrop> {
                           width: 500,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
-                            color: Colors.brown.shade300,
+                            color: Color.fromARGB(255, 229, 231, 231),
                           ),
                           // offset: const Offset(-20, 0),
                           scrollbarTheme: ScrollbarThemeData(
@@ -168,7 +169,7 @@ class _ShopDropState extends State<ShopDrop> {
               SizedBox(
                 width: 100,
                 child: FloatingActionButton(
-                  backgroundColor: canvasColor,
+                  backgroundColor: Colors.green.shade800,
                   foregroundColor: white,
                   splashColor: accentCanvasColor,
                   onPressed: () {
