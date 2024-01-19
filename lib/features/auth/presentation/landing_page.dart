@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
-import 'package:shop_ui/features/branch/presentation/branchadd.dart';
+// import 'package:shop_ui/features/branch/presentation/branchadd.dart';
 import 'package:shop_ui/features/shop/presentation/shopdropdown.dart';
-import 'package:shop_ui/features/shop/presentation/shopinfo.dart';
+// import 'package:shop_ui/features/shop/presentation/shopinfo.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class ShopPage extends StatefulWidget {
@@ -157,14 +157,14 @@ class _SidebarXExampleAppState extends State<ShopPage> {
                     },
                   ),
 
-                  const SidebarXItem(
-                    icon: Icons.add_circle,
-                    label: 'Register Branch',
-                  ),
-                  const SidebarXItem(
-                    icon: Icons.info,
-                    label: 'Shop Info',
-                  ),
+                  // const SidebarXItem(
+                  //   icon: Icons.add_circle,
+                  //   label: 'Register Branch',
+                  // ),
+                  // const SidebarXItem(
+                  //   icon: Icons.info,
+                  //   label: 'Shop Info',
+                  // ),
                   const SidebarXItem(
                     icon: Icons.published_with_changes_rounded,
                     label: 'Transaction',
@@ -255,11 +255,11 @@ class _ScreensExampleState extends State<_ScreensExample> {
               restriction: _restriction,
             );
           case 1:
-            return const AddBranchPage(
-              shopId: '',
-            );
+            // return const AddBranchPage(
+              // shopId: '',
+            // );
           case 2:
-            return const InfoShopPage();
+            // return const InfoShopPage();
           default:
             return Text(
               pageTitle,
@@ -276,17 +276,17 @@ String _getTitleByIndex(int index) {
     case 0:
       return 'Home';
     case 1:
-      return 'Search';
-    case 2:
-      return 'Add';
-    case 3:
       return 'Transaction';
-    case 4:
+    case 2:
       return 'Report';
-    case 5:
+    case 3:
       return 'List';
-    case 6:
+    case 4:
       return 'Logout';
+    // case 5:
+    //   return 'List';
+    // case 6:
+    //   return 'Logout';
     // case 7:
     //   return 'Logout';
     default:
