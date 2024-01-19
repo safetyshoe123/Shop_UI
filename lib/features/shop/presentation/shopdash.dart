@@ -9,8 +9,7 @@ import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/auth/presentation/login.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
-import 'package:shop_ui/features/branch/presentation/branch_new.dart';
-
+// import 'package:shop_ui/features/branch/presentation/branch_new.dart';
 
 class ShopDash extends StatefulWidget {
   const ShopDash({super.key, required this.shopId});
@@ -140,16 +139,16 @@ class _ShopDashState extends State<ShopDash> {
                                         onPressed: () {
                                           // Your click event code here
                                           Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      BlocProvider(
-                                                        create: (context) =>
-                                                            diContainer
-                                                                .branchBloc,
-                                                        child:
-                                                            const BranchPage(),
-                                                      )));
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  BlocProvider(
+                                                create: (context) =>
+                                                    diContainer.branchBloc,
+                                                // child: const BranchPage(),
+                                              ),
+                                            ),
+                                          );
                                         },
                                         child: FittedBox(
                                           fit: BoxFit.scaleDown,
