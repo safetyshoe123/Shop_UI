@@ -104,6 +104,7 @@ class _ShopDashState extends State<ShopDash> {
                               );
                             }
                             return ListView.builder(
+                              shrinkWrap: true,
                               physics: const AlwaysScrollableScrollPhysics(),
                               scrollDirection: Axis.horizontal,
                               itemCount: branchState.branchModel.length,
