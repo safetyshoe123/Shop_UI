@@ -186,6 +186,7 @@ class _ShopDropState extends State<ShopDrop> {
                           ],
                           child: BranchPage(
                             selectedBranch: selectedValue!,
+                            restrictionList: restrictionList,
                           ),
                         ),
                       ),
