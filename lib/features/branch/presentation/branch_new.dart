@@ -10,8 +10,10 @@ import 'package:shop_ui/features/branch/presentation/branchinfo.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class BranchPage extends StatefulWidget {
-  const BranchPage({super.key, required this.selectedBranch});
+  const BranchPage(
+      {super.key, required this.selectedBranch, required this.restrictionList});
   final String selectedBranch;
+  final List restrictionList;
 
   @override
   State<BranchPage> createState() => _SidebarXExampleAppState();
@@ -20,31 +22,18 @@ class BranchPage extends StatefulWidget {
 class _SidebarXExampleAppState extends State<BranchPage> {
   final _controller = SidebarXController(selectedIndex: 0, extended: false);
   final _key = GlobalKey<ScaffoldState>();
-  late BranchBloc _branchBloc;
+  late BranchBloc branchBloc;
   late AuthBloc authBloc;
-  final List<String> items = [
-    'Branch 1',
-    'Branch 2',
-    'Branch 3',
-    'Branch 4',
-    'Branch 5',
-    // 'Branch 6',
-    // 'Branch 7',
-    // 'Branch 8',
-  ];
+  late String _selectedBranch;
+  late List _items;
   String? selectedValue;
-  // late BranchBloc _branchBloc;
-
-  // @override
-  // void initState() {
-  //   _branchBloc = BlocProvider.of<BranchBloc>(context);
-  //   super.initState();
-  // }
 
   @override
   void initState() {
     authBloc = BlocProvider.of<AuthBloc>(context);
-    _branchBloc = BlocProvider.of<BranchBloc>(context);
+    branchBloc = BlocProvider.of<BranchBloc>(context);
+    _selectedBranch = widget.selectedBranch;
+    _items = widget.restrictionList;
     super.initState();
   }
 
@@ -71,23 +60,23 @@ class _SidebarXExampleAppState extends State<BranchPage> {
               DropdownButtonHideUnderline(
             child: SizedBox(
               width: 500,
-              child: DropdownButton2<String>(
+              child: DropdownButton2<dynamic>(
                 isExpanded: true,
-                hint: const Row(
+                hint: Row(
                   children: [
                     // Icon(
                     //   Icons.list,
                     //   size: 16,
                     //   color: white,
                     // ),
-                    SizedBox(
+                    const SizedBox(
                       width: 4,
                     ),
                     Expanded(
                       child: Center(
                         child: Text(
-                          'Select Branch',
-                          style: TextStyle(
+                          _selectedBranch,
+                          style: const TextStyle(
                             fontSize: fontsize,
                             fontWeight: FontWeight.bold,
                             color: canvasColor,
@@ -98,8 +87,8 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                     ),
                   ],
                 ),
-                items: items
-                    .map((String item) => DropdownMenuItem<String>(
+                items: _items
+                    .map((item) => DropdownMenuItem<dynamic>(
                           alignment: AlignmentDirectional.center,
                           value: item,
                           child: Text(
@@ -114,7 +103,7 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                         ))
                     .toList(),
                 value: selectedValue,
-                onChanged: (String? value) {
+                onChanged: (value) {
                   setState(() {
                     selectedValue = value;
                   });
