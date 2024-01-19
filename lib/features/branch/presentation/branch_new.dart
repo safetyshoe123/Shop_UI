@@ -140,7 +140,7 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                         width: 500,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
-                          // color: Colors.brown.shade100,
+                          color: Color.fromARGB(255, 229, 231, 231),
                         ),
                         // offset: const Offset(-20, 0),
                         scrollbarTheme: ScrollbarThemeData(
