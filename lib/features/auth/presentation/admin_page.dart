@@ -213,21 +213,7 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                 ),
               ),
             ],
-          )
-          // ExampleSidebarX(controller: _controller)
-          ,
-          // body: Row(
-          //   children: [
-          //     Expanded(
-          //       child: Center(
-          //         child: _ScreensExample(
-          //           controller: _controller,
-          //           // shopModel: _shopModel,
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
+          ),
           bottomNavigationBar: const BottomAppBar(
             color: canvasColor,
             surfaceTintColor: canvasColor,

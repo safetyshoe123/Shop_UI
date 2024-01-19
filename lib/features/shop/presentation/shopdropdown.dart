@@ -24,17 +24,6 @@ class _ShopDropState extends State<ShopDrop> {
   late AuthBloc _authBloc;
   late List restrictionList;
 
-  final List<dynamic> items = [
-    'Branch 1',
-    'Branch 2',
-    'Branch 3',
-    'Branch 4',
-    'Branch 5',
-    // 'Branch 6',
-    // 'Branch 7',
-    // 'Branch 8',
-  ];
-
   String? selectedValue;
 
   @override
