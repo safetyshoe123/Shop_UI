@@ -253,17 +253,13 @@ class _ScreensExampleState extends State<_ScreensExample> {
           case 0:
             return ShopDrop(
               restriction: _restriction,
-              // shopModel: _shopModel,
             );
           case 1:
             return const AddBranchPage(
               shopId: '',
-              // shopId: _shopModel.shopId,
             );
           case 2:
             return const InfoShopPage();
-          // case 3:
-          //   return const BranchDash();
           default:
             return Text(
               pageTitle,
