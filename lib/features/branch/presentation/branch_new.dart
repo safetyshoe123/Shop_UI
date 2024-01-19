@@ -7,11 +7,11 @@ import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchdash.dart';
 import 'package:shop_ui/features/branch/presentation/branchinfo.dart';
-// import 'package:shop_ui/features/presentation/pages/shopdash.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class BranchPage extends StatefulWidget {
-  const BranchPage({super.key});
+  const BranchPage({super.key, required this.selectedBranch});
+  final String selectedBranch;
 
   @override
   State<BranchPage> createState() => _SidebarXExampleAppState();
@@ -42,7 +42,7 @@ class _SidebarXExampleAppState extends State<BranchPage> {
   // }
 
   @override
-  void initState(){
+  void initState() {
     authBloc = BlocProvider.of<AuthBloc>(context);
     _branchBloc = BlocProvider.of<BranchBloc>(context);
     super.initState();
@@ -172,7 +172,7 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                 Icons.arrow_back_ios_new_rounded,
                 color: white,
               )),
-      
+
           // bottom: TabBar(tabs: [Tab(
           //   child: _dropDown(BuildContext),
           // )]),
@@ -321,7 +321,7 @@ class _SidebarXExampleAppState extends State<BranchPage> {
             ),
           ],
         )
-      
+
         // ExampleSidebarX(controller: _controller)
         ,
         // body: Row(
@@ -351,6 +351,7 @@ class _SidebarXExampleAppState extends State<BranchPage> {
       ),
     );
   }
+
   void _authListener(BuildContext context, AuthState state) {
     if (state.stateStatus == StateStatus.error) {
       SnackBarUtils.errorSnackBar(state.errorMessage, context);
@@ -383,11 +384,9 @@ class _ScreensExampleState extends State<_ScreensExample> {
             return const InfoBranchPage();
 
           case 1:
-            // return const AddEmpPage();
+          // return const AddEmpPage();
 
           case 2:
-           
-
           default:
             return Text(
               pageTitle,

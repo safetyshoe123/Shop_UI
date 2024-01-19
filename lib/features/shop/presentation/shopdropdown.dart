@@ -173,20 +173,23 @@ class _ShopDropState extends State<ShopDrop> {
                   splashColor: accentCanvasColor,
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MultiBlocProvider(
-                                  providers: [
-                                    BlocProvider<AuthBloc>(
-                                      create: (context) => diContainer.authBloc,
-                                    ),
-                                    BlocProvider<BranchBloc>(
-                                      create: (context) =>
-                                          diContainer.branchBloc,
-                                    ),
-                                  ],
-                                  child: const BranchPage(),
-                                )));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MultiBlocProvider(
+                          providers: [
+                            BlocProvider<AuthBloc>(
+                              create: (context) => diContainer.authBloc,
+                            ),
+                            BlocProvider<BranchBloc>(
+                              create: (context) => diContainer.branchBloc,
+                            ),
+                          ],
+                          child: BranchPage(
+                            selectedBranch: selectedValue!,
+                          ),
+                        ),
+                      ),
+                    );
                   },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
