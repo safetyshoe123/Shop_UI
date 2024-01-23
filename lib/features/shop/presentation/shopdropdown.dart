@@ -147,7 +147,7 @@ class _ShopDropState extends State<ShopDrop> {
                           width: 500,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
-                            color: Color.fromARGB(255, 229, 231, 231),
+                            color: const Color.fromARGB(255, 229, 231, 231),
                           ),
                           // offset: const Offset(-20, 0),
                           scrollbarTheme: ScrollbarThemeData(
@@ -193,6 +193,9 @@ class _ShopDropState extends State<ShopDrop> {
                           ),
                         ),
                       );
+                    } else {
+                      SnackBarUtils.errorSnackBar(
+                          'Must select a branch', context);
                     }
                   },
                   child: const Row(

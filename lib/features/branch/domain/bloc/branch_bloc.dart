@@ -11,10 +11,10 @@ part 'branch_state.dart';
 
 class BranchBloc extends Bloc<BranchEvent, BranchState> {
   BranchBloc(BranchRepository branchRepository) : super(BranchState.inital()) {
-    on<GetBranchEvent>((event, emit) async {
+    on<GetBranchADMEvent>((event, emit) async {
       emit(state.copyWith(stateStatus: StateStatus.loading));
       final Either<String, List<BranchModel>> result =
-          await branchRepository.getBranch(event.shopId);
+          await branchRepository.getBranchADM(event.shopId);
 
       result.fold((error) {
         emit(state.copyWith(
@@ -29,6 +29,21 @@ class BranchBloc extends Bloc<BranchEvent, BranchState> {
         }
       });
       emit(state.copyWith(stateStatus: StateStatus.loaded));
+    });
+    on<GetBranchEvent>((event, emit) async {
+      emit(state.copyWith(stateStatus: StateStatus.loading));
+      final Either<String?, BranchModel> result =
+          await branchRepository.getBranch(event.shopId);
+
+      result.fold((error) {
+        emit(state.copyWith(
+            stateStatus: StateStatus.error, errorMessage: error));
+        emit(state.copyWith(stateStatus: StateStatus.loaded));
+      }, (branchList) {
+        emit(state.copyWith(branchModel1: branchList));
+
+        emit(state.copyWith(stateStatus: StateStatus.loaded));
+      });
     });
     on<AddBranchEvent>((event, emit) async {
       emit(state.copyWith(stateStatus: StateStatus.loading));
