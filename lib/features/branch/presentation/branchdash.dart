@@ -15,12 +15,12 @@ class BranchDash extends StatefulWidget {
 }
 
 class _BranchDashState extends State<BranchDash> {
-  late BranchBloc _branchBloc;
+  late BranchBloc branchBloc;
   final DIContainer diContainer = DIContainer();
   @override
   void initState() {
     super.initState();
-    _branchBloc = BlocProvider.of<BranchBloc>(context);
+    branchBloc = BlocProvider.of<BranchBloc>(context);
     // _branchBloc.add(GetBranchEvent());
   }
 

@@ -30,7 +30,7 @@ class _ShopDashState extends State<ShopDash> {
     _branchBloc = BlocProvider.of<BranchBloc>(context);
     _authBloc = BlocProvider.of<AuthBloc>(context);
     _shopId = widget.shopId;
-    _branchBloc.add(GetBranchEvent(shopId: _shopId));
+    _branchBloc.add(GetBranchADMEvent(shopId: _shopId));
   }
 
   @override

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_ui/core/enums/enum.dart';
 import 'package:shop_ui/core/global_widgets/snackbar.dart';
-import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchdash.dart';
 import 'package:shop_ui/features/branch/presentation/branchinfo.dart';
@@ -23,14 +22,12 @@ class _SidebarXExampleAppState extends State<BranchPage> {
   final _controller = SidebarXController(selectedIndex: 0, extended: false);
   final _key = GlobalKey<ScaffoldState>();
   late BranchBloc branchBloc;
-  late AuthBloc authBloc;
   late String _selectedBranch;
   late List _items;
   String? selectedValue;
 
   @override
   void initState() {
-    authBloc = BlocProvider.of<AuthBloc>(context);
     branchBloc = BlocProvider.of<BranchBloc>(context);
     _selectedBranch = widget.selectedBranch;
     _items = widget.restrictionList;
@@ -41,9 +38,8 @@ class _SidebarXExampleAppState extends State<BranchPage> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
 
-    // final isSmallScreen = MediaQuery.of(context).size.width < 600;
-    return BlocListener<AuthBloc, AuthState>(
-      listener: _authListener,
+    return BlocListener<BranchBloc, BranchState>(
+      listener: _branchListener,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         key: _key,
@@ -58,10 +54,10 @@ class _SidebarXExampleAppState extends State<BranchPage> {
               //   padding: EdgeInsets.only(left: screenSize.width/1.7),
               // child:
               Padding(
-                padding: const EdgeInsets.only(left: 140),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+            padding: const EdgeInsets.only(left: 140),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 DropdownButtonHideUnderline(
                   child: SizedBox(
                     width: 500,
@@ -140,13 +136,14 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                         width: 500,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
-                          color: Color.fromARGB(255, 229, 231, 231),
+                          // color: Colors.brown.shade100,
                         ),
                         // offset: const Offset(-20, 0),
                         scrollbarTheme: ScrollbarThemeData(
                           radius: const Radius.circular(40),
                           thickness: MaterialStateProperty.all<double>(6),
-                          thumbVisibility: MaterialStateProperty.all<bool>(true),
+                          thumbVisibility:
+                              MaterialStateProperty.all<bool>(true),
                         ),
                       ),
                       menuItemStyleData: const MenuItemStyleData(
@@ -156,7 +153,9 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                     ),
                   ),
                 ),
-                const SizedBox(width: 10,),
+                const SizedBox(
+                  width: 10,
+                ),
                 SizedBox(
                   width: 100,
                   height: 45,
@@ -195,14 +194,17 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                             style: TextStyle(fontSize: fontsize),
                           ),
                         ),
-                        Icon(Icons.search, color: accentCanvasColor,),
+                        Icon(
+                          Icons.search,
+                          color: accentCanvasColor,
+                        ),
                       ],
                     ),
                   ),
                 )
-                            ],
-                          ),
-              ),
+              ],
+            ),
+          ),
           // ),
           automaticallyImplyLeading: false,
           leading: IconButton(
@@ -357,6 +359,7 @@ class _SidebarXExampleAppState extends State<BranchPage> {
               child: Center(
                 child: _ScreensExample(
                   controller: _controller,
+                  shopId: _selectedBranch,
                 ),
               ),
             ),
@@ -393,7 +396,8 @@ class _SidebarXExampleAppState extends State<BranchPage> {
     );
   }
 
-  void _authListener(BuildContext context, AuthState state) {
+  void _branchListener(BuildContext context, BranchState state) {
+    print(state.branchModel1);
     if (state.stateStatus == StateStatus.error) {
       SnackBarUtils.errorSnackBar(state.errorMessage, context);
     }
@@ -403,8 +407,9 @@ class _SidebarXExampleAppState extends State<BranchPage> {
 class _ScreensExample extends StatefulWidget {
   const _ScreensExample({
     required this.controller,
+    required this.shopId,
   });
-
+  final String shopId;
   final SidebarXController controller;
 
   @override
@@ -412,6 +417,13 @@ class _ScreensExample extends StatefulWidget {
 }
 
 class _ScreensExampleState extends State<_ScreensExample> {
+  late String _shopId;
+  @override
+  void initState() {
+    super.initState();
+    _shopId = widget.shopId;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -422,7 +434,9 @@ class _ScreensExampleState extends State<_ScreensExample> {
         switch (widget.controller.selectedIndex) {
           case 0:
             // return const BranchDash();
-            return const InfoBranchPage();
+            return InfoBranchPage(
+              shopId: _shopId,
+            );
 
           case 1:
           // return const AddEmpPage();

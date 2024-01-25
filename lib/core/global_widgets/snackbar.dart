@@ -5,6 +5,7 @@ class SnackBarUtils {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
     final SnackBar snackBar = SnackBar(
+      duration: const Duration(seconds: 1),
       content: Center(
         child: Text(
           message ?? '',
@@ -18,6 +19,7 @@ class SnackBarUtils {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
     final SnackBar snackBar = SnackBar(
+      duration: const Duration(seconds: 1),
       backgroundColor: Colors.red,
       content: Center(
         child: Text(message ?? '',
@@ -31,6 +33,7 @@ class SnackBarUtils {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
     final SnackBar snackBar = SnackBar(
+      duration: const Duration(seconds: 1),
       backgroundColor: Colors.green,
       content: Center(
         child: Text(message ?? '',

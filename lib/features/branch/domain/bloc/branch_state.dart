@@ -7,6 +7,7 @@ class BranchState {
   final StateStatus stateStatus;
   final String? errorMessage;
   final List<BranchModel> branchModel;
+  final BranchModel? branchModel1;
   final bool isEmpty;
   final bool isAdded;
 
@@ -16,6 +17,7 @@ class BranchState {
     this.errorMessage,
     required this.isEmpty,
     required this.isAdded,
+    this.branchModel1,
   });
 
   factory BranchState.inital() => BranchState(
@@ -31,6 +33,7 @@ class BranchState {
     List<BranchModel>? branchModel,
     bool? isEmpty,
     bool? isAdded,
+    BranchModel? branchModel1,
   }) {
     return BranchState(
       stateStatus: stateStatus ?? this.stateStatus,
@@ -38,6 +41,7 @@ class BranchState {
       errorMessage: errorMessage ?? this.errorMessage,
       isEmpty: isEmpty ?? this.isEmpty,
       isAdded: isAdded ?? this.isAdded,
+      branchModel1: branchModel1 ?? this.branchModel1,
     );
   }
 }

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
-// import 'package:shop_ui/features/branch/presentation/branchadd.dart';
 import 'package:shop_ui/features/shop/presentation/shopdropdown.dart';
-// import 'package:shop_ui/features/shop/presentation/shopinfo.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class ShopPage extends StatefulWidget {
@@ -255,11 +253,11 @@ class _ScreensExampleState extends State<_ScreensExample> {
               restriction: _restriction,
             );
           case 1:
-            // return const AddBranchPage(
-              // shopId: '',
-            // );
+          // return const AddBranchPage(
+          // shopId: '',
+          // );
           case 2:
-            // return const InfoShopPage();
+          // return const InfoShopPage();
           default:
             return Text(
               pageTitle,

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:shop_ui/features/branch/data/datasource/branch.remoteDatesource.dart';
 import 'package:shop_ui/features/branch/domain/models/addbranch.model.dart';
@@ -9,15 +8,21 @@ class BranchRepository {
   BranchRepository(BranchRemoteDataSource branchRemoteDataSource) {
     _branchRemoteDataSource = branchRemoteDataSource;
   }
-  Future<Either<String, List<BranchModel>>> getBranch(String shopId) async {
+  Future<Either<String, List<BranchModel>>> getBranchADM(String shopId) async {
     try {
-      final response = await _branchRemoteDataSource.getBranch(shopId);
+      final listResponse = await _branchRemoteDataSource.getBranchADM(shopId);
 
-      final result = jsonDecode(response.body) as List;
-      List<BranchModel> fresult =
-          result.map(((e) => BranchModel.fromJson(e))).toList();
+      return Right(listResponse);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 
-      return Right(fresult);
+  Future<Either<String, BranchModel>> getBranch(String shopId) async {
+    try {
+      final listResponse = await _branchRemoteDataSource.getBranch(shopId);
+
+      return Right(listResponse);
     } catch (e) {
       return Left(e.toString());
     }
@@ -25,10 +30,10 @@ class BranchRepository {
 
   Future<Either<String, int>> addShop(AddBranchModel addBranchModel) async {
     try {
-      final response = await _branchRemoteDataSource.addBranch(addBranchModel);
-      final data = jsonDecode(response.body);
+      final idResponse =
+          await _branchRemoteDataSource.addBranch(addBranchModel);
 
-      return Right(data['id']);
+      return Right(idResponse);
     } catch (e) {
       return Left(e.toString());
     }
