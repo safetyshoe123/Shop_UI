@@ -16,22 +16,14 @@ class InfoBranchPage extends StatefulWidget {
 class _InfoBranchPageState extends State<InfoBranchPage> {
   late BranchBloc _branchBloc;
   bool _isEnabled = false;
-  final TextEditingController _branchIdController =
-      TextEditingController(text: "Branch-1");
-  final TextEditingController _branchNameController =
-      TextEditingController(text: "Delsan 1");
-  final TextEditingController _address1Controller =
-      TextEditingController(text: "Mandaue");
-  final TextEditingController _address2Controller =
-      TextEditingController(text: "Cebu");
-  final TextEditingController _dateController =
-      TextEditingController(text: "12-11-2023");
-  final TextEditingController _typeController =
-      TextEditingController(text: "No Type");
-  final TextEditingController _notesController =
-      TextEditingController(text: "No Notes");
-  final TextEditingController _remarkController =
-      TextEditingController(text: "No Remarks");
+  late TextEditingController _branchIdController;
+  final TextEditingController _branchNameController = TextEditingController();
+  final TextEditingController _address1Controller = TextEditingController();
+  final TextEditingController _address2Controller = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _typeController = TextEditingController();
+  final TextEditingController _notesController = TextEditingController();
+  final TextEditingController _remarkController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey();
 
@@ -43,6 +35,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
     super.initState();
     _branchBloc = BlocProvider.of<BranchBloc>(context);
     _shopId = widget.shopId;
+    _branchIdController = TextEditingController(text: widget.shopId);
     _branchBloc.add(GetBranchEvent(shopId: _shopId));
   }
 
@@ -54,6 +47,12 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
       bloc: _branchBloc,
       listener: _branchListener,
       builder: (context, state) {
+        //this approach is the solution for the multiple call for the listener.. It needs to have a delay.
+        if (state.branchModel1 == null) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
         if (state.stateStatus == StateStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(),
@@ -76,7 +75,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              ' INFO',
+                              '${state.branchModel1!.branchName} INFO',
                               style: GoogleFonts.ptSerif(
                                 textStyle: const TextStyle(
                                     color: Color.fromRGBO(40, 120, 19, 1),
@@ -135,18 +134,15 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 decoration: const BoxDecoration(
-                                                    border: Border(
-                                                        bottom: BorderSide(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    40,
-                                                                    120,
-                                                                    19,
-                                                                    1)))),
+                                                  border: Border(
+                                                    bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          40, 120, 19, 1),
+                                                    ),
+                                                  ),
+                                                ),
                                                 child: TextFormField(
-                                                  // validator: (String? val) {
-                                                  //   return Guard.againstInvalidEmail(val, 'Email');
-                                                  // },
+                                                  readOnly: true,
                                                   autovalidateMode:
                                                       AutovalidateMode
                                                           .onUserInteraction,
@@ -166,14 +162,6 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                             const SizedBox(
                                               width: 43,
                                             )
-                                            // IconButton(
-                                            //   icon: const Icon(Icons.edit),
-                                            //   onPressed: () {
-                                            //     setState(() {
-                                            //       _isEnabled = !_isEnabled;
-                                            //     });
-                                            //   },
-                                            // ),
                                           ],
                                         ),
                                         Row(
@@ -198,14 +186,13 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 decoration: const BoxDecoration(
-                                                    border: Border(
-                                                        bottom: BorderSide(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    40,
-                                                                    120,
-                                                                    19,
-                                                                    1)))),
+                                                  border: Border(
+                                                    bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          174, 196, 169, 1),
+                                                    ),
+                                                  ),
+                                                ),
                                                 child: TextFormField(
                                                   // validator: (String? val) {
                                                   //   return Guard.againstInvalidEmail(val, 'Email');
@@ -219,8 +206,10 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                       _branchNameController,
                                                   enabled: _isEnabled,
                                                   textAlign: TextAlign.center,
-                                                  decoration:
-                                                      const InputDecoration(
+                                                  decoration: InputDecoration(
+                                                    hintText: state
+                                                        .branchModel1!
+                                                        .branchName,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
@@ -258,14 +247,13 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 decoration: const BoxDecoration(
-                                                    border: Border(
-                                                        bottom: BorderSide(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    40,
-                                                                    120,
-                                                                    19,
-                                                                    1)))),
+                                                  border: Border(
+                                                    bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          40, 120, 19, 1),
+                                                    ),
+                                                  ),
+                                                ),
                                                 child: TextFormField(
                                                   // validator: (String? val) {
                                                   //   return Guard.againstInvalidEmail(val, 'Email');
@@ -279,8 +267,10 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                       _address1Controller,
                                                   enabled: _isEnabled,
                                                   textAlign: TextAlign.center,
-                                                  decoration:
-                                                      const InputDecoration(
+                                                  decoration: InputDecoration(
+                                                    hintText: state
+                                                        .branchModel1!
+                                                        .branchName,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
@@ -319,14 +309,13 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 decoration: const BoxDecoration(
-                                                    border: Border(
-                                                        bottom: BorderSide(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    40,
-                                                                    120,
-                                                                    19,
-                                                                    1)))),
+                                                  border: Border(
+                                                    bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          40, 120, 19, 1),
+                                                    ),
+                                                  ),
+                                                ),
                                                 child: TextFormField(
                                                   // validator: (String? val) {
                                                   //   return Guard.againstInvalidEmail(val, 'Email');
@@ -340,8 +329,10 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                       _address2Controller,
                                                   enabled: _isEnabled,
                                                   textAlign: TextAlign.center,
-                                                  decoration:
-                                                      const InputDecoration(
+                                                  decoration: InputDecoration(
+                                                    hintText: state
+                                                        .branchModel1!
+                                                        .branchName,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
@@ -380,14 +371,13 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 decoration: const BoxDecoration(
-                                                    border: Border(
-                                                        bottom: BorderSide(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    40,
-                                                                    120,
-                                                                    19,
-                                                                    1)))),
+                                                  border: Border(
+                                                    bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          40, 120, 19, 1),
+                                                    ),
+                                                  ),
+                                                ),
                                                 child: TextFormField(
                                                   // validator: (String? val) {
                                                   //   return Guard.againstInvalidEmail(val, 'Email');
@@ -400,8 +390,10 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                   controller: _dateController,
                                                   enabled: _isEnabled,
                                                   textAlign: TextAlign.center,
-                                                  decoration:
-                                                      const InputDecoration(
+                                                  decoration: InputDecoration(
+                                                    hintText: state
+                                                        .branchModel1!
+                                                        .branchName,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
@@ -439,14 +431,13 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 decoration: const BoxDecoration(
-                                                    border: Border(
-                                                        bottom: BorderSide(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    40,
-                                                                    120,
-                                                                    19,
-                                                                    1)))),
+                                                  border: Border(
+                                                    bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          40, 120, 19, 1),
+                                                    ),
+                                                  ),
+                                                ),
                                                 child: TextFormField(
                                                   // validator: (String? val) {
                                                   //   return Guard.againstInvalidEmail(val, 'Email');
@@ -459,8 +450,10 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                   controller: _typeController,
                                                   enabled: _isEnabled,
                                                   textAlign: TextAlign.center,
-                                                  decoration:
-                                                      const InputDecoration(
+                                                  decoration: InputDecoration(
+                                                    hintText: state
+                                                        .branchModel1!
+                                                        .branchName,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
@@ -498,14 +491,13 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 decoration: const BoxDecoration(
-                                                    border: Border(
-                                                        bottom: BorderSide(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    40,
-                                                                    120,
-                                                                    19,
-                                                                    1)))),
+                                                  border: Border(
+                                                    bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          40, 120, 19, 1),
+                                                    ),
+                                                  ),
+                                                ),
                                                 child: TextFormField(
                                                   // validator: (String? val) {
                                                   //   return Guard.againstInvalidEmail(val, 'Email');
@@ -518,8 +510,10 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                   controller: _notesController,
                                                   enabled: _isEnabled,
                                                   textAlign: TextAlign.center,
-                                                  decoration:
-                                                      const InputDecoration(
+                                                  decoration: InputDecoration(
+                                                    hintText: state
+                                                        .branchModel1!
+                                                        .branchName,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
@@ -558,14 +552,13 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 decoration: const BoxDecoration(
-                                                    border: Border(
-                                                        bottom: BorderSide(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    40,
-                                                                    120,
-                                                                    19,
-                                                                    1)))),
+                                                  border: Border(
+                                                    bottom: BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          40, 120, 19, 1),
+                                                    ),
+                                                  ),
+                                                ),
                                                 child: TextFormField(
                                                   // validator: (String? val) {
                                                   //   return Guard.againstInvalidEmail(val, 'Email');
@@ -578,8 +571,10 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                   controller: _remarkController,
                                                   enabled: _isEnabled,
                                                   textAlign: TextAlign.center,
-                                                  decoration:
-                                                      const InputDecoration(
+                                                  decoration: InputDecoration(
+                                                    hintText: state
+                                                        .branchModel1!
+                                                        .branchName,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
@@ -680,9 +675,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
     );
   }
 
-  void _branchListener(BuildContext context, BranchState state) {
-    print(num++);
-    print(state.branchModel1);
+  void _branchListener(BuildContext context, BranchState state) async {
     if (state.stateStatus == StateStatus.error) {
       SnackBarUtils.errorSnackBar(state.errorMessage, context);
     }

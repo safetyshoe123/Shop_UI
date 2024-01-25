@@ -40,9 +40,8 @@ class BranchBloc extends Bloc<BranchEvent, BranchState> {
             stateStatus: StateStatus.error, errorMessage: error));
         emit(state.copyWith(stateStatus: StateStatus.loaded));
       }, (branchList) {
-        emit(state.copyWith(branchModel1: branchList));
-
-        emit(state.copyWith(stateStatus: StateStatus.loaded));
+        emit(state.copyWith(
+            branchModel1: branchList, stateStatus: StateStatus.loaded));
       });
     });
     on<AddBranchEvent>((event, emit) async {
