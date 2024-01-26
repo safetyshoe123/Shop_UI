@@ -397,7 +397,6 @@ class _SidebarXExampleAppState extends State<BranchPage> {
   }
 
   void _branchListener(BuildContext context, BranchState state) {
-    print(state.branchModel1);
     if (state.stateStatus == StateStatus.error) {
       SnackBarUtils.errorSnackBar(state.errorMessage, context);
     }

@@ -50,7 +50,6 @@ class BranchRemoteDataSource {
     final data = jsonDecode(response.body);
     switch (response.statusCode) {
       case 200:
-        print(data);
         final Map<String, dynamic> branchMap = data;
         final result = BranchModel.fromJson(branchMap);
         return result;

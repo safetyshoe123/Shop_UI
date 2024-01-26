@@ -269,8 +269,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                   textAlign: TextAlign.center,
                                                   decoration: InputDecoration(
                                                     hintText: state
-                                                        .branchModel1!
-                                                        .branchName,
+                                                        .branchModel1!.address1,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
@@ -331,8 +330,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                   textAlign: TextAlign.center,
                                                   decoration: InputDecoration(
                                                     hintText: state
-                                                        .branchModel1!
-                                                        .branchName,
+                                                        .branchModel1!.address2,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
@@ -393,7 +391,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                   decoration: InputDecoration(
                                                     hintText: state
                                                         .branchModel1!
-                                                        .branchName,
+                                                        .dateOpened,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
@@ -452,8 +450,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                   textAlign: TextAlign.center,
                                                   decoration: InputDecoration(
                                                     hintText: state
-                                                        .branchModel1!
-                                                        .branchName,
+                                                        .branchModel1!.type,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
@@ -512,8 +509,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                   textAlign: TextAlign.center,
                                                   decoration: InputDecoration(
                                                     hintText: state
-                                                        .branchModel1!
-                                                        .branchName,
+                                                        .branchModel1!.notes,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
@@ -573,8 +569,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                   textAlign: TextAlign.center,
                                                   decoration: InputDecoration(
                                                     hintText: state
-                                                        .branchModel1!
-                                                        .branchName,
+                                                        .branchModel1!.remark,
                                                     border: InputBorder.none,
                                                   ),
                                                 ),
