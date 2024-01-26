@@ -20,3 +20,10 @@ class AddBranchEvent extends BranchEvent {
 
   AddBranchEvent({required this.addBranchModel});
 }
+
+class UpdateBranchEvent extends BranchEvent {
+  final UpdateBranchModel updateBranchModel;
+  final String shopId;
+
+  UpdateBranchEvent({required this.updateBranchModel, required this.shopId});
+}

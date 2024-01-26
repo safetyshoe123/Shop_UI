@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:shop_ui/features/branch/data/datasource/branch.remoteDatesource.dart';
 import 'package:shop_ui/features/branch/domain/models/addbranch.model.dart';
 import 'package:shop_ui/features/branch/domain/models/branch.model.dart';
+import 'package:shop_ui/features/branch/domain/models/updatebranch.model.dart';
 
 class BranchRepository {
   late BranchRemoteDataSource _branchRemoteDataSource;
@@ -34,6 +35,18 @@ class BranchRepository {
           await _branchRemoteDataSource.addBranch(addBranchModel);
 
       return Right(idResponse);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, BranchModel>> updateShop(
+      UpdateBranchModel updateBranchModel, String branchId) async {
+    try {
+      final response = await _branchRemoteDataSource.updateBranch(
+          updateBranchModel, branchId);
+
+      return Right(response);
     } catch (e) {
       return Left(e.toString());
     }

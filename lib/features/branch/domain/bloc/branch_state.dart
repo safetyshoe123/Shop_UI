@@ -10,6 +10,7 @@ class BranchState {
   final BranchModel? branchModel1;
   final bool isEmpty;
   final bool isAdded;
+  final bool isUpdated;
 
   BranchState({
     required this.stateStatus,
@@ -18,6 +19,7 @@ class BranchState {
     required this.isEmpty,
     required this.isAdded,
     this.branchModel1,
+    required this.isUpdated,
   });
 
   factory BranchState.inital() => BranchState(
@@ -25,6 +27,7 @@ class BranchState {
         branchModel: const [],
         isEmpty: false,
         isAdded: false,
+        isUpdated: false,
       );
 
   BranchState copyWith({
@@ -34,6 +37,7 @@ class BranchState {
     bool? isEmpty,
     bool? isAdded,
     BranchModel? branchModel1,
+    bool? isUpdated,
   }) {
     return BranchState(
       stateStatus: stateStatus ?? this.stateStatus,
@@ -42,6 +46,7 @@ class BranchState {
       isEmpty: isEmpty ?? this.isEmpty,
       isAdded: isAdded ?? this.isAdded,
       branchModel1: branchModel1 ?? this.branchModel1,
+      isUpdated: isUpdated ?? this.isUpdated,
     );
   }
 }

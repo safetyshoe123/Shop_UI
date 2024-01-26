@@ -5,6 +5,7 @@ import 'package:shop_ui/config.dart';
 import 'package:shop_ui/features/auth/data/datasource/auth.local.datasource.dart';
 import 'package:shop_ui/features/branch/domain/models/addbranch.model.dart';
 import 'package:shop_ui/features/branch/domain/models/branch.model.dart';
+import 'package:shop_ui/features/branch/domain/models/updatebranch.model.dart';
 
 class BranchRemoteDataSource {
   late AuthlocalDatasource _authlocalDatasource;
@@ -67,8 +68,6 @@ class BranchRemoteDataSource {
 
     final response = await http.post(Uri.parse('${Config.url}/createBranch'),
         body: jsonEncode({
-          'shopId': addBranchModel.shopId,
-          'branchId': addBranchModel.branchId,
           'branchName': addBranchModel.branchName,
           'address1': addBranchModel.address1,
           'address2': addBranchModel.address2,
@@ -88,6 +87,46 @@ class BranchRemoteDataSource {
       case 200:
         final id = data['id'];
         return id;
+      case 401:
+        throw (data['message']);
+      case 500:
+        throw ('Can\'t add Branch! Something went wrong!');
+      default:
+        throw (data['message']);
+    }
+  }
+
+  Future<BranchModel> updateBranch(
+      UpdateBranchModel updateBranchModel, String branchId) async {
+    String? token = await _authlocalDatasource.getUserToken();
+
+    final response = await http.post(
+      Uri.parse('${Config.url}/updateBranch/$branchId'),
+      body: jsonEncode(
+        {
+          'branchName': updateBranchModel.branchName,
+          'address1': updateBranchModel.address1,
+          'address2': updateBranchModel.address2,
+          'dateOpened': updateBranchModel.dateOpened,
+          'type': updateBranchModel.type,
+          'notes': updateBranchModel.notes,
+          'remark': updateBranchModel.remark,
+        },
+      ),
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.acceptHeader: 'application/json',
+        HttpHeaders.authorizationHeader: 'Bearer $token'
+      },
+    );
+
+    final data = jsonDecode(response.body);
+
+    switch (response.statusCode) {
+      case 200:
+        final Map<String, dynamic> resmap = data['data'];
+        final result = BranchModel.fromJson(resmap);
+        return result;
       case 401:
         throw (data['message']);
       case 500:

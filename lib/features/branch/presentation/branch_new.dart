@@ -359,7 +359,7 @@ class _SidebarXExampleAppState extends State<BranchPage> {
               child: Center(
                 child: _ScreensExample(
                   controller: _controller,
-                  shopId: _selectedBranch,
+                  branchId: _selectedBranch,
                 ),
               ),
             ),
@@ -406,9 +406,9 @@ class _SidebarXExampleAppState extends State<BranchPage> {
 class _ScreensExample extends StatefulWidget {
   const _ScreensExample({
     required this.controller,
-    required this.shopId,
+    required this.branchId,
   });
-  final String shopId;
+  final String branchId;
   final SidebarXController controller;
 
   @override
@@ -416,11 +416,11 @@ class _ScreensExample extends StatefulWidget {
 }
 
 class _ScreensExampleState extends State<_ScreensExample> {
-  late String _shopId;
+  late String _branchId;
   @override
   void initState() {
     super.initState();
-    _shopId = widget.shopId;
+    _branchId = widget.branchId;
   }
 
   @override
@@ -434,7 +434,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
           case 0:
             // return const BranchDash();
             return InfoBranchPage(
-              shopId: _shopId,
+              branchId: _branchId,
             );
 
           case 1:
