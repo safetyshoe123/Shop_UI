@@ -84,7 +84,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              '${state.branchModel1!.branchName} INFO',
+                              state.branchModel1!.branchName,
                               style: GoogleFonts.ptSerif(
                                 textStyle: const TextStyle(
                                     color: Color.fromRGBO(40, 120, 19, 1),
@@ -112,10 +112,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                           child: Container(
                                             padding:
                                                 const EdgeInsets.all(8.0),
-                                            child: Text(
+                                            child: const Text(
                                               'Branch ID',
                                               style: TextStyle(
-                                                color: Colors.grey[700],
+                                                color: Colors.black,
+                                                fontSize: 17
                                               ),
                                             ),
                                           ),
@@ -138,8 +139,9 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               autovalidateMode:
                                                   AutovalidateMode
                                                       .onUserInteraction,
-                                              style: TextStyle(
-                                                  color: Colors.grey[700]),
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                fontSize: 20),
                                               controller:
                                                   _branchIdController,
                                               enabled: false,
@@ -164,10 +166,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                           child: Container(
                                             padding:
                                                 const EdgeInsets.all(8.0),
-                                            child: Text(
+                                            child: const Text(
                                               'Branch Name',
                                               style: TextStyle(
-                                                color: Colors.grey[700],
+                                                color: Colors.black,
+                                                fontSize: 17,
                                               ),
                                             ),
                                           ),
@@ -192,8 +195,9 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               autovalidateMode:
                                                   AutovalidateMode
                                                       .onUserInteraction,
-                                              style: TextStyle(
-                                                  color: Colors.grey[700]),
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                fontSize: 20),
                                               controller:
                                                   _branchNameController,
                                               enabled: _isNameEnabled,
@@ -225,10 +229,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                           child: Container(
                                             padding:
                                                 const EdgeInsets.all(8.0),
-                                            child: Text(
+                                            child: const Text(
                                               'Address 1',
                                               style: TextStyle(
-                                                color: Colors.grey[700],
+                                                color: Colors.black,
+                                                fontSize: 17,
                                               ),
                                             ),
                                           ),
@@ -253,8 +258,9 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               autovalidateMode:
                                                   AutovalidateMode
                                                       .onUserInteraction,
-                                              style: TextStyle(
-                                                  color: Colors.grey[700]),
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                fontSize: 20),
                                               controller:
                                                   _address1Controller,
                                               enabled: _isAdd1Enabled,
@@ -286,10 +292,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                           child: Container(
                                             padding:
                                                 const EdgeInsets.all(8.0),
-                                            child: Text(
+                                            child: const Text(
                                               'Address 2',
                                               style: TextStyle(
-                                                color: Colors.grey[700],
+                                                color: Colors.black,
+                                                fontSize: 17
                                               ),
                                             ),
                                           ),
@@ -314,8 +321,9 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               autovalidateMode:
                                                   AutovalidateMode
                                                       .onUserInteraction,
-                                              style: TextStyle(
-                                                  color: Colors.grey[700]),
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                fontSize: 20),
                                               controller:
                                                   _address2Controller,
                                               enabled: _isAdd2Enabled,
@@ -350,10 +358,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       width: screenSize.width / 15,
                                       child: Container(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Text(
+                                        child: const Text(
                                           'Date Opened',
                                           style: TextStyle(
-                                            color: Colors.grey[700],
+                                            color: Colors.black,
+                                                fontSize: 17,
                                           ),
                                         ),
                                       ),
@@ -373,8 +382,9 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                           // },
                                           autovalidateMode: AutovalidateMode
                                               .onUserInteraction,
-                                          style: TextStyle(
-                                              color: Colors.grey[700]),
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                                fontSize: 20),
                                           controller: _dateController,
                                           enabled: _isDateEnabled,
                                           textAlign: TextAlign.center,
@@ -425,10 +435,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                           child: Container(
                                             padding:
                                                 const EdgeInsets.all(8.0),
-                                            child: Text(
+                                            child: const Text(
                                               'Type',
                                               style: TextStyle(
-                                                color: Colors.grey[700],
+                                                color: Colors.black,
+                                                fontSize: 17,
                                               ),
                                             ),
                                           ),
@@ -453,8 +464,9 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               autovalidateMode:
                                                   AutovalidateMode
                                                       .onUserInteraction,
-                                              style: TextStyle(
-                                                  color: Colors.grey[700]),
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                fontSize: 20),
                                               controller: _typeController,
                                               enabled: _isTypeEnabled,
                                               textAlign: TextAlign.center,
@@ -484,10 +496,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                           child: Container(
                                             padding:
                                                 const EdgeInsets.all(8.0),
-                                            child: Text(
+                                            child: const Text(
                                               'Notes',
                                               style: TextStyle(
-                                                color: Colors.grey[700],
+                                                color: Colors.black,
+                                                fontSize: 17,
                                               ),
                                             ),
                                           ),
@@ -512,8 +525,9 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               autovalidateMode:
                                                   AutovalidateMode
                                                       .onUserInteraction,
-                                              style: TextStyle(
-                                                  color: Colors.grey[700]),
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                fontSize: 20),
                                               controller: _notesController,
                                               enabled: _isNotesEnabled,
                                               textAlign: TextAlign.center,
@@ -544,10 +558,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                           child: Container(
                                             padding:
                                                 const EdgeInsets.all(8.0),
-                                            child: Text(
+                                            child: const Text(
                                               'Remark',
                                               style: TextStyle(
-                                                color: Colors.grey[700],
+                                                color: Colors.black,
+                                                fontSize: 17,
                                               ),
                                             ),
                                           ),
@@ -572,8 +587,9 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               autovalidateMode:
                                                   AutovalidateMode
                                                       .onUserInteraction,
-                                              style: TextStyle(
-                                                  color: Colors.grey[700]),
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                fontSize: 20),
                                               controller: _remarkController,
                                               enabled: _isRemarkEnabled,
                                               textAlign: TextAlign.center,
