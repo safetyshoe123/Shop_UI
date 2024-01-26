@@ -4,10 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_ui/core/enums/enum.dart';
 import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
+import 'package:shop_ui/features/branch/domain/models/updatebranch.model.dart';
 
 class InfoBranchPage extends StatefulWidget {
-  const InfoBranchPage({super.key, required this.shopId});
-  final String shopId;
+  const InfoBranchPage({super.key, required this.branchId});
+  final String branchId;
 
   @override
   State<InfoBranchPage> createState() => _InfoBranchPageState();
@@ -34,7 +35,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
 
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-  late String _shopId;
+  late String _branchId;
   late int num = 0;
   DateTime? selectedDate;
   String dateToDisplay = '0000/00/00';
@@ -43,9 +44,9 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
   void initState() {
     super.initState();
     _branchBloc = BlocProvider.of<BranchBloc>(context);
-    _shopId = widget.shopId;
-    _branchIdController = TextEditingController(text: widget.shopId);
-    _branchBloc.add(GetBranchEvent(shopId: _shopId));
+    _branchId = widget.branchId;
+    _branchIdController = TextEditingController(text: widget.branchId);
+    _branchBloc.add(GetBranchEvent(shopId: _branchId));
   }
 
   @override
@@ -63,6 +64,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
           );
         }
         if (state.stateStatus == StateStatus.loading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (state.isUpdated) {
           return const Center(
             child: CircularProgressIndicator(),
           );
@@ -94,7 +100,9 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 50,),
+                        const SizedBox(
+                          height: 50,
+                        ),
                         FittedBox(
                           fit: BoxFit.scaleDown,
                           child: Form(
@@ -110,22 +118,19 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         SizedBox(
                                           width: screenSize.width / 15,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             child: const Text(
                                               'Branch ID',
                                               style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 17
-                                              ),
+                                                  color: Colors.black,
+                                                  fontSize: 17),
                                             ),
                                           ),
                                         ),
                                         SizedBox(
                                           width: 400,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             decoration: const BoxDecoration(
                                               border: Border(
                                                 bottom: BorderSide(
@@ -136,18 +141,15 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                             ),
                                             child: TextFormField(
                                               readOnly: true,
-                                              autovalidateMode:
-                                                  AutovalidateMode
-                                                      .onUserInteraction,
+                                              autovalidateMode: AutovalidateMode
+                                                  .onUserInteraction,
                                               style: const TextStyle(
                                                   color: Colors.black,
-                                                fontSize: 20),
-                                              controller:
-                                                  _branchIdController,
+                                                  fontSize: 20),
+                                              controller: _branchIdController,
                                               enabled: false,
                                               textAlign: TextAlign.center,
-                                              decoration:
-                                                  const InputDecoration(
+                                              decoration: const InputDecoration(
                                                 border: InputBorder.none,
                                               ),
                                             ),
@@ -164,8 +166,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         SizedBox(
                                           width: screenSize.width / 15,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             child: const Text(
                                               'Branch Name',
                                               style: TextStyle(
@@ -178,8 +179,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         SizedBox(
                                           width: 400,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             decoration: const BoxDecoration(
                                               border: Border(
                                                 bottom: BorderSide(
@@ -192,20 +192,17 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               // validator: (String? val) {
                                               //   return Guard.againstInvalidEmail(val, 'Email');
                                               // },
-                                              autovalidateMode:
-                                                  AutovalidateMode
-                                                      .onUserInteraction,
+                                              autovalidateMode: AutovalidateMode
+                                                  .onUserInteraction,
                                               style: const TextStyle(
                                                   color: Colors.black,
-                                                fontSize: 20),
-                                              controller:
-                                                  _branchNameController,
+                                                  fontSize: 20),
+                                              controller: _branchNameController,
                                               enabled: _isNameEnabled,
                                               textAlign: TextAlign.center,
                                               decoration: InputDecoration(
                                                 hintText: state
-                                                    .branchModel1!
-                                                    .branchName,
+                                                    .branchModel1!.branchName,
                                                 border: InputBorder.none,
                                               ),
                                             ),
@@ -227,8 +224,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         SizedBox(
                                           width: screenSize.width / 15,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             child: const Text(
                                               'Address 1',
                                               style: TextStyle(
@@ -241,8 +237,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         SizedBox(
                                           width: 400,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             decoration: const BoxDecoration(
                                               border: Border(
                                                 bottom: BorderSide(
@@ -255,14 +250,12 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               // validator: (String? val) {
                                               //   return Guard.againstInvalidEmail(val, 'Email');
                                               // },
-                                              autovalidateMode:
-                                                  AutovalidateMode
-                                                      .onUserInteraction,
+                                              autovalidateMode: AutovalidateMode
+                                                  .onUserInteraction,
                                               style: const TextStyle(
                                                   color: Colors.black,
-                                                fontSize: 20),
-                                              controller:
-                                                  _address1Controller,
+                                                  fontSize: 20),
+                                              controller: _address1Controller,
                                               enabled: _isAdd1Enabled,
                                               textAlign: TextAlign.center,
                                               decoration: InputDecoration(
@@ -285,27 +278,23 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                     ),
                                     Row(
                                       children: [
-                                        const Icon(
-                                            Icons.location_on_outlined),
+                                        const Icon(Icons.location_on_outlined),
                                         SizedBox(
                                           width: screenSize.width / 15,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             child: const Text(
                                               'Address 2',
                                               style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 17
-                                              ),
+                                                  color: Colors.black,
+                                                  fontSize: 17),
                                             ),
                                           ),
                                         ),
                                         SizedBox(
                                           width: 400,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             decoration: const BoxDecoration(
                                               border: Border(
                                                 bottom: BorderSide(
@@ -318,14 +307,12 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               // validator: (String? val) {
                                               //   return Guard.againstInvalidEmail(val, 'Email');
                                               // },
-                                              autovalidateMode:
-                                                  AutovalidateMode
-                                                      .onUserInteraction,
+                                              autovalidateMode: AutovalidateMode
+                                                  .onUserInteraction,
                                               style: const TextStyle(
                                                   color: Colors.black,
-                                                fontSize: 20),
-                                              controller:
-                                                  _address2Controller,
+                                                  fontSize: 20),
+                                              controller: _address2Controller,
                                               enabled: _isAdd2Enabled,
                                               textAlign: TextAlign.center,
                                               decoration: InputDecoration(
@@ -348,93 +335,101 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                     ),
                                   ],
                                 ),
-                               const SizedBox(width: 50,),
+                                const SizedBox(
+                                  width: 50,
+                                ),
                                 Column(
                                   children: [
-                                     Row(
-                                  children: [
-                                    const Icon(Icons.calendar_month_outlined),
-                                    SizedBox(
-                                      width: screenSize.width / 15,
-                                      child: Container(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: const Text(
-                                          'Date Opened',
-                                          style: TextStyle(
-                                            color: Colors.black,
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                            Icons.calendar_month_outlined),
+                                        SizedBox(
+                                          width: screenSize.width / 15,
+                                          child: Container(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: const Text(
+                                              'Date Opened',
+                                              style: TextStyle(
+                                                color: Colors.black,
                                                 fontSize: 17,
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 400,
-                                      child: Container(
-                                        padding: const EdgeInsets.all(8.0),
-                                        decoration: const BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Color.fromRGBO(
-                                                        40, 120, 19, 1)))),
-                                        child: TextFormField(
-                                          // validator: (String? val) {
-                                          //   return Guard.againstInvalidEmail(val, 'Email');
-                                          // },
-                                          autovalidateMode: AutovalidateMode
-                                              .onUserInteraction,
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                                fontSize: 20),
-                                          controller: _dateController,
-                                          enabled: _isDateEnabled,
-                                          textAlign: TextAlign.center,
-                                          decoration: const InputDecoration(
-                                            border: InputBorder.none,
+                                        SizedBox(
+                                          width: 400,
+                                          child: Container(
+                                            padding: const EdgeInsets.all(8.0),
+                                            decoration: const BoxDecoration(
+                                                border: Border(
+                                                    bottom: BorderSide(
+                                                        color: Color.fromRGBO(
+                                                            40, 120, 19, 1)))),
+                                            child: TextFormField(
+                                              // validator: (String? val) {
+                                              //   return Guard.againstInvalidEmail(val, 'Email');
+                                              // },
+                                              autovalidateMode: AutovalidateMode
+                                                  .onUserInteraction,
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20),
+                                              controller: _dateController,
+                                              enabled: _isDateEnabled,
+                                              textAlign: TextAlign.center,
+                                              decoration: InputDecoration(
+                                                hintText: state
+                                                    .branchModel1!.dateOpened,
+                                                border: InputBorder.none,
+                                              ),
+                                              onTap: () async {
+                                                final initialDate =
+                                                    DateTime.now();
+                                                final newDate =
+                                                    await showDatePicker(
+                                                        context: context,
+                                                        firstDate: DateTime(
+                                                            DateTime.now()
+                                                                    .year -
+                                                                10),
+                                                        lastDate: DateTime(
+                                                            DateTime.now()
+                                                                    .year +
+                                                                10),
+                                                        initialDate:
+                                                            initialDate);
+                                                if (newDate == null) {
+                                                  return;
+                                                }
+                                                setState(() {
+                                                  selectedDate = newDate;
+                                                  dateToDisplay =
+                                                      ' ${selectedDate!.year}/${selectedDate!.month}/${selectedDate!.day}';
+                                                  _dateController.text =
+                                                      dateToDisplay;
+                                                });
+                                              },
+                                            ),
                                           ),
-                                          onTap: () async {
-                                            final initialDate = DateTime.now();
-                                            final newDate =
-                                                await showDatePicker(
-                                                    context: context,
-                                                    firstDate: DateTime(
-                                                        DateTime.now().year -
-                                                            10),
-                                                    lastDate: DateTime(
-                                                        DateTime.now().year +
-                                                            10),
-                                                    initialDate: initialDate);
-                                            if (newDate == null) {
-                                              return;
-                                            }
+                                        ),
+                                        IconButton(
+                                          icon: const Icon(Icons.edit),
+                                          onPressed: () {
                                             setState(() {
-                                              selectedDate = newDate;
-                                              dateToDisplay =
-                                                  ' ${selectedDate!.year}/${selectedDate!.month}/${selectedDate!.day}';
-                                              _dateController.text =
-                                                  dateToDisplay;
+                                              _isDateEnabled = !_isDateEnabled;
                                             });
                                           },
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                    IconButton(
-                                      icon: const Icon(Icons.edit),
-                                      onPressed: () {
-                                        setState(() {
-                                          _isDateEnabled = !_isDateEnabled;
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                ),
                                     Row(
                                       children: [
                                         const Icon(Icons.checklist_sharp),
                                         SizedBox(
                                           width: screenSize.width / 15,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             child: const Text(
                                               'Type',
                                               style: TextStyle(
@@ -447,8 +442,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         SizedBox(
                                           width: 400,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             decoration: const BoxDecoration(
                                               border: Border(
                                                 bottom: BorderSide(
@@ -461,18 +455,17 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               // validator: (String? val) {
                                               //   return Guard.againstInvalidEmail(val, 'Email');
                                               // },
-                                              autovalidateMode:
-                                                  AutovalidateMode
-                                                      .onUserInteraction,
+                                              autovalidateMode: AutovalidateMode
+                                                  .onUserInteraction,
                                               style: const TextStyle(
                                                   color: Colors.black,
-                                                fontSize: 20),
+                                                  fontSize: 20),
                                               controller: _typeController,
                                               enabled: _isTypeEnabled,
                                               textAlign: TextAlign.center,
                                               decoration: InputDecoration(
-                                                hintText: state
-                                                    .branchModel1!.type,
+                                                hintText:
+                                                    state.branchModel1!.type,
                                                 border: InputBorder.none,
                                               ),
                                             ),
@@ -494,8 +487,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         SizedBox(
                                           width: screenSize.width / 15,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             child: const Text(
                                               'Notes',
                                               style: TextStyle(
@@ -508,8 +500,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         SizedBox(
                                           width: 400,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             decoration: const BoxDecoration(
                                               border: Border(
                                                 bottom: BorderSide(
@@ -522,18 +513,17 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               // validator: (String? val) {
                                               //   return Guard.againstInvalidEmail(val, 'Email');
                                               // },
-                                              autovalidateMode:
-                                                  AutovalidateMode
-                                                      .onUserInteraction,
+                                              autovalidateMode: AutovalidateMode
+                                                  .onUserInteraction,
                                               style: const TextStyle(
                                                   color: Colors.black,
-                                                fontSize: 20),
+                                                  fontSize: 20),
                                               controller: _notesController,
                                               enabled: _isNotesEnabled,
                                               textAlign: TextAlign.center,
                                               decoration: InputDecoration(
-                                                hintText: state
-                                                    .branchModel1!.notes,
+                                                hintText:
+                                                    state.branchModel1!.notes,
                                                 border: InputBorder.none,
                                               ),
                                             ),
@@ -543,7 +533,8 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                           icon: const Icon(Icons.edit),
                                           onPressed: () {
                                             setState(() {
-                                              _isNotesEnabled = !_isNotesEnabled;
+                                              _isNotesEnabled =
+                                                  !_isNotesEnabled;
                                             });
                                           },
                                         ),
@@ -551,13 +542,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                     ),
                                     Row(
                                       children: [
-                                        const Icon(
-                                            Icons.edit_calendar_rounded),
+                                        const Icon(Icons.edit_calendar_rounded),
                                         SizedBox(
                                           width: screenSize.width / 15,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             child: const Text(
                                               'Remark',
                                               style: TextStyle(
@@ -570,8 +559,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         SizedBox(
                                           width: 400,
                                           child: Container(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             decoration: const BoxDecoration(
                                               border: Border(
                                                 bottom: BorderSide(
@@ -584,18 +572,17 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                               // validator: (String? val) {
                                               //   return Guard.againstInvalidEmail(val, 'Email');
                                               // },
-                                              autovalidateMode:
-                                                  AutovalidateMode
-                                                      .onUserInteraction,
+                                              autovalidateMode: AutovalidateMode
+                                                  .onUserInteraction,
                                               style: const TextStyle(
                                                   color: Colors.black,
-                                                fontSize: 20),
+                                                  fontSize: 20),
                                               controller: _remarkController,
                                               enabled: _isRemarkEnabled,
                                               textAlign: TextAlign.center,
                                               decoration: InputDecoration(
-                                                hintText: state
-                                                    .branchModel1!.remark,
+                                                hintText:
+                                                    state.branchModel1!.remark,
                                                 border: InputBorder.none,
                                               ),
                                             ),
@@ -605,7 +592,8 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                           icon: const Icon(Icons.edit),
                                           onPressed: () {
                                             setState(() {
-                                              _isRemarkEnabled = !_isRemarkEnabled;
+                                              _isRemarkEnabled =
+                                                  !_isRemarkEnabled;
                                             });
                                           },
                                         ),
@@ -668,6 +656,8 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                   ),
                                 ),
                                 onPressed: () {
+                                  _updatebranch(
+                                      context, _branchIdController.text);
                                   setState(
                                     () {
                                       _isNameEnabled = false;
@@ -700,9 +690,29 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
     );
   }
 
-  void _branchListener(BuildContext context, BranchState state) async {
+  void _branchListener(BuildContext context, BranchState state) {
     if (state.stateStatus == StateStatus.error) {
       SnackBarUtils.errorSnackBar(state.errorMessage, context);
     }
+    if (state.isUpdated) {
+      SnackBarUtils.successSnackBar('Branch Successfully Updated!', context);
+    }
+  }
+
+  void _updatebranch(BuildContext context, String branchId) {
+    _branchBloc.add(
+      UpdateBranchEvent(
+        updateBranchModel: UpdateBranchModel(
+          branchName: _branchNameController.text,
+          address1: _address1Controller.text,
+          address2: _address2Controller.text,
+          dateOpened: _dateController.text,
+          type: _typeController.text,
+          notes: _notesController.text,
+          remark: _remarkController.text,
+        ),
+        shopId: branchId,
+      ),
+    );
   }
 }

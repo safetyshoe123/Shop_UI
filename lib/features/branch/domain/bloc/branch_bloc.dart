@@ -5,6 +5,7 @@ import 'package:shop_ui/core/enums/enum.dart';
 import 'package:shop_ui/features/branch/data/repository/branch.repository.dart';
 import 'package:shop_ui/features/branch/domain/models/addbranch.model.dart';
 import 'package:shop_ui/features/branch/domain/models/branch.model.dart';
+import 'package:shop_ui/features/branch/domain/models/updatebranch.model.dart';
 
 part 'branch_event.dart';
 part 'branch_state.dart';
@@ -79,6 +80,24 @@ class BranchBloc extends Bloc<BranchEvent, BranchState> {
         // }
 
         emit(state.copyWith(stateStatus: StateStatus.loaded, isAdded: false));
+      });
+    });
+    on<UpdateBranchEvent>((event, emit) async {
+      emit(state.copyWith(stateStatus: StateStatus.loading));
+      final Either<String, BranchModel> result = await branchRepository
+          .updateShop(event.updateBranchModel, event.shopId);
+
+      result.fold((error) {
+        emit(state.copyWith(
+            stateStatus: StateStatus.error, errorMessage: error));
+        emit(state.copyWith(stateStatus: StateStatus.loaded));
+      }, (branchModelResponse) {
+        emit(state.copyWith(
+          isUpdated: true,
+          branchModel1: branchModelResponse,
+          stateStatus: StateStatus.loaded,
+        ));
+        emit(state.copyWith(stateStatus: StateStatus.loaded, isUpdated: false));
       });
     });
   }
