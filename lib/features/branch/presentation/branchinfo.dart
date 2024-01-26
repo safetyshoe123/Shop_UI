@@ -15,7 +15,14 @@ class InfoBranchPage extends StatefulWidget {
 
 class _InfoBranchPageState extends State<InfoBranchPage> {
   late BranchBloc _branchBloc;
-  bool _isEnabled = false;
+  // bool _isEnabled = false;
+  bool _isNameEnabled = false;
+  bool _isAdd1Enabled = false;
+  bool _isAdd2Enabled = false;
+  bool _isDateEnabled = false;
+  bool _isTypeEnabled = false;
+  bool _isNotesEnabled = false;
+  bool _isRemarkEnabled = false;
   late TextEditingController _branchIdController;
   final TextEditingController _branchNameController = TextEditingController();
   final TextEditingController _address1Controller = TextEditingController();
@@ -29,6 +36,8 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
 
   late String _shopId;
   late int num = 0;
+  DateTime? selectedDate;
+  String dateToDisplay = '0000/00/00';
 
   @override
   void initState() {
@@ -85,514 +94,513 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                             ),
                           ),
                         ),
+                        const SizedBox(height: 50,),
                         FittedBox(
                           fit: BoxFit.scaleDown,
-                          child: SizedBox(
-                            width: 900,
-                            child: Container(
-                              padding: const EdgeInsets.all(30),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color:
-                                          const Color.fromRGBO(40, 120, 19, 1)),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Color.fromRGBO(40, 120, 19, 1),
-                                        blurRadius: 20.0,
-                                        offset: Offset(0, 10))
-                                  ]),
-                              child: Form(
-                                key: _formKey,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                          child: Form(
+                            key: _formKey,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Column(
+                                  children: [
+                                    Row(
                                       children: [
-                                        Row(
-                                          children: [
-                                            const Icon(Icons.badge_rounded),
-                                            SizedBox(
-                                              width: screenSize.width / 10,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  'Branch ID',
-                                                  style: TextStyle(
-                                                    color: Colors.grey[700],
-                                                  ),
-                                                ),
+                                        const Icon(Icons.badge_rounded),
+                                        SizedBox(
+                                          width: screenSize.width / 15,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Branch ID',
+                                              style: TextStyle(
+                                                color: Colors.grey[700],
                                               ),
                                             ),
-                                            SizedBox(
-                                              width: 400,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                decoration: const BoxDecoration(
-                                                  border: Border(
-                                                    bottom: BorderSide(
-                                                      color: Color.fromRGBO(
-                                                          40, 120, 19, 1),
-                                                    ),
-                                                  ),
-                                                ),
-                                                child: TextFormField(
-                                                  readOnly: true,
-                                                  autovalidateMode:
-                                                      AutovalidateMode
-                                                          .onUserInteraction,
-                                                  style: TextStyle(
-                                                      color: Colors.grey[700]),
-                                                  controller:
-                                                      _branchIdController,
-                                                  enabled: _isEnabled,
-                                                  textAlign: TextAlign.center,
-                                                  decoration:
-                                                      const InputDecoration(
-                                                    border: InputBorder.none,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 43,
-                                            )
-                                          ],
+                                          ),
                                         ),
-                                        Row(
-                                          children: [
-                                            const Icon(Icons.house_rounded),
-                                            SizedBox(
-                                              width: screenSize.width / 10,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  'Branch Name',
-                                                  style: TextStyle(
-                                                    color: Colors.grey[700],
-                                                  ),
+                                        SizedBox(
+                                          width: 400,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            decoration: const BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      40, 120, 19, 1),
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(
-                                              width: 400,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                decoration: const BoxDecoration(
-                                                  border: Border(
-                                                    bottom: BorderSide(
-                                                      color: Color.fromRGBO(
-                                                          174, 196, 169, 1),
-                                                    ),
-                                                  ),
-                                                ),
-                                                child: TextFormField(
-                                                  // validator: (String? val) {
-                                                  //   return Guard.againstInvalidEmail(val, 'Email');
-                                                  // },
-                                                  autovalidateMode:
-                                                      AutovalidateMode
-                                                          .onUserInteraction,
-                                                  style: TextStyle(
-                                                      color: Colors.grey[700]),
-                                                  controller:
-                                                      _branchNameController,
-                                                  enabled: _isEnabled,
-                                                  textAlign: TextAlign.center,
-                                                  decoration: InputDecoration(
-                                                    hintText: state
-                                                        .branchModel1!
-                                                        .branchName,
-                                                    border: InputBorder.none,
-                                                  ),
-                                                ),
+                                            child: TextFormField(
+                                              readOnly: true,
+                                              autovalidateMode:
+                                                  AutovalidateMode
+                                                      .onUserInteraction,
+                                              style: TextStyle(
+                                                  color: Colors.grey[700]),
+                                              controller:
+                                                  _branchIdController,
+                                              enabled: false,
+                                              textAlign: TextAlign.center,
+                                              decoration:
+                                                  const InputDecoration(
+                                                border: InputBorder.none,
                                               ),
                                             ),
-                                            IconButton(
-                                              icon: const Icon(Icons.edit),
-                                              onPressed: () {
-                                                setState(() {
-                                                  _isEnabled = !_isEnabled;
-                                                });
-                                              },
-                                            ),
-                                          ],
+                                          ),
                                         ),
-                                        Row(
-                                          children: [
-                                            const Icon(Icons.location_on),
-                                            SizedBox(
-                                              width: screenSize.width / 10,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  'Address 1',
-                                                  style: TextStyle(
-                                                    color: Colors.grey[700],
-                                                  ),
-                                                ),
+                                        const SizedBox(
+                                          width: 43,
+                                        )
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.house_rounded),
+                                        SizedBox(
+                                          width: screenSize.width / 15,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Branch Name',
+                                              style: TextStyle(
+                                                color: Colors.grey[700],
                                               ),
                                             ),
-                                            SizedBox(
-                                              width: 400,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                decoration: const BoxDecoration(
-                                                  border: Border(
-                                                    bottom: BorderSide(
-                                                      color: Color.fromRGBO(
-                                                          40, 120, 19, 1),
-                                                    ),
-                                                  ),
-                                                ),
-                                                child: TextFormField(
-                                                  // validator: (String? val) {
-                                                  //   return Guard.againstInvalidEmail(val, 'Email');
-                                                  // },
-                                                  autovalidateMode:
-                                                      AutovalidateMode
-                                                          .onUserInteraction,
-                                                  style: TextStyle(
-                                                      color: Colors.grey[700]),
-                                                  controller:
-                                                      _address1Controller,
-                                                  enabled: _isEnabled,
-                                                  textAlign: TextAlign.center,
-                                                  decoration: InputDecoration(
-                                                    hintText: state
-                                                        .branchModel1!.address1,
-                                                    border: InputBorder.none,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            IconButton(
-                                              icon: const Icon(Icons.edit),
-                                              onPressed: () {
-                                                setState(() {
-                                                  _isEnabled = !_isEnabled;
-                                                });
-                                              },
-                                            ),
-                                          ],
+                                          ),
                                         ),
-                                        Row(
-                                          children: [
-                                            const Icon(
-                                                Icons.location_on_outlined),
-                                            SizedBox(
-                                              width: screenSize.width / 10,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  'Address 2',
-                                                  style: TextStyle(
-                                                    color: Colors.grey[700],
-                                                  ),
+                                        SizedBox(
+                                          width: 400,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            decoration: const BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      174, 196, 169, 1),
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(
-                                              width: 400,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                decoration: const BoxDecoration(
-                                                  border: Border(
-                                                    bottom: BorderSide(
-                                                      color: Color.fromRGBO(
-                                                          40, 120, 19, 1),
-                                                    ),
-                                                  ),
-                                                ),
-                                                child: TextFormField(
-                                                  // validator: (String? val) {
-                                                  //   return Guard.againstInvalidEmail(val, 'Email');
-                                                  // },
-                                                  autovalidateMode:
-                                                      AutovalidateMode
-                                                          .onUserInteraction,
-                                                  style: TextStyle(
-                                                      color: Colors.grey[700]),
-                                                  controller:
-                                                      _address2Controller,
-                                                  enabled: _isEnabled,
-                                                  textAlign: TextAlign.center,
-                                                  decoration: InputDecoration(
-                                                    hintText: state
-                                                        .branchModel1!.address2,
-                                                    border: InputBorder.none,
-                                                  ),
-                                                ),
+                                            child: TextFormField(
+                                              // validator: (String? val) {
+                                              //   return Guard.againstInvalidEmail(val, 'Email');
+                                              // },
+                                              autovalidateMode:
+                                                  AutovalidateMode
+                                                      .onUserInteraction,
+                                              style: TextStyle(
+                                                  color: Colors.grey[700]),
+                                              controller:
+                                                  _branchNameController,
+                                              enabled: _isNameEnabled,
+                                              textAlign: TextAlign.center,
+                                              decoration: InputDecoration(
+                                                hintText: state
+                                                    .branchModel1!
+                                                    .branchName,
+                                                border: InputBorder.none,
                                               ),
                                             ),
-                                            IconButton(
-                                              icon: const Icon(Icons.edit),
-                                              onPressed: () {
-                                                setState(() {
-                                                  _isEnabled = !_isEnabled;
-                                                });
-                                              },
-                                            ),
-                                          ],
+                                          ),
                                         ),
-                                        Row(
-                                          children: [
-                                            const Icon(
-                                                Icons.calendar_month_outlined),
-                                            SizedBox(
-                                              width: screenSize.width / 10,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  'Date Opened',
-                                                  style: TextStyle(
-                                                    color: Colors.grey[700],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 400,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                decoration: const BoxDecoration(
-                                                  border: Border(
-                                                    bottom: BorderSide(
-                                                      color: Color.fromRGBO(
-                                                          40, 120, 19, 1),
-                                                    ),
-                                                  ),
-                                                ),
-                                                child: TextFormField(
-                                                  // validator: (String? val) {
-                                                  //   return Guard.againstInvalidEmail(val, 'Email');
-                                                  // },
-                                                  autovalidateMode:
-                                                      AutovalidateMode
-                                                          .onUserInteraction,
-                                                  style: TextStyle(
-                                                      color: Colors.grey[700]),
-                                                  controller: _dateController,
-                                                  enabled: _isEnabled,
-                                                  textAlign: TextAlign.center,
-                                                  decoration: InputDecoration(
-                                                    hintText: state
-                                                        .branchModel1!
-                                                        .dateOpened,
-                                                    border: InputBorder.none,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            IconButton(
-                                              icon: const Icon(Icons.edit),
-                                              onPressed: () {
-                                                setState(() {
-                                                  _isEnabled = !_isEnabled;
-                                                });
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Icon(Icons.checklist_sharp),
-                                            SizedBox(
-                                              width: screenSize.width / 10,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  'Type',
-                                                  style: TextStyle(
-                                                    color: Colors.grey[700],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 400,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                decoration: const BoxDecoration(
-                                                  border: Border(
-                                                    bottom: BorderSide(
-                                                      color: Color.fromRGBO(
-                                                          40, 120, 19, 1),
-                                                    ),
-                                                  ),
-                                                ),
-                                                child: TextFormField(
-                                                  // validator: (String? val) {
-                                                  //   return Guard.againstInvalidEmail(val, 'Email');
-                                                  // },
-                                                  autovalidateMode:
-                                                      AutovalidateMode
-                                                          .onUserInteraction,
-                                                  style: TextStyle(
-                                                      color: Colors.grey[700]),
-                                                  controller: _typeController,
-                                                  enabled: _isEnabled,
-                                                  textAlign: TextAlign.center,
-                                                  decoration: InputDecoration(
-                                                    hintText: state
-                                                        .branchModel1!.type,
-                                                    border: InputBorder.none,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            IconButton(
-                                              icon: const Icon(Icons.edit),
-                                              onPressed: () {
-                                                setState(() {
-                                                  _isEnabled = !_isEnabled;
-                                                });
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Icon(Icons.note_add_rounded),
-                                            SizedBox(
-                                              width: screenSize.width / 10,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  'Notes',
-                                                  style: TextStyle(
-                                                    color: Colors.grey[700],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 400,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                decoration: const BoxDecoration(
-                                                  border: Border(
-                                                    bottom: BorderSide(
-                                                      color: Color.fromRGBO(
-                                                          40, 120, 19, 1),
-                                                    ),
-                                                  ),
-                                                ),
-                                                child: TextFormField(
-                                                  // validator: (String? val) {
-                                                  //   return Guard.againstInvalidEmail(val, 'Email');
-                                                  // },
-                                                  autovalidateMode:
-                                                      AutovalidateMode
-                                                          .onUserInteraction,
-                                                  style: TextStyle(
-                                                      color: Colors.grey[700]),
-                                                  controller: _notesController,
-                                                  enabled: _isEnabled,
-                                                  textAlign: TextAlign.center,
-                                                  decoration: InputDecoration(
-                                                    hintText: state
-                                                        .branchModel1!.notes,
-                                                    border: InputBorder.none,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            IconButton(
-                                              icon: const Icon(Icons.edit),
-                                              onPressed: () {
-                                                setState(() {
-                                                  _isEnabled = !_isEnabled;
-                                                });
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Icon(
-                                                Icons.edit_calendar_rounded),
-                                            SizedBox(
-                                              width: screenSize.width / 10,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  'Remark',
-                                                  style: TextStyle(
-                                                    color: Colors.grey[700],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 400,
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                decoration: const BoxDecoration(
-                                                  border: Border(
-                                                    bottom: BorderSide(
-                                                      color: Color.fromRGBO(
-                                                          40, 120, 19, 1),
-                                                    ),
-                                                  ),
-                                                ),
-                                                child: TextFormField(
-                                                  // validator: (String? val) {
-                                                  //   return Guard.againstInvalidEmail(val, 'Email');
-                                                  // },
-                                                  autovalidateMode:
-                                                      AutovalidateMode
-                                                          .onUserInteraction,
-                                                  style: TextStyle(
-                                                      color: Colors.grey[700]),
-                                                  controller: _remarkController,
-                                                  enabled: _isEnabled,
-                                                  textAlign: TextAlign.center,
-                                                  decoration: InputDecoration(
-                                                    hintText: state
-                                                        .branchModel1!.remark,
-                                                    border: InputBorder.none,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            IconButton(
-                                              icon: const Icon(Icons.edit),
-                                              onPressed: () {
-                                                setState(() {
-                                                  _isEnabled = !_isEnabled;
-                                                });
-                                              },
-                                            ),
-                                          ],
+                                        IconButton(
+                                          icon: const Icon(Icons.edit),
+                                          onPressed: () {
+                                            setState(() {
+                                              _isNameEnabled = !_isNameEnabled;
+                                            });
+                                          },
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
-                                      height: screenSize.height / 20,
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.location_on),
+                                        SizedBox(
+                                          width: screenSize.width / 15,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Address 1',
+                                              style: TextStyle(
+                                                color: Colors.grey[700],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 400,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            decoration: const BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      40, 120, 19, 1),
+                                                ),
+                                              ),
+                                            ),
+                                            child: TextFormField(
+                                              // validator: (String? val) {
+                                              //   return Guard.againstInvalidEmail(val, 'Email');
+                                              // },
+                                              autovalidateMode:
+                                                  AutovalidateMode
+                                                      .onUserInteraction,
+                                              style: TextStyle(
+                                                  color: Colors.grey[700]),
+                                              controller:
+                                                  _address1Controller,
+                                              enabled: _isAdd1Enabled,
+                                              textAlign: TextAlign.center,
+                                              decoration: InputDecoration(
+                                                hintText: state
+                                                    .branchModel1!.address1,
+                                                border: InputBorder.none,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          icon: const Icon(Icons.edit),
+                                          onPressed: () {
+                                            setState(() {
+                                              _isAdd1Enabled = !_isAdd1Enabled;
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                            Icons.location_on_outlined),
+                                        SizedBox(
+                                          width: screenSize.width / 15,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Address 2',
+                                              style: TextStyle(
+                                                color: Colors.grey[700],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 400,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            decoration: const BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      40, 120, 19, 1),
+                                                ),
+                                              ),
+                                            ),
+                                            child: TextFormField(
+                                              // validator: (String? val) {
+                                              //   return Guard.againstInvalidEmail(val, 'Email');
+                                              // },
+                                              autovalidateMode:
+                                                  AutovalidateMode
+                                                      .onUserInteraction,
+                                              style: TextStyle(
+                                                  color: Colors.grey[700]),
+                                              controller:
+                                                  _address2Controller,
+                                              enabled: _isAdd2Enabled,
+                                              textAlign: TextAlign.center,
+                                              decoration: InputDecoration(
+                                                hintText: state
+                                                    .branchModel1!.address2,
+                                                border: InputBorder.none,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          icon: const Icon(Icons.edit),
+                                          onPressed: () {
+                                            setState(() {
+                                              _isAdd2Enabled = !_isAdd2Enabled;
+                                            });
+                                          },
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              ),
+                               const SizedBox(width: 50,),
+                                Column(
+                                  children: [
+                                     Row(
+                                  children: [
+                                    const Icon(Icons.calendar_month_outlined),
+                                    SizedBox(
+                                      width: screenSize.width / 15,
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'Date Opened',
+                                          style: TextStyle(
+                                            color: Colors.grey[700],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 400,
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8.0),
+                                        decoration: const BoxDecoration(
+                                            border: Border(
+                                                bottom: BorderSide(
+                                                    color: Color.fromRGBO(
+                                                        40, 120, 19, 1)))),
+                                        child: TextFormField(
+                                          // validator: (String? val) {
+                                          //   return Guard.againstInvalidEmail(val, 'Email');
+                                          // },
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
+                                          style: TextStyle(
+                                              color: Colors.grey[700]),
+                                          controller: _dateController,
+                                          enabled: _isDateEnabled,
+                                          textAlign: TextAlign.center,
+                                          decoration: const InputDecoration(
+                                            border: InputBorder.none,
+                                          ),
+                                          onTap: () async {
+                                            final initialDate = DateTime.now();
+                                            final newDate =
+                                                await showDatePicker(
+                                                    context: context,
+                                                    firstDate: DateTime(
+                                                        DateTime.now().year -
+                                                            10),
+                                                    lastDate: DateTime(
+                                                        DateTime.now().year +
+                                                            10),
+                                                    initialDate: initialDate);
+                                            if (newDate == null) {
+                                              return;
+                                            }
+                                            setState(() {
+                                              selectedDate = newDate;
+                                              dateToDisplay =
+                                                  ' ${selectedDate!.year}/${selectedDate!.month}/${selectedDate!.day}';
+                                              _dateController.text =
+                                                  dateToDisplay;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(Icons.edit),
+                                      onPressed: () {
+                                        setState(() {
+                                          _isDateEnabled = !_isDateEnabled;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.checklist_sharp),
+                                        SizedBox(
+                                          width: screenSize.width / 15,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Type',
+                                              style: TextStyle(
+                                                color: Colors.grey[700],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 400,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            decoration: const BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      40, 120, 19, 1),
+                                                ),
+                                              ),
+                                            ),
+                                            child: TextFormField(
+                                              // validator: (String? val) {
+                                              //   return Guard.againstInvalidEmail(val, 'Email');
+                                              // },
+                                              autovalidateMode:
+                                                  AutovalidateMode
+                                                      .onUserInteraction,
+                                              style: TextStyle(
+                                                  color: Colors.grey[700]),
+                                              controller: _typeController,
+                                              enabled: _isTypeEnabled,
+                                              textAlign: TextAlign.center,
+                                              decoration: InputDecoration(
+                                                hintText: state
+                                                    .branchModel1!.type,
+                                                border: InputBorder.none,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          icon: const Icon(Icons.edit),
+                                          onPressed: () {
+                                            setState(() {
+                                              _isTypeEnabled = !_isTypeEnabled;
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Icon(Icons.note_add_rounded),
+                                        SizedBox(
+                                          width: screenSize.width / 15,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Notes',
+                                              style: TextStyle(
+                                                color: Colors.grey[700],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 400,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            decoration: const BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      40, 120, 19, 1),
+                                                ),
+                                              ),
+                                            ),
+                                            child: TextFormField(
+                                              // validator: (String? val) {
+                                              //   return Guard.againstInvalidEmail(val, 'Email');
+                                              // },
+                                              autovalidateMode:
+                                                  AutovalidateMode
+                                                      .onUserInteraction,
+                                              style: TextStyle(
+                                                  color: Colors.grey[700]),
+                                              controller: _notesController,
+                                              enabled: _isNotesEnabled,
+                                              textAlign: TextAlign.center,
+                                              decoration: InputDecoration(
+                                                hintText: state
+                                                    .branchModel1!.notes,
+                                                border: InputBorder.none,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          icon: const Icon(Icons.edit),
+                                          onPressed: () {
+                                            setState(() {
+                                              _isNotesEnabled = !_isNotesEnabled;
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                            Icons.edit_calendar_rounded),
+                                        SizedBox(
+                                          width: screenSize.width / 15,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Remark',
+                                              style: TextStyle(
+                                                color: Colors.grey[700],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 400,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.all(8.0),
+                                            decoration: const BoxDecoration(
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color: Color.fromRGBO(
+                                                      40, 120, 19, 1),
+                                                ),
+                                              ),
+                                            ),
+                                            child: TextFormField(
+                                              // validator: (String? val) {
+                                              //   return Guard.againstInvalidEmail(val, 'Email');
+                                              // },
+                                              autovalidateMode:
+                                                  AutovalidateMode
+                                                      .onUserInteraction,
+                                              style: TextStyle(
+                                                  color: Colors.grey[700]),
+                                              controller: _remarkController,
+                                              enabled: _isRemarkEnabled,
+                                              textAlign: TextAlign.center,
+                                              decoration: InputDecoration(
+                                                hintText: state
+                                                    .branchModel1!.remark,
+                                                border: InputBorder.none,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          icon: const Icon(Icons.edit),
+                                          onPressed: () {
+                                            setState(() {
+                                              _isRemarkEnabled = !_isRemarkEnabled;
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: screenSize.height / 20,
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -646,7 +654,13 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                 onPressed: () {
                                   setState(
                                     () {
-                                      _isEnabled = false;
+                                      _isNameEnabled = false;
+                                      _isAdd1Enabled = false;
+                                      _isAdd2Enabled = false;
+                                      _isDateEnabled = false;
+                                      _isTypeEnabled = false;
+                                      _isNotesEnabled = false;
+                                      _isRemarkEnabled = false;
                                     },
                                   );
                                 },
