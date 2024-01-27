@@ -58,47 +58,32 @@ class _SidebarXExampleAppState extends State<BranchPage> {
               //  Padding(
               //   padding: EdgeInsets.only(left: screenSize.width/1.7),
               // child:
-              Padding(
-            padding: const EdgeInsets.only(left: 140),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DropdownButtonHideUnderline(
-                  child: SizedBox(
-                    width: 500,
-                    child: DropdownButton2<dynamic>(
-                      isExpanded: true,
-                      hint: Row(
-                        children: [
-                          // Icon(
-                          //   Icons.list,
-                          //   size: 16,
-                          //   color: white,
-                          // ),
-                          const SizedBox(
-                            width: 4,
-                          ),
-                          Expanded(
-                            child: Center(
-                              child: Text(
-                                _selectedBranch,
-                                style: const TextStyle(
-                                  fontSize: fontsize,
-                                  fontWeight: FontWeight.bold,
-                                  color: canvasColor,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Padding(
+                            padding: const EdgeInsets.only(left: 140),
+                            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  DropdownButtonHideUnderline(
+                    child: SizedBox(
+                      width: 500,
+                      child: DropdownButton2<dynamic>(
+                        isExpanded: true,
+                        hint: Row(
+                          children: [
+                            // Icon(
+                            //   Icons.list,
+                            //   size: 16,
+                            //   color: white,
+                            // ),
+                            const SizedBox(
+                              width: 4,
                             ),
-                          ),
-                        ],
-                      ),
-                      items: _items
-                          .map((item) => DropdownMenuItem<dynamic>(
-                                alignment: AlignmentDirectional.center,
-                                value: item,
+                            Expanded(
+                              child: Center(
                                 child: Text(
-                                  item,
+                                  _selectedBranch,
                                   style: const TextStyle(
                                     fontSize: fontsize,
                                     fontWeight: FontWeight.bold,
@@ -106,110 +91,130 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                              ))
-                          .toList(),
-                      value: selectedValue,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedValue = value;
-                        });
-                      },
-                      buttonStyleData: ButtonStyleData(
-                        height: 45,
-                        width: 160,
-                        padding: const EdgeInsets.only(left: 14, right: 14),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(14),
-                          // border: Border.all(
-                          //   color: accentCanvasColor,
-                          // ),
-                          color: white,
+                              ),
+                            ),
+                          ],
                         ),
-                        elevation: 2,
-                      ),
-                      iconStyleData: const IconStyleData(
-                        icon: Icon(
-                          Icons.keyboard_arrow_down_rounded,
-                          size: 30,
+                        items: _items
+                            .map((item) => DropdownMenuItem<dynamic>(
+                                  alignment: AlignmentDirectional.center,
+                                  value: item,
+                                  child: Text(
+                                    item,
+                                    style: const TextStyle(
+                                      fontSize: fontsize,
+                                      fontWeight: FontWeight.bold,
+                                      color: canvasColor,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ))
+                            .toList(),
+                        value: selectedValue,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedValue = value;
+                          });
+                        },
+                        buttonStyleData: ButtonStyleData(
+                          height: 45,
+                          width: 160,
+                          padding: const EdgeInsets.only(left: 14, right: 14),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            // border: Border.all(
+                            //   color: accentCanvasColor,
+                            // ),
+                            color: white,
+                          ),
+                          elevation: 2,
                         ),
-                        iconSize: 14,
-                        iconEnabledColor: canvasColor,
-                        iconDisabledColor: Colors.grey,
-                      ),
-                      dropdownStyleData: DropdownStyleData(
-                        maxHeight: screenSize.height / 3,
-                        width: 500,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(14),
-                          // color: Colors.brown.shade100,
+                        iconStyleData: const IconStyleData(
+                          icon: Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            size: 30,
+                            color: canvasColor,
+                          ),
+                          iconSize: 14,
+                          iconEnabledColor: white,
+                          iconDisabledColor: Colors.grey,
                         ),
-                        // offset: const Offset(-20, 0),
-                        scrollbarTheme: ScrollbarThemeData(
-                          radius: const Radius.circular(40),
-                          thickness: MaterialStateProperty.all<double>(6),
-                          thumbVisibility:
-                              MaterialStateProperty.all<bool>(true),
-                        ),
-                      ),
-                      menuItemStyleData: const MenuItemStyleData(
-                        height: 40,
-                        padding: EdgeInsets.only(left: 14, right: 14),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                SizedBox(
-                  width: 100,
-                  height: 45,
-                  child: FloatingActionButton(
-                    backgroundColor: white,
-                    // foregroundColor: canvasColor,
-                    splashColor: accentCanvasColor,
-                    onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => MultiBlocProvider(
-                      //       providers: [
-                      //         BlocProvider<AuthBloc>(
-                      //           create: (context) => diContainer.authBloc,
-                      //         ),
-                      //         BlocProvider<BranchBloc>(
-                      //           create: (context) => diContainer.branchBloc,
-                      //         ),
-                      //       ],
-                      //       child: BranchPage(
-                      //         selectedBranch: selectedValue!,
-                      //         restrictionList: restrictionList,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // );
-                    },
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(5),
-                          child: Text(
-                            'Go',
-                            style: TextStyle(fontSize: fontsize),
+                        dropdownStyleData: DropdownStyleData(
+                          maxHeight: screenSize.height / 3,
+                          width: 500,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            color: const Color.fromARGB(255, 229, 231, 231),
+                            // color: Colors.brown.shade100,
+                          ),
+                          // offset: const Offset(-20, 0),
+                          scrollbarTheme: ScrollbarThemeData(
+                            radius: const Radius.circular(40),
+                            thickness: MaterialStateProperty.all<double>(6),
+                            thumbVisibility:
+                                MaterialStateProperty.all<bool>(true),
                           ),
                         ),
-                        Icon(
-                          Icons.search,
-                          color: accentCanvasColor,
+                        menuItemStyleData: const MenuItemStyleData(
+                          height: 40,
+                          padding: EdgeInsets.only(left: 14, right: 14),
                         ),
-                      ],
+                      ),
                     ),
                   ),
-                )
-              ],
-            ),
-          ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  SizedBox(
+                    width: 100,
+                    height: 45,
+                    child: FloatingActionButton(
+                      backgroundColor: white,
+                      // foregroundColor: canvasColor,
+                      splashColor: accentCanvasColor,
+                      onPressed: () {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => MultiBlocProvider(
+                        //       providers: [
+                        //         BlocProvider<AuthBloc>(
+                        //           create: (context) => diContainer.authBloc,
+                        //         ),
+                        //         BlocProvider<BranchBloc>(
+                        //           create: (context) => diContainer.branchBloc,
+                        //         ),
+                        //       ],
+                        //       child: BranchPage(
+                        //         selectedBranch: selectedValue!,
+                        //         restrictionList: restrictionList,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // );
+                      },
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(5),
+                            child: Text(
+                              'Go',
+                              style: TextStyle(fontSize: fontsize),
+                            ),
+                          ),
+                          Icon(
+                            Icons.search,
+                            color: accentCanvasColor,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+                            ),
+                          ),
+              ),
           // ),
           automaticallyImplyLeading: false,
           leading: IconButton(
@@ -330,22 +335,38 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                   ),
                 );
               },
-              items: [
+              items: const [
                 SidebarXItem(
-                  icon: Icons.home,
-                  label: 'Home',
-                  onTap: () {
-                    // debugPrint('Home');
-                  },
-                ),
-                const SidebarXItem(
-                  icon: Icons.add_circle,
-                  label: 'Register Employee',
-                ),
-                const SidebarXItem(
-                  icon: Icons.info,
-                  label: 'Info',
-                ),
+                    iconWidget: Tooltip(
+                      message: 'Home',
+                      child: Icon(
+                        Icons.home, 
+                        color: white,),
+                    ),
+                    label: 'Home',
+                  ),
+                SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Register Employee',
+                      child: Icon(
+                        Icons.add_circle, 
+                        color: white,),
+                    ),
+                    label: 'Register Employee',
+                  ),
+                SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Info',
+                      child: Icon(
+                        Icons.info, 
+                        color: white,),
+                    ),
+                    label: 'Info',
+                  ),
+                // SidebarXItem(
+                //   icon: Icons.info,
+                //   label: 'Info',
+                // ),
               ],
               // footerItems: [
               //   SidebarXItem(

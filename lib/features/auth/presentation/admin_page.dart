@@ -149,41 +149,85 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                     ),
                   );
                 },
-                items: [
-                  SidebarXItem(
-                    icon: Icons.home,
+                items: const [
+                 SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Home',
+                      child: Icon(
+                        Icons.home, 
+                        color: white,),
+                    ),
                     label: 'Home',
-                    onTap: () {
-                      // debugPrint('Home');
-                    },
                   ),
+                  // SidebarXItem(
+                  //   icon: Icons.home,
+                  //   label: 'Home',
+                  //   onTap: () {
+                  //     // debugPrint('Home');
+                  //   },
+                  // ),
 
-                  const SidebarXItem(
-                    icon: Icons.add_circle,
+                   SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Register Branch',
+                      child: Icon(
+                        Icons.add_circle_outline_rounded, 
+                        color: white,),
+                    ),
                     label: 'Register Branch',
                   ),
-                  const SidebarXItem(
-                    icon: Icons.info,
+                  SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Shop Info',
+                      child: Icon(
+                        Icons.info, 
+                        color: white,),
+                    ),
                     label: 'Shop Info',
                   ),
-                  const SidebarXItem(
-                    icon: Icons.attribution_sharp,
+                  SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Employee Maintenance',
+                      child: Icon(
+                        Icons.attribution_sharp, 
+                        color: white,),
+                    ),
                     label: 'Employee Maintenance',
                   ),
-                  const SidebarXItem(
-                    icon: Icons.build_circle_outlined,
+                  SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Shop Maintenance',
+                      child: Icon(
+                        Icons.build_circle_outlined, 
+                        color: white,),
+                    ),
                     label: 'Shop Maintenance',
                   ),
-                  const SidebarXItem(
-                    icon: Icons.published_with_changes_rounded,
+                  SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Transaction',
+                      child: Icon(
+                        Icons.published_with_changes_rounded, 
+                        color: white,),
+                    ),
                     label: 'Transaction',
                   ),
-                  const SidebarXItem(
-                    icon: Icons.report_gmailerrorred_rounded,
+                  SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Report',
+                      child: Icon(
+                        Icons.report_gmailerrorred_rounded, 
+                        color: white,),
+                    ),
                     label: 'Report',
                   ),
-                  const SidebarXItem(
-                    icon: Icons.library_books,
+                  SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'List',
+                      child: Icon(
+                        Icons.library_books, 
+                        color: white,),
+                    ),
                     label: 'List',
                   ),
 
