@@ -53,169 +53,112 @@ class _ShopDashState extends State<ShopDash> {
                 child: CircularProgressIndicator(),
               );
             }
-            return Container(
-              alignment: Alignment.center,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          '-SHOP NAME- DASHBOARD',
-                          style: GoogleFonts.ptSerif(
-                            textStyle: const TextStyle(
-                              color: Color.fromRGBO(40, 120, 19, 1),
-                              fontSize: 50,
-                              // letterSpacing: .5
-                            ),
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Text(
+                        '-SHOP NAME- DASHBOARD',
+                        style: GoogleFonts.ptSerif(
+                          textStyle: const TextStyle(
+                            color: Color.fromRGBO(40, 120, 19, 1),
+                            fontSize: 50,
+                            // letterSpacing: .5
                           ),
                         ),
                       ),
                     ),
-                    // const SizedBox(
-                    //   height: 20,
-                    // ),
-
-                    SizedBox(
-                        height: 20,
-                        width: screenSize.width / 1.4,
-                        child: const Divider(
-                          thickness: 2,
-                        )),
-
-                    Container(
-                      padding: const EdgeInsets.all(3),
-                      alignment: Alignment.bottomCenter,
-                      height: screenSize.width / 3.5,
-                      width: screenSize.width / 1.37,
-                      child: ScrollConfiguration(
-                        behavior: ScrollConfiguration.of(context).copyWith(
-                            dragDevices: {
-                              PointerDeviceKind.touch,
-                              PointerDeviceKind.mouse
-                            }),
-                        child: Builder(builder: (context) {
-                          if (branchState.isEmpty == true) {
-                            return const Center(
-                              child: Text('No Branch to display'),
-                            );
-                          }
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            itemCount: branchState.branchModel.length,
-                            itemBuilder: (context, index) {
-                              final branchList = branchState.branchModel[index];
-                              return FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: SizedBox(
-                                  height: screenSize.height / 5,
-                                  width: screenSize.width,
-                                  child: Container(
-                                    // height: 1500,
-                                    // width: 500,
-                                    margin: const EdgeInsets.only(
-                                        bottom: 15, right: 20, left: 20),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.white70,
-                                      boxShadow: const [
-                                        BoxShadow(
-                                            color:
-                                                Color.fromARGB(95, 65, 64, 64),
-                                            blurRadius: 5.0,
-                                            offset: Offset(0, 3))
-                                      ],
-                                    ),
-                                    child: FloatingActionButton(
-                                      heroTag: 'btn $index',
-                                      hoverColor: Colors.grey.shade400,
-                                      splashColor: Colors.white38,
-                                      backgroundColor: Colors.white70,
-                                      onPressed: () {
-                                        // Your click event code here
-                                        // Navigator.push(
-                                        //   context,
-                                        //   MaterialPageRoute(
-                                        //     builder: (context) =>
-                                        //         BlocProvider(
-                                        //       create: (context) =>
-                                        //           diContainer.branchBloc,
-                                        //     ),
-                                        //   ),
-                                        // );
-                                      },
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: <Widget>[
-                                          ListTile(
-                                            titleAlignment: ListTileTitleAlignment.center,
-                                            leading: FittedBox(
-                                              fit: BoxFit.scaleDown,
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(left:100),
-                                                child: Text(
-                                                  branchList.branchId,
-                                                  style: GoogleFonts.ptSerif(
-                                                    textStyle: const TextStyle(
-                                                        color: Colors.brown,
-                                                        fontSize: 24,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                  maxLines: 3,
-                                                  softWrap: true,
-                                                  overflow: TextOverflow.clip,
-                                                ),
-                                              ),
-                                            ),
-                                            title: FittedBox(
-                                              fit: BoxFit.scaleDown,
+                  ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+            
+                  SizedBox(
+                      height: 20,
+                      width: screenSize.width / 1.4,
+                      child: const Divider(
+                        thickness: 2,
+                      )),
+            
+                  Container(
+                    padding: const EdgeInsets.all(3),
+                    alignment: Alignment.bottomCenter,
+                    height: screenSize.width / 3.5,
+                    width: screenSize.width / 1.37,
+                    child: ScrollConfiguration(
+                      behavior: ScrollConfiguration.of(context).copyWith(
+                          dragDevices: {
+                            PointerDeviceKind.touch,
+                            PointerDeviceKind.mouse
+                          }),
+                      child: Builder(builder: (context) {
+                        if (branchState.isEmpty == true) {
+                          return const Center(
+                            child: Text('No Branch to display'),
+                          );
+                        }
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          itemCount: branchState.branchModel.length,
+                          itemBuilder: (context, index) {
+                            final branchList = branchState.branchModel[index];
+                            return FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: SizedBox(
+                                height: 120,
+                                width: 1400,
+                                child: Container(
+                                  // height: 1500,
+                                  // width: 500,
+                                  margin: const EdgeInsets.only(
+                                      bottom: 15, right: 20, left: 20),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.white70,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color:
+                                              Color.fromARGB(95, 65, 64, 64),
+                                          blurRadius: 5.0,
+                                          offset: Offset(0, 3))
+                                    ],
+                                  ),
+                                  child: FloatingActionButton(
+                                    heroTag: 'btn $index',
+                                    hoverColor: Colors.grey.shade400,
+                                    splashColor: Colors.white38,
+                                    backgroundColor: Colors.white70,
+                                    onPressed: () {
+                                      // Your click event code here
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) =>
+                                      //         BlocProvider(
+                                      //       create: (context) =>
+                                      //           diContainer.branchBloc,
+                                      //     ),
+                                      //   ),
+                                      // );
+                                    },
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: <Widget>[
+                                        ListTile(
+                                          titleAlignment: ListTileTitleAlignment.center,
+                                          leading: FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(left:100),
                                               child: Text(
-                                                branchList.branchName,
-                                                style: GoogleFonts.ptSerif(
-                                                  textStyle: const TextStyle(
-                                                      color: Colors.brown,
-                                                      fontSize: 34,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                textAlign: TextAlign.center,
-                                                maxLines: 3,
-                                                softWrap: true,
-                                                // overflow: TextOverflow.clip,
-                                              ),
-                                            ),
-                                            trailing: FittedBox(
-                                              fit: BoxFit.scaleDown,
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(right:100),
-                                                child: Text(
-                                                  branchList.dateOpened,
-                                                  style: GoogleFonts.ptSerif(
-                                                    textStyle: const TextStyle(
-                                                        color: Colors.brown,
-                                                        fontSize: 24,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                  maxLines: 2,
-                                                  
-                                                  softWrap: true,
-                                              
-                                                  // overflow: TextOverflow.clip,
-                                                ),
-                                              ),
-                                            ),
-                                            subtitle: FittedBox(
-                                              fit: BoxFit.scaleDown,
-                                              child: Text(
-                                                
-                                                branchList.address1,
+                                                branchList.branchId,
                                                 style: GoogleFonts.ptSerif(
                                                   textStyle: const TextStyle(
                                                       color: Colors.brown,
@@ -223,27 +166,82 @@ class _ShopDashState extends State<ShopDash> {
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
-                                                textAlign: TextAlign.center,
-                                                maxLines: 1,
-                                                softWrap: false,
+                                                maxLines: 3,
+                                                softWrap: true,
                                                 overflow: TextOverflow.clip,
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                          title: FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Text(
+                                              branchList.branchName,
+                                              style: GoogleFonts.ptSerif(
+                                                textStyle: const TextStyle(
+                                                    color: Colors.brown,
+                                                    fontSize: 34,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              textAlign: TextAlign.center,
+                                              maxLines: 3,
+                                              softWrap: true,
+                                              // overflow: TextOverflow.clip,
+                                            ),
+                                          ),
+                                          trailing: FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(right:100),
+                                              child: Text(
+                                                branchList.dateOpened,
+                                                style: GoogleFonts.ptSerif(
+                                                  textStyle: const TextStyle(
+                                                      color: Colors.brown,
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                maxLines: 2,
+                                                
+                                                softWrap: true,
+                                            
+                                                // overflow: TextOverflow.clip,
+                                              ),
+                                            ),
+                                          ),
+                                          subtitle: FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Text(
+                                              
+                                              branchList.address1,
+                                              style: GoogleFonts.ptSerif(
+                                                textStyle: const TextStyle(
+                                                    color: Colors.brown,
+                                                    fontSize: 24,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              textAlign: TextAlign.center,
+                                              maxLines: 1,
+                                              softWrap: false,
+                                              overflow: TextOverflow.clip,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                              );
-                            },
-                          );
-                        }),
-                      ),
+                              ),
+                            );
+                          },
+                        );
+                      }),
                     ),
-                    // ),
-                  ],
-                ),
+                  ),
+                  // ),
+                ],
               ),
             );
           },
