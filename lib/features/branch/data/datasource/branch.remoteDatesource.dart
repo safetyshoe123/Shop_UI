@@ -68,6 +68,8 @@ class BranchRemoteDataSource {
 
     final response = await http.post(Uri.parse('${Config.url}/createBranch'),
         body: jsonEncode({
+          'shopId': addBranchModel.shopId,
+          'branchId': addBranchModel.branchId,
           'branchName': addBranchModel.branchName,
           'address1': addBranchModel.address1,
           'address2': addBranchModel.address2,
@@ -132,7 +134,7 @@ class BranchRemoteDataSource {
       case 500:
         throw ('Can\'t add Branch! Something went wrong!');
       default:
-        throw (data['message']);
+        throw ('${data['message']} here');
     }
   }
 }
