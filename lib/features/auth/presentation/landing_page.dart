@@ -146,14 +146,23 @@ class _SidebarXExampleAppState extends State<ShopPage> {
                     ),
                   );
                 },
-                items: [
+                items: const [
                   SidebarXItem(
-                    icon: Icons.home,
+                    iconWidget: Tooltip(
+                      message: 'Home',
+                      child: Icon(
+                        Icons.home, 
+                        color: white,),
+                    ),
                     label: 'Home',
-                    onTap: () {
-                      // debugPrint('Home');
-                    },
                   ),
+                  // SidebarXItem(
+                  //   icon: Icons.home,
+                  //   label: 'Home',
+                  //   onTap: () {
+                  //     // debugPrint('Home');
+                  //   },
+                  // ),
 
                   // const SidebarXItem(
                   //   icon: Icons.add_circle,
@@ -163,18 +172,34 @@ class _SidebarXExampleAppState extends State<ShopPage> {
                   //   icon: Icons.info,
                   //   label: 'Shop Info',
                   // ),
-                  const SidebarXItem(
-                    icon: Icons.published_with_changes_rounded,
+                  SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Transaction',
+                      child: Icon(
+                        Icons.published_with_changes_rounded, 
+                        color: white,),
+                    ),
                     label: 'Transaction',
                   ),
-                  const SidebarXItem(
-                    icon: Icons.report_gmailerrorred_rounded,
+                  SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Report',
+                      child: Icon(
+                        Icons.report_gmailerrorred_rounded, 
+                        color: white,),
+                    ),
                     label: 'Report',
                   ),
-                  const SidebarXItem(
-                    icon: Icons.library_books,
+                  SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'List',
+                      child: Icon(
+                        Icons.library_books, 
+                        color: white,),
+                    ),
                     label: 'List',
                   ),
+                  
                   // const SidebarXItem(
                   //   icon: Icons.person,
                   //   label: 'Employees',
