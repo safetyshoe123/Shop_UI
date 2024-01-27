@@ -154,68 +154,80 @@ class _ShopDashState extends State<ShopDash> {
                                         children: <Widget>[
                                           ListTile(
                                             titleAlignment: ListTileTitleAlignment.center,
-                                            leading: Padding(
-                                              padding: const EdgeInsets.only(left:100),
+                                            leading: FittedBox(
+                                              fit: BoxFit.scaleDown,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(left:100),
+                                                child: Text(
+                                                  branchList.branchId,
+                                                  style: GoogleFonts.ptSerif(
+                                                    textStyle: const TextStyle(
+                                                        color: Colors.brown,
+                                                        fontSize: 24,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  maxLines: 3,
+                                                  softWrap: true,
+                                                  overflow: TextOverflow.clip,
+                                                ),
+                                              ),
+                                            ),
+                                            title: FittedBox(
+                                              fit: BoxFit.scaleDown,
                                               child: Text(
-                                                branchList.branchId,
+                                                branchList.branchName,
                                                 style: GoogleFonts.ptSerif(
                                                   textStyle: const TextStyle(
                                                       color: Colors.brown,
-                                                      fontSize: 24,
+                                                      fontSize: 34,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
+                                                textAlign: TextAlign.center,
                                                 maxLines: 3,
                                                 softWrap: true,
-                                                overflow: TextOverflow.clip,
-                                              ),
-                                            ),
-                                            title: Text(
-                                              branchList.branchName,
-                                              style: GoogleFonts.ptSerif(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.brown,
-                                                    fontSize: 34,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              textAlign: TextAlign.center,
-                                              maxLines: 3,
-                                              softWrap: true,
-                                              // overflow: TextOverflow.clip,
-                                            ),
-                                            trailing: Padding(
-                                              padding: const EdgeInsets.only(right:100),
-                                              child: Text(
-                                                branchList.dateOpened,
-                                                style: GoogleFonts.ptSerif(
-                                                  textStyle: const TextStyle(
-                                                      color: Colors.brown,
-                                                      fontSize: 24,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                maxLines: 2,
-                                                
-                                                softWrap: true,
-
                                                 // overflow: TextOverflow.clip,
                                               ),
                                             ),
-                                            subtitle: Text(
+                                            trailing: FittedBox(
+                                              fit: BoxFit.scaleDown,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(right:100),
+                                                child: Text(
+                                                  branchList.dateOpened,
+                                                  style: GoogleFonts.ptSerif(
+                                                    textStyle: const TextStyle(
+                                                        color: Colors.brown,
+                                                        fontSize: 24,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  maxLines: 2,
+                                                  
+                                                  softWrap: true,
                                               
-                                              branchList.address1,
-                                              style: GoogleFonts.ptSerif(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.brown,
-                                                    fontSize: 24,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                  // overflow: TextOverflow.clip,
+                                                ),
                                               ),
-                                              textAlign: TextAlign.center,
-                                              maxLines: 1,
-                                              softWrap: false,
-                                              overflow: TextOverflow.clip,
+                                            ),
+                                            subtitle: FittedBox(
+                                              fit: BoxFit.scaleDown,
+                                              child: Text(
+                                                
+                                                branchList.address1,
+                                                style: GoogleFonts.ptSerif(
+                                                  textStyle: const TextStyle(
+                                                      color: Colors.brown,
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                textAlign: TextAlign.center,
+                                                maxLines: 1,
+                                                softWrap: false,
+                                                overflow: TextOverflow.clip,
+                                              ),
                                             ),
                                           ),
                                         ],
