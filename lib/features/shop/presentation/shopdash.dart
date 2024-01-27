@@ -88,7 +88,7 @@ class _ShopDashState extends State<ShopDash> {
                       padding: const EdgeInsets.all(3),
                       alignment: Alignment.bottomCenter,
                       height: screenSize.width / 3.5,
-                      width: screenSize.width / 1.2,
+                      width: screenSize.width / 1.37,
                       child: ScrollConfiguration(
                         behavior: ScrollConfiguration.of(context).copyWith(
                             dragDevices: {
@@ -111,7 +111,7 @@ class _ShopDashState extends State<ShopDash> {
                               return FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: SizedBox(
-                                  height: screenSize.height / 4,
+                                  height: screenSize.height / 5,
                                   width: screenSize.width,
                                   child: Container(
                                     // height: 1500,
@@ -153,18 +153,22 @@ class _ShopDashState extends State<ShopDash> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: <Widget>[
                                           ListTile(
-                                            leading: Text(
-                                              branchList.branchId,
-                                              style: GoogleFonts.ptSerif(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.brown,
-                                                    fontSize: 24,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                            titleAlignment: ListTileTitleAlignment.center,
+                                            leading: Padding(
+                                              padding: const EdgeInsets.only(left:100),
+                                              child: Text(
+                                                branchList.branchId,
+                                                style: GoogleFonts.ptSerif(
+                                                  textStyle: const TextStyle(
+                                                      color: Colors.brown,
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                maxLines: 3,
+                                                softWrap: true,
+                                                overflow: TextOverflow.clip,
                                               ),
-                                              maxLines: 3,
-                                              softWrap: true,
-                                              overflow: TextOverflow.clip,
                                             ),
                                             title: Text(
                                               branchList.branchName,
@@ -180,21 +184,27 @@ class _ShopDashState extends State<ShopDash> {
                                               softWrap: true,
                                               // overflow: TextOverflow.clip,
                                             ),
-                                            trailing: Text(
-                                              branchList.address1,
-                                              style: GoogleFonts.ptSerif(
-                                                textStyle: const TextStyle(
-                                                    color: Colors.brown,
-                                                    fontSize: 24,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                            trailing: Padding(
+                                              padding: const EdgeInsets.only(right:100),
+                                              child: Text(
+                                                branchList.dateOpened,
+                                                style: GoogleFonts.ptSerif(
+                                                  textStyle: const TextStyle(
+                                                      color: Colors.brown,
+                                                      fontSize: 24,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                maxLines: 2,
+                                                
+                                                softWrap: true,
+
+                                                // overflow: TextOverflow.clip,
                                               ),
-                                              maxLines: 1,
-                                              softWrap: false,
-                                              // overflow: TextOverflow.clip,
                                             ),
                                             subtitle: Text(
-                                              branchList.dateOpened,
+                                              
+                                              branchList.address1,
                                               style: GoogleFonts.ptSerif(
                                                 textStyle: const TextStyle(
                                                     color: Colors.brown,
