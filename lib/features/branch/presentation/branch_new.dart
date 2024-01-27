@@ -1,8 +1,10 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/core/enums/enum.dart';
 import 'package:shop_ui/core/global_widgets/snackbar.dart';
+import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchdash.dart';
 import 'package:shop_ui/features/branch/presentation/branchinfo.dart';
@@ -20,8 +22,10 @@ class BranchPage extends StatefulWidget {
 
 class _SidebarXExampleAppState extends State<BranchPage> {
   final _controller = SidebarXController(selectedIndex: 0, extended: false);
+  final DIContainer diContainer = DIContainer();
   final _key = GlobalKey<ScaffoldState>();
   late BranchBloc branchBloc;
+  late AuthBloc authBloc;
   late String _selectedBranch;
   late List _items;
   String? selectedValue;
@@ -29,6 +33,7 @@ class _SidebarXExampleAppState extends State<BranchPage> {
   @override
   void initState() {
     branchBloc = BlocProvider.of<BranchBloc>(context);
+    authBloc = BlocProvider.of<AuthBloc>(context);
     _selectedBranch = widget.selectedBranch;
     _items = widget.restrictionList;
     super.initState();
@@ -243,8 +248,7 @@ class _SidebarXExampleAppState extends State<BranchPage> {
             ),
             IconButton(
                 onPressed: () {
-                  // Navigator.push(context,
-                  // MaterialPageRoute(builder: (context) => const LoginPage()));
+                  _logout(context);
                 },
                 icon: const Icon(
                   Icons.power_settings_new_rounded,
@@ -400,6 +404,10 @@ class _SidebarXExampleAppState extends State<BranchPage> {
     if (state.stateStatus == StateStatus.error) {
       SnackBarUtils.errorSnackBar(state.errorMessage, context);
     }
+  }
+
+  void _logout(BuildContext context) {
+    authBloc.add(LogoutEvent());
   }
 }
 
