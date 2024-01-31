@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -75,14 +73,14 @@ class _ShopDashState extends State<ShopDash> {
                   // const SizedBox(
                   //   height: 20,
                   // ),
-            
+
                   SizedBox(
                       height: 20,
                       width: screenSize.width / 1.4,
                       child: const Divider(
                         thickness: 2,
                       )),
-            
+
                   Container(
                     padding: const EdgeInsets.all(3),
                     alignment: Alignment.bottomCenter,
@@ -116,8 +114,7 @@ class _ShopDashState extends State<ShopDash> {
                                   color: Colors.white70,
                                   boxShadow: const [
                                     BoxShadow(
-                                        color:
-                                            Color.fromARGB(95, 65, 64, 64),
+                                        color: Color.fromARGB(95, 65, 64, 64),
                                         blurRadius: 5.0,
                                         offset: Offset(0, 3))
                                   ],
@@ -141,16 +138,17 @@ class _ShopDashState extends State<ShopDash> {
                                     // );
                                   },
                                   child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     mainAxisSize: MainAxisSize.max,
                                     children: <Widget>[
                                       ListTile(
-                                        titleAlignment: ListTileTitleAlignment.center,
+                                        titleAlignment:
+                                            ListTileTitleAlignment.center,
                                         leading: FittedBox(
                                           fit: BoxFit.scaleDown,
                                           child: Padding(
-                                            padding: const EdgeInsets.only(left:100),
+                                            padding: const EdgeInsets.only(
+                                                left: 100),
                                             child: Text(
                                               branchList.branchId,
                                               style: GoogleFonts.ptSerif(
@@ -174,8 +172,7 @@ class _ShopDashState extends State<ShopDash> {
                                               textStyle: const TextStyle(
                                                   color: Colors.brown,
                                                   fontSize: 34,
-                                                  fontWeight:
-                                                      FontWeight.bold),
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                             textAlign: TextAlign.center,
                                             maxLines: 3,
@@ -186,7 +183,8 @@ class _ShopDashState extends State<ShopDash> {
                                         trailing: FittedBox(
                                           fit: BoxFit.scaleDown,
                                           child: Padding(
-                                            padding: const EdgeInsets.only(right:100),
+                                            padding: const EdgeInsets.only(
+                                                right: 100),
                                             child: Text(
                                               branchList.dateOpened,
                                               style: GoogleFonts.ptSerif(
@@ -197,9 +195,9 @@ class _ShopDashState extends State<ShopDash> {
                                                         FontWeight.bold),
                                               ),
                                               maxLines: 2,
-                                              
+
                                               softWrap: true,
-                                          
+
                                               // overflow: TextOverflow.clip,
                                             ),
                                           ),
@@ -207,14 +205,12 @@ class _ShopDashState extends State<ShopDash> {
                                         subtitle: FittedBox(
                                           fit: BoxFit.scaleDown,
                                           child: Text(
-                                            
                                             branchList.address1,
                                             style: GoogleFonts.ptSerif(
                                               textStyle: const TextStyle(
                                                   color: Colors.brown,
                                                   fontSize: 24,
-                                                  fontWeight:
-                                                      FontWeight.bold),
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                             textAlign: TextAlign.center,
                                             maxLines: 1,

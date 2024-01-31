@@ -118,8 +118,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                         child: Form(
                           key: _formKey,
                           child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Column(
                                 children: [
@@ -129,8 +128,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: screenSize.width / 15,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: const Text(
                                             'Branch ID',
                                             style: TextStyle(
@@ -142,8 +140,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: 400,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           decoration: const BoxDecoration(
                                             border: Border(
                                               bottom: BorderSide(
@@ -154,18 +151,15 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                           ),
                                           child: TextFormField(
                                             readOnly: true,
-                                            autovalidateMode:
-                                                AutovalidateMode
-                                                    .onUserInteraction,
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20),
-                                            controller:
-                                                _branchIdController,
+                                            controller: _branchIdController,
                                             enabled: false,
                                             textAlign: TextAlign.center,
-                                            decoration:
-                                                const InputDecoration(
+                                            decoration: const InputDecoration(
                                               border: InputBorder.none,
                                             ),
                                           ),
@@ -182,8 +176,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: screenSize.width / 15,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: const Text(
                                             'Branch Name',
                                             style: TextStyle(
@@ -196,8 +189,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: 400,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           decoration: const BoxDecoration(
                                             border: Border(
                                               bottom: BorderSide(
@@ -210,20 +202,17 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                             // validator: (String? val) {
                                             //   return Guard.againstInvalidEmail(val, 'Email');
                                             // },
-                                            autovalidateMode:
-                                                AutovalidateMode
-                                                    .onUserInteraction,
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20),
-                                            controller:
-                                                _branchNameController,
+                                            controller: _branchNameController,
                                             enabled: _isNameEnabled,
                                             textAlign: TextAlign.center,
                                             decoration: InputDecoration(
                                               hintText: state
-                                                  .branchModel1!
-                                                  .branchName,
+                                                  .branchModel1!.branchName,
                                               border: InputBorder.none,
                                             ),
                                           ),
@@ -233,8 +222,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         icon: const Icon(Icons.edit),
                                         onPressed: () {
                                           setState(() {
-                                            _isNameEnabled =
-                                                !_isNameEnabled;
+                                            _isNameEnabled = !_isNameEnabled;
                                           });
                                         },
                                       ),
@@ -246,8 +234,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: screenSize.width / 15,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: const Text(
                                             'Address 1',
                                             style: TextStyle(
@@ -260,8 +247,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: 400,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           decoration: const BoxDecoration(
                                             border: Border(
                                               bottom: BorderSide(
@@ -274,19 +260,17 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                             // validator: (String? val) {
                                             //   return Guard.againstInvalidEmail(val, 'Email');
                                             // },
-                                            autovalidateMode:
-                                                AutovalidateMode
-                                                    .onUserInteraction,
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20),
-                                            controller:
-                                                _address1Controller,
+                                            controller: _address1Controller,
                                             enabled: _isAdd1Enabled,
                                             textAlign: TextAlign.center,
                                             decoration: InputDecoration(
-                                              hintText: state
-                                                  .branchModel1!.address1,
+                                              hintText:
+                                                  state.branchModel1!.address1,
                                               border: InputBorder.none,
                                             ),
                                           ),
@@ -296,8 +280,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         icon: const Icon(Icons.edit),
                                         onPressed: () {
                                           setState(() {
-                                            _isAdd1Enabled =
-                                                !_isAdd1Enabled;
+                                            _isAdd1Enabled = !_isAdd1Enabled;
                                           });
                                         },
                                       ),
@@ -305,13 +288,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                   ),
                                   Row(
                                     children: [
-                                      const Icon(
-                                          Icons.location_on_outlined),
+                                      const Icon(Icons.location_on_outlined),
                                       SizedBox(
                                         width: screenSize.width / 15,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: const Text(
                                             'Address 2',
                                             style: TextStyle(
@@ -323,8 +304,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: 400,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           decoration: const BoxDecoration(
                                             border: Border(
                                               bottom: BorderSide(
@@ -337,19 +317,17 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                             // validator: (String? val) {
                                             //   return Guard.againstInvalidEmail(val, 'Email');
                                             // },
-                                            autovalidateMode:
-                                                AutovalidateMode
-                                                    .onUserInteraction,
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20),
-                                            controller:
-                                                _address2Controller,
+                                            controller: _address2Controller,
                                             enabled: _isAdd2Enabled,
                                             textAlign: TextAlign.center,
                                             decoration: InputDecoration(
-                                              hintText: state
-                                                  .branchModel1!.address2,
+                                              hintText:
+                                                  state.branchModel1!.address2,
                                               border: InputBorder.none,
                                             ),
                                           ),
@@ -359,8 +337,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         icon: const Icon(Icons.edit),
                                         onPressed: () {
                                           setState(() {
-                                            _isAdd2Enabled =
-                                                !_isAdd2Enabled;
+                                            _isAdd2Enabled = !_isAdd2Enabled;
                                           });
                                         },
                                       ),
@@ -375,13 +352,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                 children: [
                                   Row(
                                     children: [
-                                      const Icon(
-                                          Icons.calendar_month_outlined),
+                                      const Icon(Icons.calendar_month_outlined),
                                       SizedBox(
                                         width: screenSize.width / 15,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: const Text(
                                             'Date Opened',
                                             style: TextStyle(
@@ -394,24 +369,18 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: 400,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           decoration: const BoxDecoration(
                                               border: Border(
                                                   bottom: BorderSide(
-                                                      color:
-                                                          Color.fromRGBO(
-                                                              40,
-                                                              120,
-                                                              19,
-                                                              1)))),
+                                                      color: Color.fromRGBO(
+                                                          40, 120, 19, 1)))),
                                           child: TextFormField(
                                             // validator: (String? val) {
                                             //   return Guard.againstInvalidEmail(val, 'Email');
                                             // },
-                                            autovalidateMode:
-                                                AutovalidateMode
-                                                    .onUserInteraction,
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20),
@@ -420,8 +389,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                             textAlign: TextAlign.center,
                                             decoration: InputDecoration(
                                               hintText: state
-                                                  .branchModel1!
-                                                  .dateOpened,
+                                                  .branchModel1!.dateOpened,
                                               border: InputBorder.none,
                                             ),
                                             onTap: () async {
@@ -431,15 +399,12 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                                   await showDatePicker(
                                                       context: context,
                                                       firstDate: DateTime(
-                                                          DateTime.now()
-                                                                  .year -
+                                                          DateTime.now().year -
                                                               10),
                                                       lastDate: DateTime(
-                                                          DateTime.now()
-                                                                  .year +
+                                                          DateTime.now().year +
                                                               10),
-                                                      initialDate:
-                                                          initialDate);
+                                                      initialDate: initialDate);
                                               if (newDate == null) {
                                                 return;
                                               }
@@ -458,8 +423,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         icon: const Icon(Icons.edit),
                                         onPressed: () {
                                           setState(() {
-                                            _isDateEnabled =
-                                                !_isDateEnabled;
+                                            _isDateEnabled = !_isDateEnabled;
                                           });
                                         },
                                       ),
@@ -471,8 +435,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: screenSize.width / 15,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: const Text(
                                             'Type',
                                             style: TextStyle(
@@ -485,8 +448,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: 400,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           decoration: const BoxDecoration(
                                             border: Border(
                                               bottom: BorderSide(
@@ -499,9 +461,8 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                             // validator: (String? val) {
                                             //   return Guard.againstInvalidEmail(val, 'Email');
                                             // },
-                                            autovalidateMode:
-                                                AutovalidateMode
-                                                    .onUserInteraction,
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20),
@@ -509,8 +470,8 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                             enabled: _isTypeEnabled,
                                             textAlign: TextAlign.center,
                                             decoration: InputDecoration(
-                                              hintText: state
-                                                  .branchModel1!.type,
+                                              hintText:
+                                                  state.branchModel1!.type,
                                               border: InputBorder.none,
                                             ),
                                           ),
@@ -520,8 +481,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         icon: const Icon(Icons.edit),
                                         onPressed: () {
                                           setState(() {
-                                            _isTypeEnabled =
-                                                !_isTypeEnabled;
+                                            _isTypeEnabled = !_isTypeEnabled;
                                           });
                                         },
                                       ),
@@ -533,8 +493,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: screenSize.width / 15,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: const Text(
                                             'Notes',
                                             style: TextStyle(
@@ -547,8 +506,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: 400,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           decoration: const BoxDecoration(
                                             border: Border(
                                               bottom: BorderSide(
@@ -561,9 +519,8 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                             // validator: (String? val) {
                                             //   return Guard.againstInvalidEmail(val, 'Email');
                                             // },
-                                            autovalidateMode:
-                                                AutovalidateMode
-                                                    .onUserInteraction,
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20),
@@ -571,8 +528,8 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                             enabled: _isNotesEnabled,
                                             textAlign: TextAlign.center,
                                             decoration: InputDecoration(
-                                              hintText: state
-                                                  .branchModel1!.notes,
+                                              hintText:
+                                                  state.branchModel1!.notes,
                                               border: InputBorder.none,
                                             ),
                                           ),
@@ -582,8 +539,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                         icon: const Icon(Icons.edit),
                                         onPressed: () {
                                           setState(() {
-                                            _isNotesEnabled =
-                                                !_isNotesEnabled;
+                                            _isNotesEnabled = !_isNotesEnabled;
                                           });
                                         },
                                       ),
@@ -591,13 +547,11 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                   ),
                                   Row(
                                     children: [
-                                      const Icon(
-                                          Icons.edit_calendar_rounded),
+                                      const Icon(Icons.edit_calendar_rounded),
                                       SizedBox(
                                         width: screenSize.width / 15,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: const Text(
                                             'Remark',
                                             style: TextStyle(
@@ -610,8 +564,7 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                       SizedBox(
                                         width: 400,
                                         child: Container(
-                                          padding:
-                                              const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           decoration: const BoxDecoration(
                                             border: Border(
                                               bottom: BorderSide(
@@ -624,9 +577,8 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                             // validator: (String? val) {
                                             //   return Guard.againstInvalidEmail(val, 'Email');
                                             // },
-                                            autovalidateMode:
-                                                AutovalidateMode
-                                                    .onUserInteraction,
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
                                             style: const TextStyle(
                                                 color: Colors.black,
                                                 fontSize: 20),
@@ -634,8 +586,8 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                                             enabled: _isRemarkEnabled,
                                             textAlign: TextAlign.center,
                                             decoration: InputDecoration(
-                                              hintText: state
-                                                  .branchModel1!.remark,
+                                              hintText:
+                                                  state.branchModel1!.remark,
                                               border: InputBorder.none,
                                             ),
                                           ),
@@ -667,28 +619,26 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
                       SizedBox(
                         width: 400,
                         child: Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             ElevatedButton(
                               style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateColor.resolveWith(
-                                        (states) => const Color.fromRGBO(
-                                            40, 120, 19, 1)),
+                                backgroundColor: MaterialStateColor.resolveWith(
+                                    (states) =>
+                                        const Color.fromRGBO(40, 120, 19, 1)),
                                 shape: MaterialStateProperty.resolveWith(
                                     (states) => RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10))),
-                                overlayColor: MaterialStateProperty
-                                    .resolveWith<Color?>(
+                                overlayColor:
+                                    MaterialStateProperty.resolveWith<Color?>(
                                   (Set<MaterialState> states) {
-                                    if (states.contains(
-                                        MaterialState.hovered)) {
+                                    if (states
+                                        .contains(MaterialState.hovered)) {
                                       return Colors.red; //<-- SEE HERE
                                     }
-                                    if (states.contains(
-                                        MaterialState.pressed)) {
+                                    if (states
+                                        .contains(MaterialState.pressed)) {
                                       return Colors.brown; //<-- SEE HERE
                                     }
                                     return null; // Defer to the widget's default.
@@ -786,9 +736,5 @@ class _InfoBranchPageState extends State<InfoBranchPage> {
           ),
           ModalRoute.withName('/'));
     }
-  }
-
-  void _logout(BuildContext context) {
-    authBloc.add(LogoutEvent());
   }
 }
