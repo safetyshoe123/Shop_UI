@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchadd.dart';
@@ -65,7 +66,7 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                 message: 'Logout',
                 child: IconButton(
                     onPressed: () {
-                      _logout(context);
+                      _logoutDialog(context);
                     },
                     icon: const Icon(
                       Icons.power_settings_new_rounded,
@@ -150,12 +151,13 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                   );
                 },
                 items: const [
-                 SidebarXItem(
+                  SidebarXItem(
                     iconWidget: Tooltip(
                       message: 'Home',
                       child: Icon(
-                        Icons.home, 
-                        color: white,),
+                        Icons.home,
+                        color: white,
+                      ),
                     ),
                     label: 'Home',
                   ),
@@ -167,12 +169,13 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                   //   },
                   // ),
 
-                   SidebarXItem(
+                  SidebarXItem(
                     iconWidget: Tooltip(
                       message: 'Register Branch',
                       child: Icon(
-                        Icons.add_circle_outline_rounded, 
-                        color: white,),
+                        Icons.add_circle_outline_rounded,
+                        color: white,
+                      ),
                     ),
                     label: 'Register Branch',
                   ),
@@ -180,8 +183,9 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                     iconWidget: Tooltip(
                       message: 'Shop Info',
                       child: Icon(
-                        Icons.info, 
-                        color: white,),
+                        Icons.info,
+                        color: white,
+                      ),
                     ),
                     label: 'Shop Info',
                   ),
@@ -189,8 +193,9 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                     iconWidget: Tooltip(
                       message: 'Employee Maintenance',
                       child: Icon(
-                        Icons.attribution_sharp, 
-                        color: white,),
+                        Icons.attribution_sharp,
+                        color: white,
+                      ),
                     ),
                     label: 'Employee Maintenance',
                   ),
@@ -198,8 +203,9 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                     iconWidget: Tooltip(
                       message: 'Shop Maintenance',
                       child: Icon(
-                        Icons.build_circle_outlined, 
-                        color: white,),
+                        Icons.build_circle_outlined,
+                        color: white,
+                      ),
                     ),
                     label: 'Shop Maintenance',
                   ),
@@ -207,8 +213,9 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                     iconWidget: Tooltip(
                       message: 'Transaction',
                       child: Icon(
-                        Icons.published_with_changes_rounded, 
-                        color: white,),
+                        Icons.published_with_changes_rounded,
+                        color: white,
+                      ),
                     ),
                     label: 'Transaction',
                   ),
@@ -216,8 +223,9 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                     iconWidget: Tooltip(
                       message: 'Report',
                       child: Icon(
-                        Icons.report_gmailerrorred_rounded, 
-                        color: white,),
+                        Icons.report_gmailerrorred_rounded,
+                        color: white,
+                      ),
                     ),
                     label: 'Report',
                   ),
@@ -225,8 +233,9 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
                     iconWidget: Tooltip(
                       message: 'List',
                       child: Icon(
-                        Icons.library_books, 
-                        color: white,),
+                        Icons.library_books,
+                        color: white,
+                      ),
                     ),
                     label: 'List',
                   ),
@@ -276,6 +285,59 @@ class _SidebarXExampleAppState extends State<ShopAdminPage> {
 
   void _logout(BuildContext context) {
     _authBloc.add(LogoutEvent());
+  }
+
+  Future<dynamic> _logoutDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: const Color.fromARGB(255, 68, 78, 70),
+          title: Text(
+            'Are you sure you want to logout?',
+            style: GoogleFonts.roboto(
+                fontSize: 18, color: const Color.fromARGB(222, 255, 255, 255)),
+          ),
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red.shade300,
+                  ),
+                  onPressed: () {
+                    _logout(context);
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Logout',
+                    style: GoogleFonts.ubuntu(
+                        color: const Color.fromARGB(222, 255, 255, 255)),
+                  ),
+                ),
+              ),
+              OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(
+                    color: Color.fromARGB(222, 255, 255, 255),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'No',
+                  style: GoogleFonts.ubuntu(
+                      color: const Color.fromARGB(222, 255, 255, 255)),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
 

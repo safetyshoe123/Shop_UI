@@ -45,6 +45,9 @@ dependencies:
   footer: ^0.0.4
   dropdown_button2: ^2.3.9
   flutter_secure_storage: ^9.0.0
+  hexcolor: ^3.0.1
+  percent_indicator: ^4.2.3
+  fl_chart: ^0.66.1
 
 dev_dependencies:
   flutter_test:

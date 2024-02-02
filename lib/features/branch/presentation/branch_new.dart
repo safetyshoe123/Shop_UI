@@ -1,13 +1,14 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/core/enums/enum.dart';
 import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchdash.dart';
-import 'package:shop_ui/features/branch/presentation/branchinfo.dart';
+import 'package:shop_ui/features/branch/presentation/dashboard.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class BranchPage extends StatefulWidget {
@@ -59,15 +60,15 @@ class _SidebarXExampleAppState extends State<BranchPage> {
               //   padding: EdgeInsets.only(left: screenSize.width/1.7),
               // child:
               FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Padding(
-                            padding: const EdgeInsets.only(left: 140),
-                            child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  DropdownButtonHideUnderline(
+            fit: BoxFit.fitWidth,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 600),
+                  child: DropdownButtonHideUnderline(
                     child: SizedBox(
-                      width: 500,
+                      width: 300,
                       child: DropdownButton2<dynamic>(
                         isExpanded: true,
                         hint: Row(
@@ -77,11 +78,9 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                             //   size: 16,
                             //   color: white,
                             // ),
-                            const SizedBox(
-                              width: 4,
-                            ),
                             Expanded(
-                              child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 129),
                                 child: Text(
                                   _selectedBranch,
                                   style: const TextStyle(
@@ -96,19 +95,21 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                           ],
                         ),
                         items: _items
-                            .map((item) => DropdownMenuItem<dynamic>(
-                                  alignment: AlignmentDirectional.center,
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: fontsize,
-                                      fontWeight: FontWeight.bold,
-                                      color: canvasColor,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
+                            .map(
+                              (item) => DropdownMenuItem<dynamic>(
+                                alignment: AlignmentDirectional.center,
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: const TextStyle(
+                                    fontSize: fontsize,
+                                    fontWeight: FontWeight.bold,
+                                    color: canvasColor,
                                   ),
-                                ))
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            )
                             .toList(),
                         value: selectedValue,
                         onChanged: (value) {
@@ -116,12 +117,14 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                             selectedValue = value;
                           });
                         },
-                        buttonStyleData: ButtonStyleData(
-                          height: 45,
-                          width: 160,
-                          padding: const EdgeInsets.only(left: 14, right: 14),
+                        buttonStyleData: const ButtonStyleData(
+                          height: 35,
+                          width: 120,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(14),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(14),
+                              bottomLeft: Radius.circular(14),
+                            ),
                             // border: Border.all(
                             //   color: accentCanvasColor,
                             // ),
@@ -130,18 +133,11 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                           elevation: 2,
                         ),
                         iconStyleData: const IconStyleData(
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            size: 30,
-                            color: canvasColor,
-                          ),
-                          iconSize: 14,
-                          iconEnabledColor: white,
-                          iconDisabledColor: Colors.grey,
+                          icon: SizedBox.shrink(),
                         ),
                         dropdownStyleData: DropdownStyleData(
-                          maxHeight: screenSize.height / 3,
-                          width: 500,
+                          maxHeight: screenSize.height / 5,
+                          width: 360,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
                             color: const Color.fromARGB(255, 229, 231, 231),
@@ -156,65 +152,61 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                           ),
                         ),
                         menuItemStyleData: const MenuItemStyleData(
-                          height: 40,
-                          padding: EdgeInsets.only(left: 14, right: 14),
+                          height: 20,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  SizedBox(
-                    width: 100,
-                    height: 45,
-                    child: FloatingActionButton(
-                      backgroundColor: white,
-                      // foregroundColor: canvasColor,
-                      splashColor: accentCanvasColor,
-                      onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => MultiBlocProvider(
-                        //       providers: [
-                        //         BlocProvider<AuthBloc>(
-                        //           create: (context) => diContainer.authBloc,
-                        //         ),
-                        //         BlocProvider<BranchBloc>(
-                        //           create: (context) => diContainer.branchBloc,
-                        //         ),
-                        //       ],
-                        //       child: BranchPage(
-                        //         selectedBranch: selectedValue!,
-                        //         restrictionList: restrictionList,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // );
-                      },
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(5),
-                            child: Text(
-                              'Go',
-                              style: TextStyle(fontSize: fontsize),
-                            ),
-                          ),
-                          Icon(
-                            Icons.search,
-                            color: accentCanvasColor,
-                          ),
-                        ],
+                ),
+                SizedBox(
+                  width: 60,
+                  height: 35,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(14),
+                          bottomRight: Radius.circular(14),
+                        ),
                       ),
+                      backgroundColor: white,
                     ),
-                  )
-                ],
-                            ),
-                          ),
-              ),
+                    onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => MultiBlocProvider(
+                      //       providers: [
+                      //         BlocProvider<AuthBloc>(
+                      //           create: (context) => diContainer.authBloc,
+                      //         ),
+                      //         BlocProvider<BranchBloc>(
+                      //           create: (context) => diContainer.branchBloc,
+                      //         ),
+                      //       ],
+                      //       child: BranchPage(
+                      //         selectedBranch: selectedValue!,
+                      //         restrictionList: restrictionList,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // );
+                    },
+                    child: const Icon(
+                      Icons.search,
+                      color: accentCanvasColor,
+                      shadows: [
+                        Shadow(
+                          color: Color.fromARGB(111, 27, 94, 31),
+                          offset: Offset(0, 2),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
           // ),
           automaticallyImplyLeading: false,
           leading: IconButton(
@@ -225,35 +217,19 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                 Icons.arrow_back_ios_new_rounded,
                 color: white,
               )),
-
-          // bottom: TabBar(tabs: [Tab(
-          //   child: _dropDown(BuildContext),
-          // )]),
-          // leading: IconButton(
-          //   onPressed: () {
-          //     // if (!Platform.isAndroid && !Platform.isIOS) {
-          //     //   _controller.setExtended(true);
-          //     // }
-          //     // _key.currentState?.openDrawer();
-          //   },
-          //   icon: const Icon(
-          //     Icons.menu,
-          //     color: white,
-          //   ),
-          // ),
           actions: [
-            const Tooltip(
-                message: 'Manager',
-                child: Icon(
-                  Icons.person,
-                  color: white,
-                )),
+            // const Tooltip(
+            //     message: 'Manager',
+            //     child: Icon(
+            //       Icons.person,
+            //       color: white,
+            //     )),
             const SizedBox(
               width: 10,
             ),
             IconButton(
                 onPressed: () {
-                  _logout(context);
+                  _logoutDialog(context);
                 },
                 icon: const Icon(
                   Icons.power_settings_new_rounded,
@@ -337,36 +313,45 @@ class _SidebarXExampleAppState extends State<BranchPage> {
               },
               items: const [
                 SidebarXItem(
-                    iconWidget: Tooltip(
-                      message: 'Home',
-                      child: Icon(
-                        Icons.home, 
-                        color: white,),
+                  iconWidget: Tooltip(
+                    message: 'Home',
+                    child: Icon(
+                      Icons.home,
+                      color: white,
                     ),
-                    label: 'Home',
                   ),
+                  label: 'Home',
+                ),
                 SidebarXItem(
-                    iconWidget: Tooltip(
-                      message: 'Register Employee',
-                      child: Icon(
-                        Icons.add_circle, 
-                        color: white,),
+                  iconWidget: Tooltip(
+                    message: 'Register Employee',
+                    child: Icon(
+                      Icons.add_circle,
+                      color: white,
                     ),
-                    label: 'Register Employee',
                   ),
+                  label: 'Register Employee',
+                ),
                 SidebarXItem(
-                    iconWidget: Tooltip(
-                      message: 'Info',
-                      child: Icon(
-                        Icons.info, 
-                        color: white,),
+                  iconWidget: Tooltip(
+                    message: 'Info',
+                    child: Icon(
+                      Icons.info,
+                      color: white,
                     ),
-                    label: 'Info',
                   ),
-                // SidebarXItem(
-                //   icon: Icons.info,
-                //   label: 'Info',
-                // ),
+                  label: 'Info',
+                ),
+                SidebarXItem(
+                  iconWidget: Tooltip(
+                    message: 'Profile',
+                    child: Icon(
+                      Icons.person,
+                      color: white,
+                    ),
+                  ),
+                  label: 'Profile',
+                ),
               ],
               // footerItems: [
               //   SidebarXItem(
@@ -405,6 +390,7 @@ class _SidebarXExampleAppState extends State<BranchPage> {
         //   ],
         // ),
         bottomNavigationBar: const BottomAppBar(
+          height: 50,
           color: canvasColor,
           surfaceTintColor: canvasColor,
           child: Row(
@@ -429,6 +415,61 @@ class _SidebarXExampleAppState extends State<BranchPage> {
 
   void _logout(BuildContext context) {
     authBloc.add(LogoutEvent());
+  }
+
+  Future<dynamic> _logoutDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: const Color.fromARGB(255, 68, 78, 70),
+          title: Text(
+            'Are you sure you want to logout?',
+            style: GoogleFonts.roboto(
+                fontSize: 18, color: const Color.fromARGB(222, 255, 255, 255)),
+          ),
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red.shade300,
+                  ),
+                  onPressed: () {
+                    // _logout(context);
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Logout',
+                    style: GoogleFonts.ubuntu(
+                      color: const Color.fromARGB(222, 255, 255, 255),
+                    ),
+                  ),
+                ),
+              ),
+              OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(
+                    color: Color.fromARGB(222, 255, 255, 255),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'No',
+                  style: GoogleFonts.ubuntu(
+                    color: const Color.fromARGB(222, 255, 255, 255),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -462,9 +503,10 @@ class _ScreensExampleState extends State<_ScreensExample> {
         switch (widget.controller.selectedIndex) {
           case 0:
             // return const BranchDash();
-            return InfoBranchPage(
-              branchId: _branchId,
-            );
+            return const DashBoard();
+          // InfoBranchPage(
+          //   branchId: _branchId,
+          // );
 
           case 1:
           // return const AddEmpPage();

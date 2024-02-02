@@ -66,11 +66,11 @@ class _ShopDropState extends State<ShopDrop> {
               ),
               //
               Padding(
-                padding: EdgeInsets.symmetric(vertical: screenSize.height / 6),
+                padding: EdgeInsets.symmetric(vertical: screenSize.height / 8),
                 child: Center(
                   child: DropdownButtonHideUnderline(
                     child: SizedBox(
-                      width: 500,
+                      width: 400,
                       child: DropdownButton2<dynamic>(
                         isExpanded: true,
                         hint: const Row(
@@ -143,8 +143,8 @@ class _ShopDropState extends State<ShopDrop> {
                           iconDisabledColor: Colors.grey,
                         ),
                         dropdownStyleData: DropdownStyleData(
-                          maxHeight: screenSize.height / 3,
-                          width: 500,
+                          maxHeight: screenSize.height / 4,
+                          width: 400,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
                             color: const Color.fromARGB(255, 229, 231, 231),
@@ -167,7 +167,7 @@ class _ShopDropState extends State<ShopDrop> {
                 ),
               ),
               SizedBox(
-                width: 100,
+                width: 70,
                 child: FloatingActionButton(
                   backgroundColor: Colors.green.shade800,
                   foregroundColor: white,
@@ -198,17 +198,13 @@ class _ShopDropState extends State<ShopDrop> {
                           'Must select a branch', context);
                     }
                   },
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Go',
-                          style: TextStyle(fontSize: fontsize),
-                        ),
+                  child: Icon(
+                    Icons.search,
+                    shadows: [
+                      Shadow(
+                        color: Colors.green.shade900,
+                        offset: const Offset(1, 4),
                       ),
-                      Icon(Icons.search),
                     ],
                   ),
                 ),
