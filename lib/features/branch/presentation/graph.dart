@@ -1,4 +1,3 @@
-// import 'package:fl_chart_app/presentation/resources/app_resources.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_ui/core/utils/colors.dart';
@@ -59,21 +58,47 @@ class _LineChartSample2State extends State<LineChartSample2> {
     );
   }
 
-  Widget bottomTitleWidgets(double value, TitleMeta meta) {
+  Widget bottomTitleWidgets(double value, TitleMeta? meta) {
     const style = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 16,
+      fontSize: 10,
     );
     Widget text;
     switch (value.toInt()) {
       case 2:
         text = const Text('JAN', style: style);
         break;
-      case 5:
+      case 4:
         text = const Text('FEB', style: style);
         break;
-      case 8:
+      case 6:
         text = const Text('MAR', style: style);
+        break;
+      case 8:
+        text = const Text('APR', style: style);
+        break;
+      case 10:
+        text = const Text('MAY', style: style);
+        break;
+      case 12:
+        text = const Text('JUN', style: style);
+        break;
+      case 14:
+        text = const Text('JUL', style: style);
+        break;
+      case 16:
+        text = const Text('AUG', style: style);
+        break;
+      case 18:
+        text = const Text('SEP', style: style);
+        break;
+      case 20:
+        text = const Text('OCT', style: style);
+        break;
+      case 22:
+        text = const Text('NOV', style: style);
+        break;
+      case 24:
+        text = const Text('DEC', style: style);
         break;
       default:
         text = const Text('', style: style);
@@ -81,7 +106,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
     }
 
     return SideTitleWidget(
-      axisSide: meta.axisSide,
+      axisSide: meta!.axisSide,
       child: text,
     );
   }
@@ -89,18 +114,24 @@ class _LineChartSample2State extends State<LineChartSample2> {
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 15,
+      fontSize: 12,
     );
     String text;
     switch (value.toInt()) {
       case 1:
-        text = '10K';
+        text = '50k';
         break;
       case 3:
-        text = '30k';
+        text = '150k';
         break;
       case 5:
-        text = '50k';
+        text = '250k';
+        break;
+      case 7:
+        text = '350k';
+        break;
+      case 9:
+        text = '450k';
         break;
       default:
         return Container();
@@ -111,7 +142,26 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   LineChartData mainData() {
     return LineChartData(
-      backgroundColor: Colors.black87,
+      backgroundColor: Colors.transparent,
+      lineTouchData: LineTouchData(
+        enabled: true,
+        touchTooltipData: LineTouchTooltipData(
+          getTooltipItems: (value) {
+            return value
+                .map(
+                  (e) => LineTooltipItem(
+                    e.y > 4
+                        ? 'High'
+                        : e.y == 4
+                            ? 'Average'
+                            : 'Low',
+                    const TextStyle(color: Colors.white70),
+                  ),
+                )
+                .toList();
+          },
+        ),
+      ),
       gridData: FlGridData(
         show: true,
         drawVerticalLine: true,
@@ -119,13 +169,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
           return const FlLine(
-            color: AppColors.mainGridLineColor,
+            color: AppColors.borderColor,
             strokeWidth: 1,
           );
         },
         getDrawingVerticalLine: (value) {
           return const FlLine(
-            color: AppColors.mainGridLineColor,
+            color: AppColors.borderColor,
             strokeWidth: 1,
           );
         },
@@ -156,32 +206,40 @@ class _LineChartSample2State extends State<LineChartSample2> {
         ),
       ),
       borderData: FlBorderData(
-        show: true,
-        border: Border.all(color: const Color(0xff37434d)),
+        show: false,
+        // border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
-      maxX: 11,
+      // numbers of how many vertical lines in a graph
+      maxX: 24,
       minY: 0,
-      maxY: 6,
+      // numbers of how many horizontal lines in a graph
+      maxY: 10,
       lineBarsData: [
         LineChartBarData(
           spots: const [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
+            FlSpot(0, 2),
+            FlSpot(2, 3),
+            FlSpot(4, 5),
+            FlSpot(6, 3),
             FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
+            FlSpot(10, 8),
+            FlSpot(12, 6),
+            FlSpot(14, 4),
+            FlSpot(16, 2),
+            FlSpot(18, 7),
+            FlSpot(20, 5),
+            FlSpot(22, 6),
+            FlSpot(24, 4),
           ],
           isCurved: true,
           gradient: LinearGradient(
             colors: gradientColors,
           ),
-          barWidth: 5,
+          barWidth: 1,
           isStrokeCapRound: true,
           dotData: const FlDotData(
-            show: false,
+            show: true,
           ),
           belowBarData: BarAreaData(
             show: true,
@@ -206,13 +264,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
         horizontalInterval: 1,
         getDrawingVerticalLine: (value) {
           return const FlLine(
-            color: Color(0xff37434d),
+            color: AppColors.borderColor,
             strokeWidth: 1,
           );
         },
         getDrawingHorizontalLine: (value) {
           return const FlLine(
-            color: Color(0xff37434d),
+            color: AppColors.borderColor,
             strokeWidth: 1,
           );
         },
@@ -243,23 +301,29 @@ class _LineChartSample2State extends State<LineChartSample2> {
         ),
       ),
       borderData: FlBorderData(
-        show: true,
+        show: false,
         border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
-      maxX: 11,
+      maxX: 24,
       minY: 0,
-      maxY: 6,
+      maxY: 10,
       lineBarsData: [
         LineChartBarData(
           spots: const [
-            FlSpot(0, 3.44),
-            FlSpot(2.6, 3.44),
-            FlSpot(4.9, 3.44),
-            FlSpot(6.8, 3.44),
-            FlSpot(8, 3.44),
-            FlSpot(9.5, 3.44),
-            FlSpot(11, 3.44),
+            FlSpot(0, 4),
+            FlSpot(4, 4),
+            FlSpot(6, 4),
+            FlSpot(8, 4),
+            FlSpot(2, 4),
+            FlSpot(10, 4),
+            FlSpot(12, 4),
+            FlSpot(14, 4),
+            FlSpot(16, 4),
+            FlSpot(18, 4),
+            FlSpot(20, 4),
+            FlSpot(22, 4),
+            FlSpot(24, 4),
           ],
           isCurved: true,
           gradient: LinearGradient(
