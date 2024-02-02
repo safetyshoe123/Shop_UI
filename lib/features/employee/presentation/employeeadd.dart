@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shop_ui/features/auth/presentation/admin_page.dart';
 // import 'package:toggle_icon/toggle_icon.dart';
 // import 'package:shop_ui/core/utils/guard.dart';
 // import 'package:shop_ui/features/employee/presentation/employee.dart';
@@ -604,7 +605,7 @@ class _AddEmpPageState extends State<AddEmpPage> {
                           MaterialStateProperty.resolveWith<Color?>(
                         (Set<MaterialState> states) {
                           if (states.contains(MaterialState.hovered)) {
-                            return Colors.red; //<-- SEE HERE
+                            return Colors.green; //<-- SEE HERE
                           }
                           if (states.contains(MaterialState.pressed)) {
                             return Colors.brown; //<-- SEE HERE
@@ -613,19 +614,21 @@ class _AddEmpPageState extends State<AddEmpPage> {
                         },
                       ),
                     ),
-                    child: SizedBox(
+                    child: const SizedBox(
                       width: 200,
                       height: 50,
                       child: Center(
-                        child: Text(
-                          "Add",
-                          style: GoogleFonts.ptSerif(
-                            textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+                        child: Icon(Icons.person_add_alt_1,
+                        color: white,)
+                        // Text(
+                        //   "Add",
+                        //   style: GoogleFonts.ptSerif(
+                        //     textStyle: const TextStyle(
+                        //       color: Colors.white,
+                        //       fontWeight: FontWeight.bold,
+                        //     ),
+                        //   ),
+                        // ),
                       ),
                     ),
                     onPressed: () {
@@ -643,19 +646,22 @@ class _AddEmpPageState extends State<AddEmpPage> {
                         backgroundColor: Colors.white70,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
-                    child: SizedBox(
+                    child: const SizedBox(
                       width: 200,
                       height: 50,
                       child: Center(
-                        child: Text(
-                          "Cancel",
-                          style: GoogleFonts.ptSerif(
-                            textStyle: const TextStyle(
-                              color: Color.fromRGBO(40, 120, 19, 1),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+                        child: 
+                        Icon(Icons.delete_forever,
+                        color: canvasColor,)
+                        // Text(
+                        //   "Cancel",
+                        //   style: GoogleFonts.ptSerif(
+                        //     textStyle: const TextStyle(
+                        //       color: Color.fromRGBO(40, 120, 19, 1),
+                        //       fontWeight: FontWeight.bold,
+                        //     ),
+                        //   ),
+                        // ),
                       ),
                     ),
                     onPressed: () {

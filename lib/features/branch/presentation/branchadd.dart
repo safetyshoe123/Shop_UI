@@ -6,6 +6,7 @@ import 'package:shop_ui/core/enums/enum.dart';
 import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/core/utils/guard.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
+import 'package:shop_ui/features/auth/presentation/admin_page.dart';
 import 'package:shop_ui/features/auth/presentation/login.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
 import 'package:shop_ui/features/branch/domain/models/addbranch.model.dart';
@@ -384,7 +385,7 @@ class _AddBranchPageState extends State<AddBranchPage> {
                                   MaterialStateProperty.resolveWith<Color?>(
                                 (Set<MaterialState> states) {
                                   if (states.contains(MaterialState.hovered)) {
-                                    return Colors.red; //<-- SEE HERE
+                                    return Colors.green; //<-- SEE HERE
                                   }
                                   if (states.contains(MaterialState.pressed)) {
                                     return Colors.brown; //<-- SEE HERE
@@ -396,16 +397,18 @@ class _AddBranchPageState extends State<AddBranchPage> {
                             child: SizedBox(
                               width: screenSize.width / 7,
                               height: 50,
-                              child: Center(
-                                child: Text(
-                                  "Add",
-                                  style: GoogleFonts.ptSerif(
-                                    textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
+                              child: const Center(
+                                child: Icon(Icons.add_business_rounded,
+                                color: white,)
+                                // Text(
+                                //   "Add",
+                                //   style: GoogleFonts.ptSerif(
+                                //     textStyle: const TextStyle(
+                                //       color: Colors.white,
+                                //       fontWeight: FontWeight.bold,
+                                //     ),
+                                //   ),
+                                // ),
                               ),
                             ),
                             onPressed: () {
@@ -420,16 +423,18 @@ class _AddBranchPageState extends State<AddBranchPage> {
                             child: SizedBox(
                               width: screenSize.width / 7,
                               height: 50,
-                              child: Center(
-                                child: Text(
-                                  "Cancel",
-                                  style: GoogleFonts.ptSerif(
-                                    textStyle: const TextStyle(
-                                      color: Color.fromRGBO(40, 120, 19, 1),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
+                              child: const Center(
+                                child: Icon(Icons.delete_forever,
+                                color: canvasColor,)
+                                // Text(
+                                //   "Cancel",
+                                //   style: GoogleFonts.ptSerif(
+                                //     textStyle: const TextStyle(
+                                //       color: Color.fromRGBO(40, 120, 19, 1),
+                                //       fontWeight: FontWeight.bold,
+                                //     ),
+                                //   ),
+                                // ),
                               ),
                             ),
                             onPressed: () {
