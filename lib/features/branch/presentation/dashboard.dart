@@ -16,7 +16,7 @@ class _DashBoardState extends State<DashBoard> {
     final Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
             height: screenSize.height / 4,
@@ -366,7 +366,7 @@ class _DashBoardState extends State<DashBoard> {
             child: FittedBox(
               fit: BoxFit.contain,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
