@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/core/enums/enum.dart';
 import 'package:shop_ui/core/global_widgets/snackbar.dart';
@@ -102,7 +103,7 @@ class _ShopDashState extends State<ShopDash> {
                           return FittedBox(
                             fit: BoxFit.scaleDown,
                             child: SizedBox(
-                              height: 120,
+                              height: 250,
                               width: 1400,
                               child: Container(
                                 // height: 1500,
@@ -147,10 +148,10 @@ class _ShopDashState extends State<ShopDash> {
                                         leading: FittedBox(
                                           fit: BoxFit.scaleDown,
                                           child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 100),
+                                            padding:
+                                                const EdgeInsets.only(left: 50),
                                             child: Text(
-                                              branchList.branchId,
+                                              branchList.branchName,
                                               style: GoogleFonts.ptSerif(
                                                 textStyle: const TextStyle(
                                                     color: Colors.brown,
@@ -166,27 +167,110 @@ class _ShopDashState extends State<ShopDash> {
                                         ),
                                         title: FittedBox(
                                           fit: BoxFit.scaleDown,
-                                          child: Text(
-                                            branchList.branchName,
-                                            style: GoogleFonts.ptSerif(
-                                              textStyle: const TextStyle(
-                                                  color: Colors.brown,
-                                                  fontSize: 34,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            textAlign: TextAlign.center,
-                                            maxLines: 3,
-                                            softWrap: true,
-                                            // overflow: TextOverflow.clip,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: CircularPercentIndicator(
+                                                  backgroundColor:
+                                                      const Color.fromARGB(
+                                                          32, 255, 153, 0),
+                                                  lineWidth: 10,
+                                                  footer: Text(
+                                                    'Pending',
+                                                    style: GoogleFonts.ubuntu(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 15,
+                                                        color: Colors.brown),
+                                                  ),
+                                                  radius: 60,
+                                                  percent: 0.8,
+                                                  center: Text(
+                                                    '80%',
+                                                    style: GoogleFonts.ubuntu(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 15,
+                                                        color: Colors.brown),
+                                                  ),
+                                                  progressColor: Colors.orange,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: CircularPercentIndicator(
+                                                  backgroundColor:
+                                                      const Color.fromARGB(
+                                                          32, 221, 0, 255),
+                                                  lineWidth: 10,
+                                                  footer: Text(
+                                                    'On Delivery',
+                                                    style: GoogleFonts.ubuntu(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 15,
+                                                        color: Colors.brown),
+                                                  ),
+                                                  radius: 60,
+                                                  percent: 0.4,
+                                                  center: Text(
+                                                    '40%',
+                                                    style: GoogleFonts.ubuntu(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 15,
+                                                        color: Colors.brown),
+                                                  ),
+                                                  progressColor:
+                                                      const Color.fromARGB(
+                                                          255, 221, 0, 255),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: CircularPercentIndicator(
+                                                  backgroundColor:
+                                                      const Color.fromARGB(
+                                                          32, 0, 150, 135),
+                                                  lineWidth: 10,
+                                                  footer: Text(
+                                                    'Delivered',
+                                                    style: GoogleFonts.ubuntu(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 15,
+                                                        color: Colors.brown),
+                                                  ),
+                                                  radius: 60,
+                                                  percent: 0.2,
+                                                  center: Text(
+                                                    '20%',
+                                                    style: GoogleFonts.ubuntu(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 15,
+                                                        color: Colors.brown),
+                                                  ),
+                                                  progressColor: Colors.teal,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         trailing: FittedBox(
                                           fit: BoxFit.scaleDown,
                                           child: Padding(
                                             padding: const EdgeInsets.only(
-                                                right: 100),
+                                                right: 50),
                                             child: Text(
-                                              branchList.dateOpened,
+                                              'Open',
                                               style: GoogleFonts.ptSerif(
                                                 textStyle: const TextStyle(
                                                     color: Colors.brown,
@@ -194,18 +278,17 @@ class _ShopDashState extends State<ShopDash> {
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
-                                              maxLines: 2,
-
-                                              softWrap: true,
-
-                                              // overflow: TextOverflow.clip,
+                                              textAlign: TextAlign.center,
+                                              maxLines: 1,
+                                              softWrap: false,
+                                              overflow: TextOverflow.clip,
                                             ),
                                           ),
                                         ),
                                         subtitle: FittedBox(
                                           fit: BoxFit.scaleDown,
                                           child: Text(
-                                            branchList.address1,
+                                            'Sales: 259',
                                             style: GoogleFonts.ptSerif(
                                               textStyle: const TextStyle(
                                                   color: Colors.brown,
