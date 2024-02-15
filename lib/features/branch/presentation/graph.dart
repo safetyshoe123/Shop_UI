@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_ui/core/utils/colors.dart';
 
 class LineChartSample2 extends StatefulWidget {
@@ -15,7 +16,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
     AppColors.contentColorBlue,
   ];
 
-  bool showAvg = false;
+  bool showDaily = false;
+  bool showWeekly = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,27 +33,72 @@ class _LineChartSample2State extends State<LineChartSample2> {
               // bottom: 12,
             ),
             child: LineChart(
-              showAvg ? avgData() : mainData(),
+              showDaily
+                  ? dailyData()
+                  : showWeekly
+                      ? weeklyData()
+                      : mainData(),
             ),
           ),
         ),
         SizedBox(
-          width: 60,
+          width: 200,
           height: 34,
-          child: TextButton(
-            onPressed: () {
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
-            child: Text(
-              'avg',
-              style: TextStyle(
-                fontSize: 12,
-                color:
-                    showAvg ? Colors.black87.withOpacity(0.5) : Colors.black87,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    showDaily = !showDaily;
+                    showWeekly = false;
+                  });
+                },
+                child: Text(
+                  'Daily',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: showDaily
+                        ? Colors.black87.withOpacity(0.5)
+                        : Colors.black87,
+                  ),
+                ),
               ),
-            ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    showWeekly = !showWeekly;
+                    showDaily = false;
+                  });
+                },
+                child: Text(
+                  'Weekly',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: showDaily
+                        ? Colors.black87.withOpacity(0.5)
+                        : Colors.black87,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    showDaily = false;
+                    showWeekly = false;
+                  });
+                },
+                child: Text(
+                  'Monthly',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: showDaily
+                        ? Colors.black87.withOpacity(0.5)
+                        : Colors.black87,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ],
@@ -64,40 +111,40 @@ class _LineChartSample2State extends State<LineChartSample2> {
     );
     Widget text;
     switch (value.toInt()) {
-      case 2:
+      case 0:
         text = const Text('JAN', style: style);
         break;
-      case 4:
+      case 2:
         text = const Text('FEB', style: style);
         break;
-      case 6:
+      case 4:
         text = const Text('MAR', style: style);
         break;
-      case 8:
+      case 6:
         text = const Text('APR', style: style);
         break;
-      case 10:
+      case 8:
         text = const Text('MAY', style: style);
         break;
-      case 12:
+      case 10:
         text = const Text('JUN', style: style);
         break;
-      case 14:
+      case 12:
         text = const Text('JUL', style: style);
         break;
-      case 16:
+      case 14:
         text = const Text('AUG', style: style);
         break;
-      case 18:
+      case 16:
         text = const Text('SEP', style: style);
         break;
-      case 20:
+      case 18:
         text = const Text('OCT', style: style);
         break;
-      case 22:
+      case 20:
         text = const Text('NOV', style: style);
         break;
-      case 24:
+      case 22:
         text = const Text('DEC', style: style);
         break;
       default:
@@ -111,10 +158,76 @@ class _LineChartSample2State extends State<LineChartSample2> {
     );
   }
 
+  Widget bottomDailyTitleWidgets(double value, TitleMeta? meta) {
+    const style = TextStyle(
+      fontSize: 10,
+    );
+    Widget text;
+    switch (value.toInt()) {
+      case 0:
+        text = const Text('Sunday', style: style);
+        break;
+      case 2:
+        text = const Text('Monday', style: style);
+        break;
+      case 4:
+        text = const Text('Tuesday', style: style);
+        break;
+      case 6:
+        text = const Text('Wednesday', style: style);
+        break;
+      case 8:
+        text = const Text('Thursday', style: style);
+        break;
+      case 10:
+        text = const Text('Fridayday', style: style);
+        break;
+      case 12:
+        text = const Text('Saturday', style: style);
+        break;
+      default:
+        text = const Text('', style: style);
+    }
+
+    return SideTitleWidget(
+      axisSide: meta!.axisSide,
+      child: text,
+    );
+  }
+
+  Widget bottomWeeklyTitleWidgets(double value, TitleMeta? meta) {
+    const style = TextStyle(
+      fontSize: 10,
+    );
+    Widget text;
+    switch (value.toInt()) {
+      case 0:
+        text = const Text('Week 1', style: style);
+        break;
+      case 2:
+        text = const Text('Week 2', style: style);
+        break;
+      case 4:
+        text = const Text('Week 3', style: style);
+        break;
+      case 6:
+        text = const Text('Week 4', style: style);
+        break;
+      default:
+        text = const Text('', style: style);
+    }
+
+    return SideTitleWidget(
+      axisSide: meta!.axisSide,
+      child: text,
+    );
+  }
+
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 12,
+      color: Color.fromARGB(146, 0, 0, 0),
     );
     String text;
     switch (value.toInt()) {
@@ -142,22 +255,23 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   LineChartData mainData() {
     return LineChartData(
-      backgroundColor: Colors.transparent,
       lineTouchData: LineTouchData(
         enabled: true,
         touchTooltipData: LineTouchTooltipData(
+          // tooltipBgColor: Colors.white,
           getTooltipItems: (value) {
             return value
-                .map(
-                  (e) => LineTooltipItem(
-                    e.y > 4
-                        ? 'High'
-                        : e.y == 4
-                            ? 'Average'
-                            : 'Low',
-                    const TextStyle(color: Colors.white70),
-                  ),
-                )
+                .map((e) => LineTooltipItem(
+                      'Revenue: ${e.y}\n Transactions: ${e.x}',
+                      GoogleFonts.ubuntu(
+                        color: e.y > 4
+                            ? Colors.greenAccent.shade400
+                            : e.y == 4
+                                ? Colors.yellowAccent
+                                : Colors.redAccent,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ))
                 .toList();
           },
         ),
@@ -211,7 +325,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
       ),
       minX: 0,
       // numbers of how many vertical lines in a graph
-      maxX: 24,
+      maxX: 22,
       minY: 0,
       // numbers of how many horizontal lines in a graph
       maxY: 10,
@@ -230,7 +344,6 @@ class _LineChartSample2State extends State<LineChartSample2> {
             FlSpot(18, 7),
             FlSpot(20, 5),
             FlSpot(22, 6),
-            FlSpot(24, 4),
           ],
           isCurved: true,
           gradient: LinearGradient(
@@ -254,9 +367,29 @@ class _LineChartSample2State extends State<LineChartSample2> {
     );
   }
 
-  LineChartData avgData() {
+  LineChartData dailyData() {
     return LineChartData(
-      lineTouchData: const LineTouchData(enabled: false),
+      lineTouchData: LineTouchData(
+        enabled: true,
+        touchTooltipData: LineTouchTooltipData(
+          // tooltipBgColor: Colors.white,
+          getTooltipItems: (value) {
+            return value
+                .map((e) => LineTooltipItem(
+                      'Revenue: ${e.y}\n Transactions: ${e.x}',
+                      GoogleFonts.ubuntu(
+                        color: e.y > 4
+                            ? Colors.greenAccent.shade400
+                            : e.y == 4
+                                ? Colors.yellowAccent
+                                : Colors.redAccent,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ))
+                .toList();
+          },
+        ),
+      ),
       gridData: FlGridData(
         show: true,
         drawHorizontalLine: true,
@@ -281,7 +414,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           sideTitles: SideTitles(
             showTitles: true,
             reservedSize: 30,
-            getTitlesWidget: bottomTitleWidgets,
+            getTitlesWidget: bottomDailyTitleWidgets,
             interval: 1,
           ),
         ),
@@ -302,54 +435,140 @@ class _LineChartSample2State extends State<LineChartSample2> {
       ),
       borderData: FlBorderData(
         show: false,
-        border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
-      maxX: 24,
+      maxX: 12,
       minY: 0,
       maxY: 10,
       lineBarsData: [
         LineChartBarData(
           spots: const [
             FlSpot(0, 4),
-            FlSpot(4, 4),
-            FlSpot(6, 4),
+            FlSpot(2, 2),
+            FlSpot(4, 7),
+            FlSpot(6, 7),
             FlSpot(8, 4),
-            FlSpot(2, 4),
-            FlSpot(10, 4),
-            FlSpot(12, 4),
-            FlSpot(14, 4),
-            FlSpot(16, 4),
-            FlSpot(18, 4),
-            FlSpot(20, 4),
-            FlSpot(22, 4),
-            FlSpot(24, 4),
+            FlSpot(10, 5),
+            FlSpot(12, 6),
           ],
           isCurved: true,
           gradient: LinearGradient(
-            colors: [
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                  .lerp(0.2)!,
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                  .lerp(0.2)!,
-            ],
+            colors: gradientColors,
           ),
-          barWidth: 5,
+          barWidth: 1,
           isStrokeCapRound: true,
           dotData: const FlDotData(
-            show: false,
+            show: true,
           ),
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
-              colors: [
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-              ],
+              colors: gradientColors
+                  .map((color) => color.withOpacity(0.3))
+                  .toList(),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  LineChartData weeklyData() {
+    return LineChartData(
+      lineTouchData: LineTouchData(
+        enabled: true,
+        touchTooltipData: LineTouchTooltipData(
+          // tooltipBgColor: Colors.white,
+          getTooltipItems: (value) {
+            return value
+                .map((e) => LineTooltipItem(
+                      'Revenue: ${e.y}\n Transactions: ${e.x}',
+                      GoogleFonts.ubuntu(
+                        color: e.y > 4
+                            ? Colors.greenAccent.shade400
+                            : e.y == 4
+                                ? Colors.yellowAccent
+                                : Colors.redAccent,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ))
+                .toList();
+          },
+        ),
+      ),
+      gridData: FlGridData(
+        show: true,
+        drawHorizontalLine: true,
+        verticalInterval: 1,
+        horizontalInterval: 1,
+        getDrawingVerticalLine: (value) {
+          return const FlLine(
+            color: AppColors.borderColor,
+            strokeWidth: 1,
+          );
+        },
+        getDrawingHorizontalLine: (value) {
+          return const FlLine(
+            color: AppColors.borderColor,
+            strokeWidth: 1,
+          );
+        },
+      ),
+      titlesData: FlTitlesData(
+        show: true,
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            reservedSize: 30,
+            getTitlesWidget: bottomWeeklyTitleWidgets,
+            interval: 1,
+          ),
+        ),
+        leftTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            getTitlesWidget: leftTitleWidgets,
+            reservedSize: 42,
+            interval: 1,
+          ),
+        ),
+        topTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        rightTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+      ),
+      borderData: FlBorderData(
+        show: false,
+      ),
+      minX: 0,
+      maxX: 6,
+      minY: 0,
+      maxY: 10,
+      lineBarsData: [
+        LineChartBarData(
+          spots: const [
+            FlSpot(0, 4),
+            FlSpot(2, 2),
+            FlSpot(4, 7),
+            FlSpot(6, 7),
+          ],
+          isCurved: true,
+          gradient: LinearGradient(
+            colors: gradientColors,
+          ),
+          barWidth: 1,
+          isStrokeCapRound: true,
+          dotData: const FlDotData(
+            show: true,
+          ),
+          belowBarData: BarAreaData(
+            show: true,
+            gradient: LinearGradient(
+              colors: gradientColors
+                  .map((color) => color.withOpacity(0.3))
+                  .toList(),
             ),
           ),
         ),
