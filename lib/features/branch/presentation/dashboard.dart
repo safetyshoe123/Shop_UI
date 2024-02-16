@@ -650,7 +650,10 @@ class _DashBoardState extends State<DashBoard> {
                           )
                         ],
                       ),
-                      child: const LineChartSample2(),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        child: LineChartSample2(),
+                      ),
                     ),
                   ),
                 ],
