@@ -97,11 +97,11 @@ class _AddEmpPageState extends State<AddEmpPage> {
                             decoration: const BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Color.fromRGBO(
-                                            40, 120, 19, 1)))),
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
                             child: TextFormField(
                               style: const TextStyle(fontSize: 20),
-                
+
                               // validator: (String? val) {
                               //   return Guard.againstInvalidEmail(val, 'Email');
                               // },
@@ -110,13 +110,11 @@ class _AddEmpPageState extends State<AddEmpPage> {
                               // controller: _emailController,
                               controller: _empIdController,
                               decoration: InputDecoration(
-                                  prefixIcon:
-                                      const Icon(Icons.badge_rounded),
+                                  prefixIcon: const Icon(Icons.badge_rounded),
                                   border: InputBorder.none,
                                   hintText: "Employee ID",
                                   hintStyle: TextStyle(
-                                      color: Colors.grey[700],
-                                      fontSize: 17)),
+                                      color: Colors.grey[700], fontSize: 17)),
                               // validator: (String? val) {
                               //   return Guard.againstEmptyString(
                               //       val, 'Employee ID');
@@ -131,8 +129,8 @@ class _AddEmpPageState extends State<AddEmpPage> {
                             decoration: const BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Color.fromRGBO(
-                                            40, 120, 19, 1)))),
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
                             child: TextFormField(
                               style: const TextStyle(fontSize: 20),
                               // validator: (String? val) {
@@ -147,8 +145,7 @@ class _AddEmpPageState extends State<AddEmpPage> {
                                   border: InputBorder.none,
                                   hintText: "Last name",
                                   hintStyle: TextStyle(
-                                      color: Colors.grey[700],
-                                      fontSize: 17)),
+                                      color: Colors.grey[700], fontSize: 17)),
                               // validator: (String? val) {
                               //   return Guard.againstEmptyString(
                               //       val, 'Last Name');
@@ -163,8 +160,8 @@ class _AddEmpPageState extends State<AddEmpPage> {
                             decoration: const BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Color.fromRGBO(
-                                            40, 120, 19, 1)))),
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
                             child: TextFormField(
                               style: const TextStyle(fontSize: 20),
                               // validator: (String? val) {
@@ -179,8 +176,7 @@ class _AddEmpPageState extends State<AddEmpPage> {
                                   border: InputBorder.none,
                                   hintText: "First name",
                                   hintStyle: TextStyle(
-                                      color: Colors.grey[700],
-                                      fontSize: 17)),
+                                      color: Colors.grey[700], fontSize: 17)),
                               // validator: (String? val) {
                               //   return Guard.againstEmptyString(
                               //       val, 'First Name');
@@ -195,8 +191,8 @@ class _AddEmpPageState extends State<AddEmpPage> {
                             decoration: const BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Color.fromRGBO(
-                                            40, 120, 19, 1)))),
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
                             child: TextFormField(
                               style: const TextStyle(fontSize: 20),
                               // validator: (String? val) {
@@ -211,8 +207,7 @@ class _AddEmpPageState extends State<AddEmpPage> {
                                   border: InputBorder.none,
                                   hintText: "Middle name",
                                   hintStyle: TextStyle(
-                                      color: Colors.grey[700],
-                                      fontSize: 17)),
+                                      color: Colors.grey[700], fontSize: 17)),
                               // validator: (String? val) {
                               //   return Guard.againstEmptyString(
                               //       val, 'Middle Name');
@@ -227,8 +222,8 @@ class _AddEmpPageState extends State<AddEmpPage> {
                             decoration: const BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Color.fromRGBO(
-                                            40, 120, 19, 1)))),
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
                             child: TextFormField(
                               style: const TextStyle(fontSize: 20),
                               // enabled: false,
@@ -239,13 +234,12 @@ class _AddEmpPageState extends State<AddEmpPage> {
                                   AutovalidateMode.onUserInteraction,
                               controller: _statusController,
                               decoration: InputDecoration(
-                                  prefixIcon: const Icon(
-                                      Icons.check_circle_rounded),
+                                  prefixIcon:
+                                      const Icon(Icons.check_circle_rounded),
                                   border: InputBorder.none,
                                   hintText: "Status",
                                   hintStyle: TextStyle(
-                                      color: Colors.grey[700],
-                                      fontSize: 17),
+                                      color: Colors.grey[700], fontSize: 17),
                                   suffixIcon: IconButton(
                                       onPressed: () {
                                         setState(() {
@@ -257,17 +251,16 @@ class _AddEmpPageState extends State<AddEmpPage> {
                                             });
                                           } else {
                                             setState(() {
-                                              _statusController.text =
-                                                  'Active';
+                                              _statusController.text = 'Active';
                                             });
                                           }
                                         });
                                       },
                                       icon: toggle
                                           ? const Icon(Icons.check_box)
-                                          : const Icon(Icons
-                                              .check_box_outline_blank))
-                
+                                          : const Icon(
+                                              Icons.check_box_outline_blank))
+
                                   // ToggleIcon(
                                   //     trueIcon: const Icon(Icons.check_circle),
                                   //     falseIcon: const Icon(Icons
@@ -299,8 +292,8 @@ class _AddEmpPageState extends State<AddEmpPage> {
                             decoration: const BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Color.fromRGBO(
-                                            40, 120, 19, 1)))),
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
                             child: TextFormField(
                               style: const TextStyle(fontSize: 20),
                               // validator: (String? val) {
@@ -308,24 +301,23 @@ class _AddEmpPageState extends State<AddEmpPage> {
                               // },
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
-                
+
                               controller: _dateController,
                               decoration: InputDecoration(
-                                  prefixIcon: const Icon(
-                                      Icons.calendar_month_outlined),
+                                  prefixIcon:
+                                      const Icon(Icons.calendar_month_outlined),
                                   border: InputBorder.none,
                                   hintText: "Date hired",
                                   hintStyle: TextStyle(
-                                      color: Colors.grey[700],
-                                      fontSize: 17)),
+                                      color: Colors.grey[700], fontSize: 17)),
                               onTap: () async {
                                 final initialDate = DateTime.now();
                                 final newDate = await showDatePicker(
                                     context: context,
-                                    firstDate: DateTime(
-                                        DateTime.now().year - 10),
-                                    lastDate: DateTime(
-                                        DateTime.now().year + 10),
+                                    firstDate:
+                                        DateTime(DateTime.now().year - 10),
+                                    lastDate:
+                                        DateTime(DateTime.now().year + 10),
                                     initialDate: initialDate);
                                 if (newDate == null) {
                                   return;
@@ -359,8 +351,8 @@ class _AddEmpPageState extends State<AddEmpPage> {
                             decoration: const BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Color.fromRGBO(
-                                            40, 120, 19, 1)))),
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
                             child: TextFormField(
                               style: const TextStyle(fontSize: 20),
                               // validator: (String? val) {
@@ -371,13 +363,12 @@ class _AddEmpPageState extends State<AddEmpPage> {
                               // controller: _emailController,
                               controller: _salaryController,
                               decoration: InputDecoration(
-                                  prefixIcon: const Icon(
-                                      Icons.attach_money_outlined),
+                                  prefixIcon:
+                                      const Icon(Icons.attach_money_outlined),
                                   border: InputBorder.none,
                                   hintText: "Salary",
                                   hintStyle: TextStyle(
-                                      color: Colors.grey[700],
-                                      fontSize: 17)),
+                                      color: Colors.grey[700], fontSize: 17)),
                               // validator: (String? val) {
                               //   return Guard.againstEmptyString(
                               //       val, 'Salary');
@@ -391,8 +382,8 @@ class _AddEmpPageState extends State<AddEmpPage> {
                             decoration: const BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Color.fromRGBO(
-                                            40, 120, 19, 1)))),
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
                               style: const TextStyle(fontSize: 20),
@@ -409,8 +400,7 @@ class _AddEmpPageState extends State<AddEmpPage> {
                                   border: InputBorder.none,
                                   hintText: "Password",
                                   hintStyle: TextStyle(
-                                      color: Colors.grey[700],
-                                      fontSize: 17),
+                                      color: Colors.grey[700], fontSize: 17),
                                   suffixIcon: IconButton(
                                     icon: Icon(_isObscure
                                         ? Icons.visibility
@@ -434,8 +424,8 @@ class _AddEmpPageState extends State<AddEmpPage> {
                             decoration: const BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Color.fromRGBO(
-                                            40, 120, 19, 1)))),
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
                               style: const TextStyle(fontSize: 20),
@@ -453,8 +443,7 @@ class _AddEmpPageState extends State<AddEmpPage> {
                                   border: InputBorder.none,
                                   hintText: "Confirm password",
                                   hintStyle: TextStyle(
-                                      color: Colors.grey[700],
-                                      fontSize: 17),
+                                      color: Colors.grey[700], fontSize: 17),
                                   suffixIcon: IconButton(
                                     icon: Icon(_isObscure2
                                         ? Icons.visibility
@@ -482,8 +471,8 @@ class _AddEmpPageState extends State<AddEmpPage> {
                             decoration: const BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Color.fromRGBO(
-                                            40, 120, 19, 1)))),
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
                             child: TextFormField(
                               style: const TextStyle(fontSize: 20),
                               // validator: (String? val) {
@@ -499,8 +488,7 @@ class _AddEmpPageState extends State<AddEmpPage> {
                                   border: InputBorder.none,
                                   hintText: "Notes",
                                   hintStyle: TextStyle(
-                                      color: Colors.grey[700],
-                                      fontSize: 17)),
+                                      color: Colors.grey[700], fontSize: 17)),
                               // validator: (String? val) {
                               //   return Guard.againstEmptyString(
                               //       val, 'Notes');
@@ -515,8 +503,8 @@ class _AddEmpPageState extends State<AddEmpPage> {
                             decoration: const BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Color.fromRGBO(
-                                            40, 120, 19, 1)))),
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
                             child: TextFormField(
                               style: const TextStyle(fontSize: 20),
                               // validator: (String? val) {
@@ -527,13 +515,12 @@ class _AddEmpPageState extends State<AddEmpPage> {
                               // controller: _emailController,
                               controller: _remarkController,
                               decoration: InputDecoration(
-                                  prefixIcon: const Icon(
-                                      Icons.edit_calendar_rounded),
+                                  prefixIcon:
+                                      const Icon(Icons.edit_calendar_rounded),
                                   border: InputBorder.none,
                                   hintText: "Remark",
                                   hintStyle: TextStyle(
-                                      color: Colors.grey[700],
-                                      fontSize: 17)),
+                                      color: Colors.grey[700], fontSize: 17)),
                               // validator: (String? val) {
                               //   return Guard.againstEmptyString(
                               //       val, 'Remark');
@@ -548,8 +535,8 @@ class _AddEmpPageState extends State<AddEmpPage> {
                             decoration: const BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Color.fromRGBO(
-                                            40, 120, 19, 1)))),
+                                        color:
+                                            Color.fromRGBO(40, 120, 19, 1)))),
                             child: TextFormField(
                               style: const TextStyle(fontSize: 20),
                               // validator: (String? val) {
@@ -560,13 +547,11 @@ class _AddEmpPageState extends State<AddEmpPage> {
                               // controller: _emailController,
                               controller: _restrictController,
                               decoration: InputDecoration(
-                                  prefixIcon:
-                                      const Icon(Icons.key_rounded),
+                                  prefixIcon: const Icon(Icons.key_rounded),
                                   border: InputBorder.none,
                                   hintText: "Restriction",
                                   hintStyle: TextStyle(
-                                      color: Colors.grey[700],
-                                      fontSize: 17)),
+                                      color: Colors.grey[700], fontSize: 17)),
                               // validator: (String? val) {
                               //   return Guard.againstEmptyString(
                               //       val, 'Remark');
@@ -591,18 +576,16 @@ class _AddEmpPageState extends State<AddEmpPage> {
                 height: 50,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateColor.resolveWith(
-                          (states) =>
-                              const Color.fromRGBO(40, 120, 19, 1)),
+                          (states) => const Color.fromRGBO(40, 120, 19, 1)),
                       shape: MaterialStateProperty.resolveWith((states) =>
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10))),
-                      overlayColor:
-                          MaterialStateProperty.resolveWith<Color?>(
+                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
                         (Set<MaterialState> states) {
                           if (states.contains(MaterialState.hovered)) {
                             return Colors.green; //<-- SEE HERE
@@ -615,21 +598,23 @@ class _AddEmpPageState extends State<AddEmpPage> {
                       ),
                     ),
                     child: const SizedBox(
-                      width: 200,
+                      width: 100,
                       height: 50,
                       child: Center(
-                        child: Icon(Icons.person_add_alt_1,
-                        color: white,)
-                        // Text(
-                        //   "Add",
-                        //   style: GoogleFonts.ptSerif(
-                        //     textStyle: const TextStyle(
-                        //       color: Colors.white,
-                        //       fontWeight: FontWeight.bold,
-                        //     ),
-                        //   ),
-                        // ),
-                      ),
+                          child: Icon(
+                        Icons.person_add_alt_1,
+                        color: white,
+                      )
+                          // Text(
+                          //   "Add",
+                          //   style: GoogleFonts.ptSerif(
+                          //     textStyle: const TextStyle(
+                          //       color: Colors.white,
+                          //       fontWeight: FontWeight.bold,
+                          //     ),
+                          //   ),
+                          // ),
+                          ),
                     ),
                     onPressed: () {
                       // Navigator.push(
@@ -639,7 +624,7 @@ class _AddEmpPageState extends State<AddEmpPage> {
                     },
                   ),
                   const SizedBox(
-                    width: 10,
+                    width: 50,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -647,25 +632,27 @@ class _AddEmpPageState extends State<AddEmpPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                     child: const SizedBox(
-                      width: 200,
+                      width: 100,
                       height: 50,
                       child: Center(
-                        child: 
-                        Icon(Icons.delete_forever,
-                        color: canvasColor,)
-                        // Text(
-                        //   "Cancel",
-                        //   style: GoogleFonts.ptSerif(
-                        //     textStyle: const TextStyle(
-                        //       color: Color.fromRGBO(40, 120, 19, 1),
-                        //       fontWeight: FontWeight.bold,
-                        //     ),
-                        //   ),
-                        // ),
-                      ),
+                          child: Icon(
+                        Icons.delete_forever,
+                        color: canvasColor,
+                      )
+                          // Text(
+                          //   "Cancel",
+                          //   style: GoogleFonts.ptSerif(
+                          //     textStyle: const TextStyle(
+                          //       color: Color.fromRGBO(40, 120, 19, 1),
+                          //       fontWeight: FontWeight.bold,
+                          //     ),
+                          //   ),
+                          // ),
+                          ),
                     ),
                     onPressed: () {
                       clearText();
+                      Navigator.pop(context);
                       // Navigator.push(
                       //     context,
                       //     MaterialPageRoute(
