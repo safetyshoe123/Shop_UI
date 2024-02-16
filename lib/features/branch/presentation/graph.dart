@@ -16,6 +16,38 @@ class _LineChartSample2State extends State<LineChartSample2> {
     AppColors.contentColorBlue,
   ];
 
+  List<FlSpot> mainChartData = const [
+    FlSpot(0, 2),
+    FlSpot(2, 3),
+    FlSpot(4, 5),
+    FlSpot(6, 3),
+    FlSpot(8, 4),
+    FlSpot(10, 8),
+    FlSpot(12, 6),
+    FlSpot(14, 4),
+    FlSpot(16, 2),
+    FlSpot(18, 7),
+    FlSpot(20, 5),
+    FlSpot(22, 6),
+  ];
+
+  List<FlSpot> dailyChartData = const [
+    FlSpot(0, 4),
+    FlSpot(2, 2),
+    FlSpot(4, 7),
+    FlSpot(6, 7),
+    FlSpot(8, 4),
+    FlSpot(10, 5),
+    FlSpot(12, 6),
+  ];
+
+  List<FlSpot> weeklyChartData = const [
+    FlSpot(0, 4),
+    FlSpot(2, 2),
+    FlSpot(4, 7),
+    FlSpot(6, 7),
+  ];
+
   bool showDaily = false;
   bool showWeekly = false;
 
@@ -331,20 +363,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
       maxY: 10,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 2),
-            FlSpot(2, 3),
-            FlSpot(4, 5),
-            FlSpot(6, 3),
-            FlSpot(8, 4),
-            FlSpot(10, 8),
-            FlSpot(12, 6),
-            FlSpot(14, 4),
-            FlSpot(16, 2),
-            FlSpot(18, 7),
-            FlSpot(20, 5),
-            FlSpot(22, 6),
-          ],
+          spots: mainChartData,
           isCurved: true,
           gradient: LinearGradient(
             colors: gradientColors,
@@ -442,15 +461,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
       maxY: 10,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 4),
-            FlSpot(2, 2),
-            FlSpot(4, 7),
-            FlSpot(6, 7),
-            FlSpot(8, 4),
-            FlSpot(10, 5),
-            FlSpot(12, 6),
-          ],
+          spots: dailyChartData,
           isCurved: true,
           gradient: LinearGradient(
             colors: gradientColors,
@@ -548,12 +559,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
       maxY: 10,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 4),
-            FlSpot(2, 2),
-            FlSpot(4, 7),
-            FlSpot(6, 7),
-          ],
+          spots: weeklyChartData,
           isCurved: true,
           gradient: LinearGradient(
             colors: gradientColors,
