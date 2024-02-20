@@ -5,7 +5,7 @@ import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/branch/presentation/branchadd.dart';
 import 'package:shop_ui/features/employee/presentation/empmaintenance.dart';
-import 'package:shop_ui/features/shop/presentation/shopdash.dart';
+import 'package:shop_ui/features/shop/presentation/shopadmindash.dart';
 import 'package:shop_ui/features/shop/presentation/shopinfo.dart';
 import 'package:sidebarx/sidebarx.dart';
 
@@ -368,7 +368,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
         final pageTitle = _getTitleByIndex(widget.controller.selectedIndex);
         switch (widget.controller.selectedIndex) {
           case 0:
-            return ShopDash(shopId: _shopId);
+            return const AdminDashBoard();
           case 1:
             return AddBranchPage(
               shopId: _shopId,
