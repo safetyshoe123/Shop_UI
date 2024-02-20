@@ -55,32 +55,32 @@ class _ShopDashState extends State<ShopDash> {
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Text(
-                        '-SHOP NAME- DASHBOARD',
-                        style: GoogleFonts.ptSerif(
-                          textStyle: const TextStyle(
-                            color: Color.fromRGBO(40, 120, 19, 1),
-                            fontSize: 50,
-                            // letterSpacing: .5
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  // FittedBox(
+                  //   fit: BoxFit.scaleDown,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.all(20),
+                  //     child: Text(
+                  //       '-SHOP NAME- DASHBOARD',
+                  //       style: GoogleFonts.ptSerif(
+                  //         textStyle: const TextStyle(
+                  //           color: Color.fromRGBO(40, 120, 19, 1),
+                  //           fontSize: 50,
+                  //           // letterSpacing: .5
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   // const SizedBox(
                   //   height: 20,
                   // ),
 
-                  SizedBox(
-                      height: 20,
-                      width: screenSize.width / 1.4,
-                      child: const Divider(
-                        thickness: 2,
-                      )),
+                  // SizedBox(
+                  //     height: 20,
+                  //     width: screenSize.width / 1.4,
+                  //     child: const Divider(
+                  //       thickness: 2,
+                  //     )),
 
                   Container(
                     padding: const EdgeInsets.all(3),
