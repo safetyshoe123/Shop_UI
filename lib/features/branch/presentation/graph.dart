@@ -1,6 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:shop_ui/core/global_widgets/date_time.dart';
 import 'package:shop_ui/core/utils/colors.dart';
 
 class LineChartSample2 extends StatefulWidget {
@@ -74,10 +76,10 @@ class _LineChartSample2State extends State<LineChartSample2> {
           ),
         ),
         SizedBox(
-          width: 200,
+          width: 580,
           height: 34,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               TextButton(
                 onPressed: () {
@@ -128,6 +130,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
                         ? Colors.black87.withOpacity(0.5)
                         : Colors.black87,
                   ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 280),
+                child: Text(
+                  DateFormat('MMMM').format(DateTime.now()),
+                  style: GoogleFonts.ubuntu(fontSize: 18),
                 ),
               ),
             ],
@@ -197,25 +206,25 @@ class _LineChartSample2State extends State<LineChartSample2> {
     Widget text;
     switch (value.toInt()) {
       case 0:
-        text = const Text('Sunday', style: style);
+        text = Text(GlobalDateTime.weekDays(DateTime.sunday), style: style);
         break;
       case 2:
-        text = const Text('Monday', style: style);
+        text = Text(GlobalDateTime.weekDays(DateTime.monday), style: style);
         break;
       case 4:
-        text = const Text('Tuesday', style: style);
+        text = Text(GlobalDateTime.weekDays(DateTime.tuesday), style: style);
         break;
       case 6:
-        text = const Text('Wednesday', style: style);
+        text = Text(GlobalDateTime.weekDays(DateTime.wednesday), style: style);
         break;
       case 8:
-        text = const Text('Thursday', style: style);
+        text = Text(GlobalDateTime.weekDays(DateTime.thursday), style: style);
         break;
       case 10:
-        text = const Text('Fridayday', style: style);
+        text = Text(GlobalDateTime.weekDays(DateTime.friday), style: style);
         break;
       case 12:
-        text = const Text('Saturday', style: style);
+        text = Text(GlobalDateTime.weekDays(DateTime.saturday), style: style);
         break;
       default:
         text = const Text('', style: style);
