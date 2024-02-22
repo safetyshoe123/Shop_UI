@@ -6,6 +6,7 @@ import 'package:shop_ui/features/auth/data/datasource/auth.local.datasource.dart
 import 'package:shop_ui/features/auth/domain/models/auth_model.dart';
 import 'package:shop_ui/features/auth/domain/models/login.model.dart';
 import 'package:shop_ui/features/auth/domain/models/register.model.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class AuthRemoteDatasource {
   late AuthlocalDatasource _authlocalDatasource;
@@ -97,6 +98,7 @@ class AuthRemoteDatasource {
       if (token == null || token.isEmpty) {
         throw ('Token is null or empty');
       }
+
       final response = await http.post(
         Uri.parse('${Config.url}/logout'),
         headers: {
@@ -112,11 +114,43 @@ class AuthRemoteDatasource {
           return statusCode;
         case 500:
           throw ('Can\'t logout! Something went wrong!');
+        case 401:
+          if (JwtDecoder.isExpired(token)) {
+            return await refreshToken();
+          }
+          throw (data['message']);
         default:
           throw (data['message']);
       }
     } catch (e) {
       throw (e.toString());
     }
+  }
+
+  Future<int> refreshToken() async {
+    final refreshToken = await _authlocalDatasource.getUserToken();
+
+    if (refreshToken == null || refreshToken.isEmpty) {
+      throw ('Token is null or empty');
+    }
+
+    final response = await http.post(
+      Uri.parse('${Config.url}/refresh'),
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.acceptHeader: 'application/json',
+        HttpHeaders.authorizationHeader: 'Bearer $refreshToken',
+      },
+    );
+
+    final data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      await _authlocalDatasource.saveToken(data['authorization']['token']);
+      return response.statusCode;
+    } else {
+      await _authlocalDatasource.deleteToken();
+      await _authlocalDatasource.deleteUser();
+    }
+    return response.statusCode;
   }
 }

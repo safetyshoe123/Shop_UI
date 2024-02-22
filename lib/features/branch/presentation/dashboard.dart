@@ -52,6 +52,7 @@ class _DashBoardState extends State<DashBoard> {
                               'Daily Sales',
                               style: GoogleFonts.lato(
                                 color: const Color.fromARGB(168, 0, 0, 0),
+                                fontSize: 18,
                               ),
                             ),
                             Row(
