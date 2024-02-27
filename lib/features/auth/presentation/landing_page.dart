@@ -80,6 +80,8 @@ class _SidebarXExampleAppState extends State<ShopPage> {
           body: Row(
             children: [
               SidebarX(
+                collapseIcon: Icons.arrow_back,
+                extendIcon: Icons.arrow_forward,
                 controller: _controller,
                 theme: SidebarXTheme(
                   margin: const EdgeInsets.all(10),
@@ -121,7 +123,7 @@ class _SidebarXExampleAppState extends State<ShopPage> {
                   ),
                 ),
                 extendedTheme: const SidebarXTheme(
-                  width: 200,
+                  width: 215,
                   decoration: BoxDecoration(
                     color: canvasColor,
                   ),
@@ -158,41 +160,34 @@ class _SidebarXExampleAppState extends State<ShopPage> {
                     ),
                     label: 'Home',
                   ),
-                  // SidebarXItem(
-                  //   icon: Icons.home,
-                  //   label: 'Home',
-                  //   onTap: () {
-                  //     // debugPrint('Home');
-                  //   },
-                  // ),
-
-                  // const SidebarXItem(
-                  //   icon: Icons.add_circle,
-                  //   label: 'Register Branch',
-                  // ),
-                  // const SidebarXItem(
-                  //   icon: Icons.info,
-                  //   label: 'Shop Info',
-                  // ),
                   SidebarXItem(
                     iconWidget: Tooltip(
-                      message: 'Transaction',
+                      message: 'Order Management',
                       child: Icon(
                         Icons.published_with_changes_rounded,
                         color: white,
                       ),
                     ),
-                    label: 'Transaction',
                   ),
                   SidebarXItem(
                     iconWidget: Tooltip(
-                      message: 'Report',
+                      message: 'Entry of Expenses',
+                      child: Icon(
+                        Icons.receipt_long_outlined,
+                        color: white,
+                      ),
+                    ),
+                    label: 'Entry of Expenses',
+                  ),
+                  SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Sales Report',
                       child: Icon(
                         Icons.report_gmailerrorred_rounded,
                         color: white,
                       ),
                     ),
-                    label: 'Report',
+                    label: 'Sales Report',
                   ),
                   SidebarXItem(
                     iconWidget: Tooltip(
@@ -204,23 +199,27 @@ class _SidebarXExampleAppState extends State<ShopPage> {
                     ),
                     label: 'List',
                   ),
-
-                  // const SidebarXItem(
-                  //   icon: Icons.person,
-                  //   label: 'Employees',
-                  // ),
+                  SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Store Management',
+                      child: Icon(
+                        Icons.store,
+                        color: white,
+                      ),
+                    ),
+                    label: 'Store Management',
+                  ),
+                  SidebarXItem(
+                    iconWidget: Tooltip(
+                      message: 'Budget Management',
+                      child: Icon(
+                        Icons.home,
+                        color: white,
+                      ),
+                    ),
+                    label: 'Budget Management',
+                  ),
                 ],
-                // footerItems: [
-                //   SidebarXItem(
-                //     icon: Icons.power_settings_new_rounded,
-                //     label: 'Logout',
-                //     onTap: () {
-                //       // debugPrint('Logout');
-                //       // Navigator.push(context,
-                //       //     MaterialPageRoute(builder: (context) => const LoginPage()));
-                //     },
-                //   )
-                // ],
               ),
               Expanded(
                 child: Center(
@@ -307,6 +306,8 @@ class _SidebarXExampleAppState extends State<ShopPage> {
   }
 }
 
+//display sidebar items
+
 class _ScreensExample extends StatefulWidget {
   const _ScreensExample({required this.controller, required this.restriction});
   final List restriction;
@@ -337,9 +338,7 @@ class _ScreensExampleState extends State<_ScreensExample> {
               restriction: _restriction,
             );
           case 1:
-          // return const AddBranchPage(
-          // shopId: '',
-          // );
+            return const Text('Oder Management');
           case 2:
           // return const InfoShopPage();
           default:
@@ -358,13 +357,15 @@ String _getTitleByIndex(int index) {
     case 0:
       return 'Home';
     case 1:
-      return 'Transaction';
+      return 'Order Management';
     case 2:
-      return 'Report';
+      return 'Sales Report';
     case 3:
-      return 'List';
+      return 'Entry of Expenses';
     case 4:
-      return 'Logout';
+      return 'List';
+    case 5:
+      return 'Budget Management';
     // case 5:
     //   return 'List';
     // case 6:
