@@ -52,6 +52,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   bool showDaily = false;
   bool showWeekly = false;
+  String toStringMonth = DateFormat('MMMM').format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           aspectRatio: 1.85,
           child: Padding(
             padding: const EdgeInsets.only(
-              right: 18,
+              right: 20,
               left: 8,
               top: 30,
               // bottom: 12,
@@ -88,13 +89,11 @@ class _LineChartSample2State extends State<LineChartSample2> {
                     showWeekly = false;
                   });
                 },
-                child: Text(
+                child: const Text(
                   'Daily',
                   style: TextStyle(
                     fontSize: 12,
-                    color: showDaily
-                        ? Colors.black87.withOpacity(0.5)
-                        : Colors.black87,
+                    color: Colors.black87,
                   ),
                 ),
               ),
@@ -105,13 +104,11 @@ class _LineChartSample2State extends State<LineChartSample2> {
                     showDaily = false;
                   });
                 },
-                child: Text(
+                child: const Text(
                   'Weekly',
                   style: TextStyle(
                     fontSize: 12,
-                    color: showDaily
-                        ? Colors.black87.withOpacity(0.5)
-                        : Colors.black87,
+                    color: Colors.black87,
                   ),
                 ),
               ),
@@ -122,23 +119,29 @@ class _LineChartSample2State extends State<LineChartSample2> {
                     showWeekly = false;
                   });
                 },
-                child: Text(
+                child: const Text(
                   'Monthly',
                   style: TextStyle(
                     fontSize: 12,
-                    color: showDaily
-                        ? Colors.black87.withOpacity(0.5)
-                        : Colors.black87,
+                    color: Colors.black87,
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 280),
-                child: Text(
-                  DateFormat('MMMM').format(DateTime.now()),
-                  style: GoogleFonts.ubuntu(fontSize: 18),
-                ),
-              ),
+              Builder(builder: (context) {
+                if (!showDaily) {
+                  return const Text('');
+                }
+                return Padding(
+                  padding: const EdgeInsets.only(left: 270),
+                  child: Text(
+                    toStringMonth,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black87,
+                    ),
+                  ),
+                );
+              }),
             ],
           ),
         ),
@@ -206,7 +209,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
     Widget text;
     switch (value.toInt()) {
       case 0:
-        text = Text(GlobalDateTime.weekDays(DateTime.sunday), style: style);
+        text = Text(GlobalDateTime.weekDays(DateTime.sunday - 7), style: style);
         break;
       case 2:
         text = Text(GlobalDateTime.weekDays(DateTime.monday), style: style);
@@ -237,22 +240,67 @@ class _LineChartSample2State extends State<LineChartSample2> {
   }
 
   Widget bottomWeeklyTitleWidgets(double value, TitleMeta? meta) {
+    DateTime day = DateTime.now();
     const style = TextStyle(
       fontSize: 10,
     );
     Widget text;
     switch (value.toInt()) {
       case 0:
-        text = const Text('Week 1', style: style);
+        text = Column(
+          children: [
+            Text('Week ${GlobalDateTime.weeksInAYear(0)}', style: style),
+            Text(
+              GlobalDateTime.daysPerWeek(
+                day.weekday + 21,
+                day.weekday + 22,
+              ),
+              style: style,
+            ),
+          ],
+        );
         break;
       case 2:
-        text = const Text('Week 2', style: style);
+        text = Column(
+          children: [
+            Text('Week ${GlobalDateTime.weeksInAYear(1)}', style: style),
+            Text(
+              GlobalDateTime.daysPerWeek(
+                day.weekday + 14,
+                day.weekday + 15,
+              ),
+              style: style,
+            ),
+          ],
+        );
         break;
       case 4:
-        text = const Text('Week 3', style: style);
+        text = Column(
+          children: [
+            Text('Week ${GlobalDateTime.weeksInAYear(2)}', style: style),
+            Text(
+              GlobalDateTime.daysPerWeek(
+                day.weekday + 7,
+                day.weekday + 8,
+              ),
+              style: style,
+            ),
+          ],
+        );
         break;
       case 6:
-        text = const Text('Week 4', style: style);
+        text = Column(
+          children: [
+            Text('Week ${GlobalDateTime.weeksInAYear(3)}', style: style),
+            Text(
+              GlobalDateTime.daysPerWeek(
+                day.weekday,
+                day.weekday + 1,
+              ),
+              style: style,
+            ),
+          ],
+        );
         break;
       default:
         text = const Text('', style: style);
@@ -539,7 +587,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-            reservedSize: 30,
+            reservedSize: 42,
             getTitlesWidget: bottomWeeklyTitleWidgets,
             interval: 1,
           ),
