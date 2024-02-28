@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_ui/core/dependency_injection/di_container.dart';
+import 'package:shop_ui/core/global_widgets/sidebar.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/shop/presentation/shopdropdown.dart';
 import 'package:sidebarx/sidebarx.dart';
@@ -77,160 +78,161 @@ class _SidebarXExampleAppState extends State<ShopPage> {
           ),
           // drawer: Sidebar(controller: _controller),
           // : null,
-          body: Row(
-            children: [
-              SidebarX(
-                collapseIcon: Icons.arrow_back,
-                extendIcon: Icons.arrow_forward,
-                controller: _controller,
-                theme: SidebarXTheme(
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: canvasColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  hoverColor: scaffoldBackgroundColor,
-                  textStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-                  selectedTextStyle: const TextStyle(color: Colors.white),
-                  itemTextPadding: const EdgeInsets.only(left: 30),
-                  selectedItemTextPadding: const EdgeInsets.only(left: 30),
-                  itemDecoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: canvasColor),
-                  ),
-                  selectedItemDecoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: actionColor.withOpacity(0.37),
-                    ),
-                    gradient: const LinearGradient(
-                      colors: [accentCanvasColor, canvasColor],
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.28),
-                        blurRadius: 30,
-                      )
-                    ],
-                  ),
-                  iconTheme: IconThemeData(
-                    color: Colors.white.withOpacity(0.7),
-                    size: 20,
-                  ),
-                  selectedIconTheme: const IconThemeData(
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ),
-                extendedTheme: const SidebarXTheme(
-                  width: 215,
-                  decoration: BoxDecoration(
-                    color: canvasColor,
-                  ),
-                ),
-                // footerDivider: divider,
-                headerBuilder: (context, extended) {
-                  return const SizedBox(
-                    height: 100,
-                    child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      // child: Image.asset('images/house2.jpg')
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Icon(
-                          Icons.shopify_rounded,
-                          color: white,
-                          size: 50,
-                        ),
-                      )
-                      // Text('Image', selectionColor: Colors.white,)
-                      // Image.asset('assets/images/avatar.png')
-                      ,
-                    ),
-                  );
-                },
-                items: const [
-                  SidebarXItem(
-                    iconWidget: Tooltip(
-                      message: 'Home',
-                      child: Icon(
-                        Icons.home,
-                        color: white,
-                      ),
-                    ),
-                    label: 'Home',
-                  ),
-                  SidebarXItem(
-                    iconWidget: Tooltip(
-                      message: 'Order Management',
-                      child: Icon(
-                        Icons.published_with_changes_rounded,
-                        color: white,
-                      ),
-                    ),
-                  ),
-                  SidebarXItem(
-                    iconWidget: Tooltip(
-                      message: 'Entry of Expenses',
-                      child: Icon(
-                        Icons.receipt_long_outlined,
-                        color: white,
-                      ),
-                    ),
-                    label: 'Entry of Expenses',
-                  ),
-                  SidebarXItem(
-                    iconWidget: Tooltip(
-                      message: 'Sales Report',
-                      child: Icon(
-                        Icons.report_gmailerrorred_rounded,
-                        color: white,
-                      ),
-                    ),
-                    label: 'Sales Report',
-                  ),
-                  SidebarXItem(
-                    iconWidget: Tooltip(
-                      message: 'List',
-                      child: Icon(
-                        Icons.library_books,
-                        color: white,
-                      ),
-                    ),
-                    label: 'List',
-                  ),
-                  SidebarXItem(
-                    iconWidget: Tooltip(
-                      message: 'Store Management',
-                      child: Icon(
-                        Icons.store,
-                        color: white,
-                      ),
-                    ),
-                    label: 'Store Management',
-                  ),
-                  SidebarXItem(
-                    iconWidget: Tooltip(
-                      message: 'Budget Management',
-                      child: Icon(
-                        Icons.home,
-                        color: white,
-                      ),
-                    ),
-                    label: 'Budget Management',
-                  ),
-                ],
-              ),
-              Expanded(
-                child: Center(
-                  child: _ScreensExample(
-                    controller: _controller,
-                    restriction: _restriction,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          body: const SideBar(),
+          // Row(
+          //   children: [
+          //     SidebarX(
+          //       collapseIcon: Icons.arrow_back,
+          //       extendIcon: Icons.arrow_forward,
+          //       controller: _controller,
+          //       theme: SidebarXTheme(
+          //         margin: const EdgeInsets.all(10),
+          //         decoration: BoxDecoration(
+          //           color: canvasColor,
+          //           borderRadius: BorderRadius.circular(20),
+          //         ),
+          //         hoverColor: scaffoldBackgroundColor,
+          //         textStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+          //         selectedTextStyle: const TextStyle(color: Colors.white),
+          //         itemTextPadding: const EdgeInsets.only(left: 30),
+          //         selectedItemTextPadding: const EdgeInsets.only(left: 30),
+          //         itemDecoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(10),
+          //           border: Border.all(color: canvasColor),
+          //         ),
+          //         selectedItemDecoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(10),
+          //           border: Border.all(
+          //             color: actionColor.withOpacity(0.37),
+          //           ),
+          //           gradient: const LinearGradient(
+          //             colors: [accentCanvasColor, canvasColor],
+          //           ),
+          //           boxShadow: [
+          //             BoxShadow(
+          //               color: Colors.black.withOpacity(0.28),
+          //               blurRadius: 30,
+          //             )
+          //           ],
+          //         ),
+          //         iconTheme: IconThemeData(
+          //           color: Colors.white.withOpacity(0.7),
+          //           size: 20,
+          //         ),
+          //         selectedIconTheme: const IconThemeData(
+          //           color: Colors.white,
+          //           size: 20,
+          //         ),
+          //       ),
+          //       extendedTheme: const SidebarXTheme(
+          //         width: 215,
+          //         decoration: BoxDecoration(
+          //           color: canvasColor,
+          //         ),
+          //       ),
+          //       // footerDivider: divider,
+          //       headerBuilder: (context, extended) {
+          //         return const SizedBox(
+          //           height: 100,
+          //           child: Padding(
+          //             padding: EdgeInsets.all(16.0),
+          //             // child: Image.asset('images/house2.jpg')
+          //             child: FittedBox(
+          //               fit: BoxFit.scaleDown,
+          //               child: Icon(
+          //                 Icons.shopify_rounded,
+          //                 color: white,
+          //                 size: 50,
+          //               ),
+          //             )
+          //             // Text('Image', selectionColor: Colors.white,)
+          //             // Image.asset('assets/images/avatar.png')
+          //             ,
+          //           ),
+          //         );
+          //       },
+          //       items: const [
+          //         SidebarXItem(
+          //           iconWidget: Tooltip(
+          //             message: 'Home',
+          //             child: Icon(
+          //               Icons.home,
+          //               color: white,
+          //             ),
+          //           ),
+          //           label: 'Home',
+          //         ),
+          //         SidebarXItem(
+          //           iconWidget: Tooltip(
+          //             message: 'Order Management',
+          //             child: Icon(
+          //               Icons.published_with_changes_rounded,
+          //               color: white,
+          //             ),
+          //           ),
+          //         ),
+          //         SidebarXItem(
+          //           iconWidget: Tooltip(
+          //             message: 'Entry of Expenses',
+          //             child: Icon(
+          //               Icons.receipt_long_outlined,
+          //               color: white,
+          //             ),
+          //           ),
+          //           label: 'Entry of Expenses',
+          //         ),
+          //         SidebarXItem(
+          //           iconWidget: Tooltip(
+          //             message: 'Sales Report',
+          //             child: Icon(
+          //               Icons.report_gmailerrorred_rounded,
+          //               color: white,
+          //             ),
+          //           ),
+          //           label: 'Sales Report',
+          //         ),
+          //         SidebarXItem(
+          //           iconWidget: Tooltip(
+          //             message: 'List',
+          //             child: Icon(
+          //               Icons.library_books,
+          //               color: white,
+          //             ),
+          //           ),
+          //           label: 'List',
+          //         ),
+          //         SidebarXItem(
+          //           iconWidget: Tooltip(
+          //             message: 'Store Management',
+          //             child: Icon(
+          //               Icons.store,
+          //               color: white,
+          //             ),
+          //           ),
+          //           label: 'Store Management',
+          //         ),
+          //         SidebarXItem(
+          //           iconWidget: Tooltip(
+          //             message: 'Budget Management',
+          //             child: Icon(
+          //               Icons.home,
+          //               color: white,
+          //             ),
+          //           ),
+          //           label: 'Budget Management',
+          //         ),
+          //       ],
+          //     ),
+          //     Expanded(
+          //       child: Center(
+          //         child: _ScreensExample(
+          //           controller: _controller,
+          //           restriction: _restriction,
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
           bottomNavigationBar: const BottomAppBar(
             height: 50,
             color: canvasColor,
