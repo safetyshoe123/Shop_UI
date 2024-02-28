@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 
@@ -15,13 +14,23 @@ class _SideBarState extends State<SideBar> {
   @override
   Widget build(BuildContext context) {
     return CollapsibleSidebar(
-      duration: const Duration(milliseconds: 300),
-      iconSize: 30,
+      
+      toggleTitleStyle: const TextStyle(decorationColor: canvasColor),
+      title: 'Shop Name',
+      duration: const Duration(milliseconds: 100),
+      iconSize: 25,
       selectedIconBox: const Color.fromARGB(170, 50, 121, 9),
       selectedTextColor: const Color.fromARGB(255, 242, 239, 239),
       selectedIconColor: const Color.fromARGB(255, 242, 239, 239),
       unselectedIconColor: const Color.fromARGB(255, 242, 239, 239),
       unselectedTextColor: const Color.fromARGB(255, 242, 239, 239),
+      textStyle: const TextStyle(decorationColor: canvasColor),
+      topPadding: 30,
+      bottomPadding: 30,
+      height: double.infinity,
+      maxWidth: 270,
+      minWidth: 70,
+    
       sidebarBoxShadow: const [
         BoxShadow(
           color: Colors.transparent,
@@ -40,34 +49,66 @@ class _SideBarState extends State<SideBar> {
   List<CollapsibleItem> get _items {
     return [
       CollapsibleItem(
-        text: 'Shop',
-        // iconImage: const AssetImage("images/house2.jpg"),
-        icon: Icons.ac_unit,
+        text: 'Customer Management',
+        icon: Icons.co_present_outlined,
         onPressed: () {},
         isSelected: true,
+      ),
+      CollapsibleItem(
+        text: 'Order Management',
+        // iconImage: const AssetImage("images/house2.jpg"),
+        icon: Icons.published_with_changes_rounded,
+        onPressed: () {},
+        
         subItems: [
           CollapsibleItem(
-            text: 'Cart',
-            icon: Icons.shopping_cart,
+            text: 'New Transaction',
             onPressed: () {},
-            isSelected: true,
+            
+          ),
+          CollapsibleItem(
+            text: 'Update Transaction',
+            onPressed: () {},
+          ),
+          CollapsibleItem(
+            text: 'Claim',
+            onPressed: () {},
           )
         ],
       ),
       CollapsibleItem(
-        text: 'Dashboard',
-        icon: Icons.assessment,
+        text: 'Entry of Expenses',
+        icon: Icons.monetization_on_sharp,
         onPressed: () {},
       ),
       CollapsibleItem(
-        text: 'Ice-Cream',
-        icon: Icons.icecream,
+        text: 'Sales Report',
+        icon: Icons.point_of_sale_sharp,
         onPressed: () {},
       ),
       CollapsibleItem(
-        text: 'Search',
-        icon: Icons.search,
+        text: 'Store Management',
+        icon: Icons.storefront_sharp,
         onPressed: () {},
+        
+        subItems: [
+           CollapsibleItem(
+            text: 'Store Opening',
+            onPressed: () {},
+            
+          ),
+          CollapsibleItem(
+            text: 'Store Closing',
+            onPressed: () {},
+            isSelected: true,
+          ),
+        ]
+      ),
+      CollapsibleItem(
+        text: 'Budget/Forcasting',
+        icon: Icons.moving_outlined,
+        onPressed: () {},
+        
       ),
     ];
   }
