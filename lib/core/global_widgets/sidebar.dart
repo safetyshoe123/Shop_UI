@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:shop_ui/core/global_widgets/theme_colors.dart';
+import 'package:shop_ui/features/branch/presentation/create_new.transaction.dart';
+import 'package:shop_ui/features/branch/presentation/data_table.view.dart';
 
-import 'theme_colors.dart';
+// import 'theme_colors.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
@@ -14,23 +18,27 @@ class _SideBarState extends State<SideBar> {
   @override
   Widget build(BuildContext context) {
     return CollapsibleSidebar(
-      
-      toggleTitleStyle: const TextStyle(decorationColor: canvasColor),
+      toggleButtonIcon: Icons.arrow_forward,
+      toggleTitleStyle: GoogleFonts.ubuntu(decorationColor: canvasColor),
       title: 'Shop Name',
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 200),
       iconSize: 25,
       selectedIconBox: const Color.fromARGB(170, 50, 121, 9),
-      selectedTextColor: const Color.fromARGB(255, 242, 239, 239),
+      selectedTextColor: const Color.fromARGB(255, 255, 252, 252),
       selectedIconColor: const Color.fromARGB(255, 242, 239, 239),
       unselectedIconColor: const Color.fromARGB(255, 242, 239, 239),
       unselectedTextColor: const Color.fromARGB(255, 242, 239, 239),
-      textStyle: const TextStyle(decorationColor: canvasColor),
+      customItemOffsetX: -4,
+      textStyle: GoogleFonts.roboto(
+        decorationColor: canvasColor,
+        fontSize: 11.7,
+        fontWeight: FontWeight.w200,
+      ),
       topPadding: 30,
       bottomPadding: 30,
-      height: double.infinity,
-      maxWidth: 270,
+      maxWidth: 300,
       minWidth: 70,
-    
+      toggleTitle: 'Minimize',
       sidebarBoxShadow: const [
         BoxShadow(
           color: Colors.transparent,
@@ -40,8 +48,8 @@ class _SideBarState extends State<SideBar> {
       backgroundColor: canvasColor,
       body: Container(
         height: double.infinity,
-        width: double.infinity,
-        color: Colors.blueGrey[50],
+        width: 0,
+        color: Colors.transparent,
       ),
     );
   }
@@ -50,7 +58,7 @@ class _SideBarState extends State<SideBar> {
     return [
       CollapsibleItem(
         text: 'Customer Management',
-        icon: Icons.co_present_outlined,
+        icon: Icons.person_rounded,
         onPressed: () {},
         isSelected: true,
       ),
@@ -59,16 +67,28 @@ class _SideBarState extends State<SideBar> {
         // iconImage: const AssetImage("images/house2.jpg"),
         icon: Icons.published_with_changes_rounded,
         onPressed: () {},
-        
         subItems: [
           CollapsibleItem(
             text: 'New Transaction',
-            onPressed: () {},
-            
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const CreateTransactions(),
+                ),
+              );
+            },
           ),
           CollapsibleItem(
             text: 'Update Transaction',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const DataTableView(),
+                ),
+              );
+            },
           ),
           CollapsibleItem(
             text: 'Claim',
@@ -87,28 +107,24 @@ class _SideBarState extends State<SideBar> {
         onPressed: () {},
       ),
       CollapsibleItem(
-        text: 'Store Management',
-        icon: Icons.storefront_sharp,
-        onPressed: () {},
-        
-        subItems: [
-           CollapsibleItem(
-            text: 'Store Opening',
-            onPressed: () {},
-            
-          ),
-          CollapsibleItem(
-            text: 'Store Closing',
-            onPressed: () {},
-            isSelected: true,
-          ),
-        ]
-      ),
+          text: 'Store Management',
+          icon: Icons.storefront_sharp,
+          onPressed: () {},
+          subItems: [
+            CollapsibleItem(
+              text: 'Store Opening',
+              onPressed: () {},
+            ),
+            CollapsibleItem(
+              text: 'Store Closing',
+              onPressed: () {},
+              isSelected: true,
+            ),
+          ]),
       CollapsibleItem(
         text: 'Budget/Forcasting',
         icon: Icons.moving_outlined,
         onPressed: () {},
-        
       ),
     ];
   }

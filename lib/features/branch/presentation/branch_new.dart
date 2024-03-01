@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_ui/core/dependency_injection/di_container.dart';
 import 'package:shop_ui/core/enums/enum.dart';
+import 'package:shop_ui/core/global_widgets/sidebar.dart';
 import 'package:shop_ui/core/global_widgets/snackbar.dart';
 import 'package:shop_ui/features/auth/domain/bloc/auth_bloc.dart';
 import 'package:shop_ui/features/branch/domain/bloc/branch_bloc.dart';
@@ -171,27 +172,7 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                       ),
                       backgroundColor: white,
                     ),
-                    onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => MultiBlocProvider(
-                      //       providers: [
-                      //         BlocProvider<AuthBloc>(
-                      //           create: (context) => diContainer.authBloc,
-                      //         ),
-                      //         BlocProvider<BranchBloc>(
-                      //           create: (context) => diContainer.branchBloc,
-                      //         ),
-                      //       ],
-                      //       child: BranchPage(
-                      //         selectedBranch: selectedValue!,
-                      //         restrictionList: restrictionList,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // );
-                    },
+                    onPressed: () {},
                     child: const Icon(
                       Icons.search,
                       color: accentCanvasColor,
@@ -218,12 +199,6 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                 color: white,
               )),
           actions: [
-            // const Tooltip(
-            //     message: 'Manager',
-            //     child: Icon(
-            //       Icons.person,
-            //       color: white,
-            //     )),
             const SizedBox(
               width: 10,
             ),
@@ -241,131 +216,10 @@ class _SidebarXExampleAppState extends State<BranchPage> {
           ],
         ),
         // : null,
-        body: Row(
+        body: Stack(
           children: [
-            SidebarX(
-              controller: _controller,
-              theme: SidebarXTheme(
-                margin: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: canvasColor,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                hoverColor: scaffoldBackgroundColor,
-                textStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-                selectedTextStyle: const TextStyle(color: Colors.white),
-                itemTextPadding: const EdgeInsets.only(left: 30),
-                selectedItemTextPadding: const EdgeInsets.only(left: 30),
-                itemDecoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: canvasColor),
-                ),
-                selectedItemDecoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: actionColor.withOpacity(0.37),
-                  ),
-                  gradient: const LinearGradient(
-                    colors: [accentCanvasColor, canvasColor],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.28),
-                      blurRadius: 30,
-                    )
-                  ],
-                ),
-                iconTheme: IconThemeData(
-                  color: Colors.white.withOpacity(0.7),
-                  size: 20,
-                ),
-                selectedIconTheme: const IconThemeData(
-                  color: Colors.white,
-                  size: 20,
-                ),
-              ),
-              extendedTheme: const SidebarXTheme(
-                width: 200,
-                decoration: BoxDecoration(
-                  color: canvasColor,
-                ),
-              ),
-              // footerDivider: divider,
-              headerBuilder: (context, extended) {
-                return const FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: SizedBox(
-                    height: 100,
-                    child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      // child: Image.asset('images/house2.jpg')
-                      child: Icon(
-                        Icons.shopify_rounded,
-                        color: white,
-                        size: 50,
-                      )
-                      // Text('Image', selectionColor: Colors.white,)
-                      // Image.asset('assets/images/avatar.png')
-                      ,
-                    ),
-                  ),
-                );
-              },
-              items: const [
-                SidebarXItem(
-                  iconWidget: Tooltip(
-                    message: 'Home',
-                    child: Icon(
-                      Icons.home,
-                      color: white,
-                    ),
-                  ),
-                  label: 'Home',
-                ),
-                SidebarXItem(
-                  iconWidget: Tooltip(
-                    message: 'Register Employee',
-                    child: Icon(
-                      Icons.add_circle,
-                      color: white,
-                    ),
-                  ),
-                  label: 'Register Employee',
-                ),
-                SidebarXItem(
-                  iconWidget: Tooltip(
-                    message: 'Info',
-                    child: Icon(
-                      Icons.info,
-                      color: white,
-                    ),
-                  ),
-                  label: 'Info',
-                ),
-                SidebarXItem(
-                  iconWidget: Tooltip(
-                    message: 'Profile',
-                    child: Icon(
-                      Icons.person,
-                      color: white,
-                    ),
-                  ),
-                  label: 'Profile',
-                ),
-              ],
-              // footerItems: [
-              //   SidebarXItem(
-              //     icon: Icons.power_settings_new_rounded,
-              //     label: 'Logout',
-              //     onTap: () {
-              //       // // debugPrint('Logout');
-              //       // Navigator.push(context,
-              //       //     MaterialPageRoute(builder: (context) => const LoginPage()));
-              //     },
-              //   )
-              // ],
-            ),
-            Expanded(
+            Padding(
+              padding: const EdgeInsets.only(left: 50),
               child: Center(
                 child: _ScreensExample(
                   controller: _controller,
@@ -373,22 +227,9 @@ class _SidebarXExampleAppState extends State<BranchPage> {
                 ),
               ),
             ),
+            const SideBar(),
           ],
-        )
-
-        // ExampleSidebarX(controller: _controller)
-        ,
-        // body: Row(
-        //   children: [
-        //     Expanded(
-        //       child: Center(
-        //         child: _ScreensExample(
-        //           controller: _controller,
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // ),
+        ),
         bottomNavigationBar: const BottomAppBar(
           height: 50,
           color: canvasColor,
@@ -486,11 +327,11 @@ class _ScreensExample extends StatefulWidget {
 }
 
 class _ScreensExampleState extends State<_ScreensExample> {
-  late String _branchId;
+  late String branchId;
   @override
   void initState() {
     super.initState();
-    _branchId = widget.branchId;
+    branchId = widget.branchId;
   }
 
   @override
